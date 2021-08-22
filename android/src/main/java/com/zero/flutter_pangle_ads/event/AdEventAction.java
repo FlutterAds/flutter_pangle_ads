@@ -18,8 +18,8 @@ public class AdEventAction {
     public static final String onAdClicked="onAdClicked";
     // 广告跳过
     public static final String onAdSkip="onAdSkip";
-    // 广告计时结束或完成
-    public static final String onAdTimeOver="onAdTimeOver";
+    // 广告播放或计时完毕
+    public static final String onAdComplete="onAdComplete";
     // 获得广告激励
     public static final String onAdReward="onAdReward";
 }

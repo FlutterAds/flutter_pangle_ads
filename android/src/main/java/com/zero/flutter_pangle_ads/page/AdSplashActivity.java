@@ -168,7 +168,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
     @Override
     public void onAdTimeOver() {
         Log.d(TAG, "onAdTimeOver");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdTimeOver));
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdComplete));
         finishPage();
     }
 }
