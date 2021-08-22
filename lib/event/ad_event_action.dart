@@ -12,6 +12,10 @@ class AdEventAction {
   static final String onAdClosed = "onAdClosed";
   // 广告点击
   static final String onAdClicked = "onAdClicked";
+  // 广告跳过
+  static final String onAdSkip = "onAdSkip";
+  // 广告播放或计时完毕
+  static final String onAdComplete = "onAdComplete";
   // 获得广告激励
   static final String onAdReward = "onAdReward";
 }

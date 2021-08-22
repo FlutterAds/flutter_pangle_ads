@@ -1,6 +1,6 @@
 //
 //  AdEventAction.m
-//  flutter_qq_ads
+//  flutter_pangle_ads
 //
 //  Created by zero on 2021/8/14.
 //

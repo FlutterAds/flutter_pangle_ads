@@ -1,6 +1,6 @@
 //
 //  BaseAdPage.h
-//  flutter_qq_ads
+//  flutter_pangle_ads
 //
 //  Created by zero on 2021/8/18.
 //
@@ -23,10 +23,14 @@
 @property CGFloat width;
 // 屏幕高度
 @property CGFloat height;
-// 添加广告事件
--(void) addAdEvent:(AdEvent *) event;
 // 显示广告
 - (void) showAd:(NSString *)posId methodCall:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink) events;
 // 加载广告
 - (void) loadAd:(FlutterMethodCall *) call;
+// 添加广告事件
+-(void) sendEvent:(AdEvent *) event;
+// 添加广告事件
+-(void) sendEventAction:(NSString *) action;
+// 添加广告错误事件
+-(void) sendErrorEvent:(NSInteger) errCode withErrMsg:(NSString*) errMsg;
 @end

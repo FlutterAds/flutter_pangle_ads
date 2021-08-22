@@ -1,6 +1,6 @@
 //
 //  SplashPage.m
-//  flutter_qq_ads
+//  flutter_pangle_ads
 //
 //  Created by zero on 2021/8/18.
 //
@@ -56,17 +56,16 @@
 - (void)splashAdDidLoad:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     [self.mainWin.rootViewController.view addSubview:self.bottomView];
-    // 添加广告事件
-    AdEvent *event=[[AdEvent alloc] initWithAdId:self.posId andAction:onAdLoaded];
-    [self addAdEvent:event];
+    // 发送广告事件
+    [self sendEventAction:onAdLoaded];
+    
 }
 
 - (void)splashAdDidClose:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     [splashAd removeFromSuperview];
-    // 添加广告事件
-    AdEvent *event=[[AdEvent alloc] initWithAdId:self.posId andAction:onAdClosed];
-    [self addAdEvent:event];
+    // 发送广告事件
+    [self sendEventAction:onAdClosed];
 }
 
 - (void)splashAdDidClick:(BUSplashAdView *)splashAd {
@@ -74,29 +73,28 @@
     // Be careful not to say 'self.splashadview = nil' here.
     // Subsequent agent callbacks will not be triggered after the 'splashAdView' is released early.
     [splashAd removeFromSuperview];
-    // 添加广告事件
-    AdEvent *event=[[AdEvent alloc] initWithAdId:self.posId andAction:onAdClicked];
-    [self addAdEvent:event];
+    // 发送广告事件
+    [self sendEventAction:onAdClicked];
 }
 
 - (void)splashAdDidClickSkip:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     [self removeSplashAdView];
-    // 添加广告事件
-    AdEvent *event=[[AdEvent alloc] initWithAdId:self.posId andAction:onAdSkip];
-    [self addAdEvent:event];
+    // 发送广告事件
+    [self sendEventAction:onAdSkip];
 }
 
 - (void)splashAd:(BUSplashAdView *)splashAd didFailWithError:(NSError *)error {
     NSLog(@"%s",__FUNCTION__);
     [self removeSplashAdView];
+    // 发送广告错误事件
+    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
 }
 
 - (void)splashAdWillVisible:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
-    // 添加广告事件
-    AdEvent *event=[[AdEvent alloc] initWithAdId:self.posId andAction:onAdExposure];
-    [self addAdEvent:event];
+    // 发送广告事件
+    [self sendEventAction:onAdExposure];
 }
 
 - (void)splashAdDidCloseOtherController:(BUSplashAdView *)splashAd interactionType:(BUInteractionType)interactionType {

@@ -1,6 +1,6 @@
 //
 //  AdRewardEvent.m
-//  flutter_qq_ads
+//  flutter_pangle_ads
 //
 //  Created by zero on 2021/8/19.
 //
@@ -9,21 +9,30 @@
 #import "AdEventAction.h"
 
 @implementation AdRewardEvent
-- (id)initWithAdId:(NSString *)adId transId:(NSString *)transId customData:(NSString *)customData userId:(NSString *)userId{
+- (id)initWithAdId:(NSString *)adId rewardVerify:(BOOL) rewardVerify rewardAmount:(NSInteger) rewardAmount rewardName:(NSString *)rewardName customData:(NSString *)customData userId:(NSString *)userId errCode:(NSInteger) errCode errMsg:(NSString*) errMsg{
     self.adId=adId;
     self.action=onAdReward;
-    self.transId=transId;
+    self.rewardVerify=rewardVerify;
+    self.rewardAmount=rewardAmount;
+    self.rewardName=rewardName;
     self.customData=customData;
     self.userId=userId;
+    self.errCode=errCode;
+    self.errMsg=errMsg;
     return self;
 }
 
 - (NSDictionary *)toMap{
     NSDictionary *data=[super toMap];
     NSMutableDictionary *errData=[[NSMutableDictionary alloc]initWithDictionary:data];
-    [errData setObject:_transId forKey:@"transId"];
+    [errData setObject:@(_rewardVerify) forKey:@"rewardVerify"];
+    [errData setObject:[NSNumber numberWithInteger:_rewardAmount] forKey:@"rewardAmount"];
+    [errData setObject:_rewardName forKey:@"rewardName"];
+    [errData setObject:[NSNumber numberWithInteger: _errCode] forKey:@"errCode"];
+    [errData setObject:_errMsg forKey:@"errMsg"];
     [errData setObject:_customData forKey:@"customData"];
     [errData setObject:_userId forKey:@"userId"];
+    
     return errData;
 }
 @end

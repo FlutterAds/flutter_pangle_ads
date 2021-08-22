@@ -27,7 +27,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
     private String userId;
 
     @Override
-    public void loadAd(Activity activity, @NonNull MethodCall call) {
+    public void loadAd( @NonNull MethodCall call) {
         customData = call.argument("customData");
         userId = call.argument("userId");
         // 配置广告

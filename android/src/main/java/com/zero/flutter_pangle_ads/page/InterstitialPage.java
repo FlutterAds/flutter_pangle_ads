@@ -24,7 +24,7 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
     TTNativeExpressAd iad;
 
     @Override
-    public void loadAd(Activity activity, @NonNull MethodCall call) {
+    public void loadAd(@NonNull MethodCall call) {
         int expressViewWidth = call.argument("width");
         int expressViewHeight = call.argument("height");
         adSlot = new AdSlot.Builder()
