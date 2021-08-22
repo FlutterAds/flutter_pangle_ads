@@ -7,9 +7,9 @@ import java.util.HashMap;
  */
 public class AdEvent {
     // 广告 id
-    String adId;
+    private final String adId;
     // 操作
-    String action;
+    private final String action;
 
     public AdEvent(String adId, String action) {
         this.adId = adId;

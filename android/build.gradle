@@ -40,6 +40,4 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // 广告 SDK
     implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
-    // 这里最后要去掉，是临时使用
-    implementation 'com.qq.e.union:union:4.380.1250'
 }

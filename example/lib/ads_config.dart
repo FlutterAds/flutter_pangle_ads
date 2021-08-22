@@ -21,42 +21,17 @@ class AdsConfig {
   }
 
   /// 获取 App id
-  static String get appId {
-    // 官方 demo id
-    // return '5001121';
-    return '5195673';
-  }
+  static String get appId => '5195673';
 
   /// 获取开屏广告位id
-  static String get splashId {
-    // 官方demo
-    return "887516177";
-    // if (Platform.isAndroid) {
-    //   return '8022311121246224';
-    // } else {
-    //   return '5052818319908354';
-    // }
-  }
+  static String get splashId => '887516177';
 
   /// 获取插屏广告位id
-  static String get interstitialId {
-    // 官方demo
-    // return "9040714184494018";
-    if (Platform.isAndroid) {
-      return '3022327103988804';
-    } else {
-      return '5092321153081845';
-    }
-  }
+  static String get interstitialId => '946584889';
+
+  /// 获取新插屏广告位id
+  static String get newInterstitialId => '946584893';
 
   /// 获取激励视频广告位id
-  static String get rewardVideoId {
-    // 官方demo
-    // return "9040714184494018";
-    if (Platform.isAndroid) {
-      return '3032129193181886';
-    } else {
-      return '1042528123383807';
-    }
-  }
+  static String get rewardVideoId => '946584890';
 }

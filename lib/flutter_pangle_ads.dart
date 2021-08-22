@@ -54,19 +54,15 @@ class FlutterPangleAds {
   /// [detailPageMuted] 详情页是否静音
   static Future<bool> showInterstitialAd(
     String posId, {
-    bool showPopup = false,
-    bool autoPlayOnWifi = false,
-    bool autoPlayMuted = true,
-    bool detailPageMuted = false,
+    int expressViewWidth = 300,
+    int expressViewHeight = 300,
   }) async {
     final bool result = await _methodChannel.invokeMethod(
       'showInterstitialAd',
       {
         'posId': posId,
-        'showPopup': showPopup,
-        'autoPlayOnWifi': autoPlayOnWifi,
-        'autoPlayMuted': autoPlayMuted,
-        'detailPageMuted': detailPageMuted,
+        'width': expressViewWidth,
+        'height': expressViewHeight,
       },
     );
     return result;
@@ -74,12 +70,10 @@ class FlutterPangleAds {
 
   /// 展示激励视频广告
   /// [posId] 广告位 id
-  /// [playMuted] 是否静音播放
   /// [customData] 设置服务端验证的自定义信息
   /// [userId] 设置服务端验证的用户信息
   static Future<bool> showRewardVideoAd(
     String posId, {
-    bool playMuted = false,
     String customData,
     String userId,
   }) async {
@@ -87,7 +81,6 @@ class FlutterPangleAds {
       'showRewardVideoAd',
       {
         'posId': posId,
-        'playMuted': playMuted,
         'customData': customData,
         'userId': userId,
       },

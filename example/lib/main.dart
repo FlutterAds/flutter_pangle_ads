@@ -78,14 +78,14 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 child: Text('展示插屏广告'),
                 onPressed: () {
-                  // showInterstitialAd();
+                  showInterstitialAd();
                 },
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 child: Text('展示激励视频广告'),
                 onPressed: () {
-                  // showRewardVideoAd();
+                  showRewardVideoAd();
                 },
               ),
             ],
@@ -123,7 +123,7 @@ class _MyAppState extends State<MyApp> {
       } else if (event is AdRewardEvent) {
         // 激励事件
         _adEvent +=
-            ' transId:${event.transId} customData:${event.customData} userId:${event.userId}';
+            ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
       }
       print('onEventListener:$_adEvent');
       setState(() {});
@@ -154,10 +154,8 @@ class _MyAppState extends State<MyApp> {
     try {
       bool result = await FlutterPangleAds.showInterstitialAd(
         AdsConfig.interstitialId,
-        showPopup: false,
-        autoPlayMuted: false,
-        autoPlayOnWifi: false,
-        detailPageMuted: false,
+        expressViewWidth: 300,
+        expressViewHeight: 300,
       );
       _result = "展示插屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
@@ -171,7 +169,6 @@ class _MyAppState extends State<MyApp> {
     try {
       bool result = await FlutterPangleAds.showRewardVideoAd(
         AdsConfig.rewardVideoId,
-        playMuted: false,
         customData: 'customData',
         userId: 'userId',
       );

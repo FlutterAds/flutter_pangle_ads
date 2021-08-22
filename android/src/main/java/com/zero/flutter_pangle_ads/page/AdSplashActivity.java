@@ -78,8 +78,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         TTAdNative splashAD = TTAdSdk.getAdManager().createAdNative(this);
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(posId)
-//                .setExpressViewAcceptedSize(1080, 1920)
-                .setImageAcceptedSize(1080,1920)
+                .setExpressViewAcceptedSize(1080,1920)
                 .build();
         // 加载广告
         splashAD.loadSplashAd(adSlot, this);
@@ -117,7 +116,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
 
     @Override
     public void onError(int i, String s) {
-        Log.d(TAG, "onError code:" + i + " msg:" + s);
+        Log.e(TAG, "onError code:" + i + " msg:" + s);
         AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, i, s));
         finishPage();
     }

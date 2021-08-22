@@ -7,9 +7,9 @@ import java.util.HashMap;
  */
 public class AdErrorEvent extends AdEvent {
     // 错误码
-    int errCode;
+    private final int errCode;
     // 错误信息
-    String errMsg;
+    private final String errMsg;
     // 错误事件实体
     public AdErrorEvent(String adId, int errCode, String errMsg) {
         super(adId, AdEventAction.onAdError);
