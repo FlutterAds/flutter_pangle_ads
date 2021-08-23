@@ -1,16 +1,15 @@
 # flutter_pangle_ads_example
+<p align="center">
+<img src="https://raw.githubusercontent.com/FlutterAds/site/master/logo/flutterads_logo.png" alt="logo" height="144"/>
+</p>
+<a href="https://github.com/FlutterAds"><h3 align="center">FlutterAds 致力于构建优质的 Flutter 广告插件</h3></a>
 
-Demonstrates how to use the flutter_pangle_ads plugin.
+## 联系作者
+- 微信：ZeroFlutter
+- 邮箱：zhengsonglan001@gmail.com
 
-## Getting Started
+## 支持开源
 
-This project is a starting point for a Flutter application.
+<img src="https://github.com/yy1300326388/yy1300326388/blob/main/images/pay_qr_code/pay_qr_code.png?raw=true" alt="支持作者" height="160"/>
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> 或许你不知道经过了多少个夜晚，就是为了方便你使用

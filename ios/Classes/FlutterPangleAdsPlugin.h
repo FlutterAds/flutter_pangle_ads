@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface FlutterPangleAdsPlugin : NSObject<FlutterPlugin>
+@interface FlutterPangleAdsPlugin : NSObject<FlutterPlugin,FlutterStreamHandler>
 @end
