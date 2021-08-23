@@ -34,10 +34,26 @@ class FlutterPangleAds {
 
   /// 初始化广告
   /// [appId] 应用ID
-  static Future<bool> initAd(String appId) async {
+  /// [useTextureView] (Android) 是否使用TextureView控件播放视频
+  /// [supportMultiProcess] (Android) 是否支持多进程
+  /// [allowShowNotify] (Android) 是否允许sdk展示通知栏提示
+  /// [onlyWifiDirectDownload] (Android) 是否仅 WiFi 时允许直接下载
+  static Future<bool> initAd(
+    String appId, {
+    bool useTextureView = false,
+    bool supportMultiProcess = false,
+    bool allowShowNotify = true,
+    bool onlyWifiDirectDownload = false,
+  }) async {
     final bool result = await _methodChannel.invokeMethod(
       'initAd',
-      {'appId': appId},
+      {
+        'appId': appId,
+        'useTextureView': useTextureView,
+        'supportMultiProcess': supportMultiProcess,
+        'allowShowNotify': allowShowNotify,
+        'onlyWifiDirectDownload': onlyWifiDirectDownload,
+      },
     );
     return result;
   }

@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.bytedance.sdk.openadsdk.TTAdConfig;
+import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.InterstitialPage;
@@ -126,13 +127,18 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler,EventChan
      */
     public void initAd(MethodCall call, final MethodChannel.Result result) {
         String appId = call.argument("appId");
+        boolean useTextureView = call.argument("useTextureView");
+        boolean supportMultiProcess = call.argument("supportMultiProcess");
+        boolean allowShowNotify = call.argument("allowShowNotify");
+        boolean onlyWifiDirectDownload = call.argument("onlyWifiDirectDownload");
         // 构建配置
         TTAdConfig config=new TTAdConfig.Builder()
                 .appId(appId)
-                .useTextureView(false) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
-                .allowShowNotify(true) //是否允许sdk展示通知栏提示
+                .useTextureView(useTextureView) //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView
+                .allowShowNotify(allowShowNotify) //是否允许sdk展示通知栏提示
                 .debug(BuildConfig.DEBUG) //测试阶段打开，可以通过日志排查问题，上线时去除该调用
-                .supportMultiProcess(false)//是否支持多进程
+                .supportMultiProcess(supportMultiProcess)//是否支持多进程
+                .directDownloadNetworkType(onlyWifiDirectDownload?new int[]{TTAdConstant.NETWORK_STATE_WIFI}:new int[]{TTAdConstant.NETWORK_STATE_WIFI,TTAdConstant.NETWORK_STATE_MOBILE})
                 .needClearTaskReset()
                 .build();
         // 初始化 SDK
@@ -178,7 +184,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler,EventChan
     }
 
     /**
-     * 显示开屏广告
+     * 显示插屏广告
      *
      * @param call   MethodCall
      * @param result Result
