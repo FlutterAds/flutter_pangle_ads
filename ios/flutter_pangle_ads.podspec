@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_pangle_ads'
-  s.version          = '1.0.0'
+  s.version          = '2.0.0'
   s.summary          = '一款优质的 Flutter 广告插件（字节跳动、穿山甲）'
   s.description      = <<-DESC
 FlutterAds 致力于构建优质的 Flutter 广告插件
