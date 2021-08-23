@@ -62,6 +62,13 @@ class _MyAppState extends State<MyApp> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                child: Text('动态请求相关权限（仅 Android）'),
+                onPressed: () {
+                  requestPermissionIfNecessary();
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
                 child: Text('展示开屏广告（Logo2）'),
                 onPressed: () {
                   showSplashAd(AdsConfig.logo2);
@@ -134,6 +141,13 @@ class _MyAppState extends State<MyApp> {
   Future<void> requestIDFA() async {
     bool result = await FlutterPangleAds.requestIDFA;
     _adEvent = '请求广告标识符:$result';
+    setState(() {});
+  }
+
+  /// 请求应用跟踪透明度授权
+  Future<void> requestPermissionIfNecessary() async {
+    bool result = await FlutterPangleAds.requestPermissionIfNecessary;
+    _adEvent = '请求相关权限:$result';
     setState(() {});
   }
 

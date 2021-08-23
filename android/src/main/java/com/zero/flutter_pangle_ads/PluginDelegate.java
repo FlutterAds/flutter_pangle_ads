@@ -60,8 +60,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler,EventChan
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         String method=call.method;
         Log.d(TAG, "MethodChannel onMethodCall method:"+method +" arguments:"+call.arguments);
-        if ("getPlatformVersion".equals(method)) {
-            getPlatformVersion(call, result);
+        if ("requestPermissionIfNecessary".equals(method)) {
+            requestPermissionIfNecessary(call, result);
         }else if ("initAd".equals(method)){
             initAd(call, result);
         }else if ("showSplashAd".equals(method)){
@@ -108,14 +108,14 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler,EventChan
     }
 
     /**
-     * demo
+     * 请求权限
      *
      * @param call   MethodCall
      * @param result Result
      */
-    public void getPlatformVersion(MethodCall call, MethodChannel.Result result) {
-//        String id = call.argument("id");
-        result.success("Android " + android.os.Build.VERSION.RELEASE);
+    public void requestPermissionIfNecessary(MethodCall call, MethodChannel.Result result) {
+        TTAdSdk.getAdManager().requestPermissionIfNecessary(activity);
+        result.success(true);
     }
 
     /**

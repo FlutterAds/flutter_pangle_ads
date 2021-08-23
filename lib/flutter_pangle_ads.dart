@@ -13,10 +13,18 @@ class FlutterPangleAds {
   static const EventChannel _eventChannel =
       const EventChannel('flutter_pangle_ads_event');
 
-  /// 请求应用跟踪透明度授权
+  /// 请求应用跟踪透明度授权(仅 iOS)
   static Future<bool> get requestIDFA async {
     if (Platform.isIOS) {
       final bool result = await _methodChannel.invokeMethod('requestIDFA');
+      return result;
+    }
+    return true;
+  }
+  /// 动态请求相关权限（仅 Android）
+  static Future<bool> get requestPermissionIfNecessary async {
+    if (Platform.isAndroid) {
+      final bool result = await _methodChannel.invokeMethod('requestPermissionIfNecessary');
       return result;
     }
     return true;
