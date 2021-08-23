@@ -17,7 +17,6 @@ FlutterAds 致力于构建优质的 Flutter 广告插件
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.dependency 'Ads-CN' #SDK版本 >=3.4.0.0
-  s.dependency 'GDTMobSDK' # 这是临时的，最终要去掉
   s.platform = :ios, '9.0'
   s.static_framework = true
 
