@@ -3,15 +3,15 @@ import 'ad_event.dart';
 /// 广告激励事件
 class AdRewardEvent extends AdEvent {
   AdRewardEvent(
-      {this.rewardVerify,
-      this.rewardAmount,
-      this.rewardName,
+      {required this.rewardVerify,
+      required this.rewardAmount,
+      required this.rewardName,
       this.errCode,
       this.errMsg,
       this.customData,
       this.userId,
-      String adId,
-      String action})
+      required String adId,
+      required String action})
       : super(adId: adId, action: action);
   // 奖励是否有效
   final bool rewardVerify;
@@ -20,13 +20,13 @@ class AdRewardEvent extends AdEvent {
   // 奖励名称
   final String rewardName;
   // 错误码
-  final int errCode;
+  final int? errCode;
   // 错误信息
-  final String errMsg;
+  final String? errMsg;
   // 服务端验证的自定义信息
-  final String customData;
+  final String? customData;
   // 服务端验证的用户信息
-  final String userId;
+  final String? userId;
   // 解析 json 为激励事件对象
   factory AdRewardEvent.fromJson(Map<dynamic, dynamic> json) {
     return AdRewardEvent(

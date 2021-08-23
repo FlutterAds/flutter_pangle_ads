@@ -8,6 +8,6 @@ typedef OnAdEventListener = void Function(AdEvent event);
 void hanleAdEvent(dynamic data, OnAdEventListener listener) {
   if (data != null) {
     AdEvent adEvent = AdEvent.fromJson(data);
-    listener?.call(adEvent);
+    listener.call(adEvent);
   }
 }

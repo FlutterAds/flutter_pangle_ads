@@ -61,7 +61,7 @@ class FlutterPangleAds {
   /// 展示开屏广告
   /// [posId] 广告位 id
   /// [logo] 展示如果传递则展示底部logo，不传递不展示Logo，则全屏展示
-  static Future<bool> showSplashAd(String posId, [String logo]) async {
+  static Future<bool> showSplashAd(String posId, [String? logo]) async {
     final bool result = await _methodChannel.invokeMethod(
       'showSplashAd',
       {
@@ -98,8 +98,8 @@ class FlutterPangleAds {
   /// [userId] 设置服务端验证的用户信息
   static Future<bool> showRewardVideoAd(
     String posId, {
-    String customData,
-    String userId,
+    String? customData,
+    String? userId,
   }) async {
     final bool result = await _methodChannel.invokeMethod(
       'showRewardVideoAd',
