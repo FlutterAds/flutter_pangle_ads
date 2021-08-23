@@ -168,8 +168,8 @@ class _MyAppState extends State<MyApp> {
     try {
       bool result = await FlutterPangleAds.showInterstitialAd(
         AdsConfig.interstitialId,
-        expressViewWidth: 300,
-        expressViewHeight: 300,
+        width: 300,
+        height: 300,
       );
       _result = "展示插屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {

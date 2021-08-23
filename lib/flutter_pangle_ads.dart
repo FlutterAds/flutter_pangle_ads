@@ -56,19 +56,19 @@ class FlutterPangleAds {
 
   /// 展示插屏广告
   /// [posId] 广告位 id
-  /// [width] 请求模板广告素材的尺寸宽度
-  /// [height] 请求模板广告素材的尺寸高度
+  /// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
+  /// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
   static Future<bool> showInterstitialAd(
     String posId, {
-    int expressViewWidth = 300,
-    int expressViewHeight = 300,
+    int width = 300,
+    int height = 300,
   }) async {
     final bool result = await _methodChannel.invokeMethod(
       'showInterstitialAd',
       {
         'posId': posId,
-        'width': expressViewWidth,
-        'height': expressViewHeight,
+        'width': width,
+        'height': height,
       },
     );
     return result;

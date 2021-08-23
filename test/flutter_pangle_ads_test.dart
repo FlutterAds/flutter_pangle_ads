@@ -57,8 +57,8 @@ void main() {
     expect(
       await FlutterPangleAds.showInterstitialAd(
         AdsConfig.interstitialId,
-        expressViewWidth: 600,
-        expressViewHeight: 600,
+        width: 600,
+        height: 600,
       ),
       true,
     );
