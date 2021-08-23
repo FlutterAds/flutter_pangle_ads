@@ -1,5 +1,4 @@
 #import "FlutterPangleAdsPlugin.h"
-#import "GDTSDKConfig.h"
 #import <BUAdSDK/BUAdSDK.h>
 #import "SplashPage.h"
 #import "InterstitialPage.h"
