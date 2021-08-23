@@ -39,7 +39,9 @@
 - Pub 引入
 
 ``` Dart
-发布后更新
+dependencies:
+  flutter_pangle_ads: ^1.0.0 # 非 Null Safety 版本
+  flutter_pangle_ads: ^2.0.0 # Null Safety 版本
 ```
 
 - Git 引入
