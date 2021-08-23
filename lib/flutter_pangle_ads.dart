@@ -34,7 +34,7 @@ class FlutterPangleAds {
 
   /// 展示开屏广告
   /// [posId] 广告位 id
-  /// [logo] 展示如果传递则展示底部logo，不传递不展示，则全屏
+  /// [logo] 展示如果传递则展示底部logo，不传递不展示Logo，则全屏展示
   static Future<bool> showSplashAd(String posId, [String logo]) async {
     final bool result = await _methodChannel.invokeMethod(
       'showSplashAd',
@@ -48,10 +48,8 @@ class FlutterPangleAds {
 
   /// 展示插屏广告
   /// [posId] 广告位 id
-  /// [showPopup] Popup 形式显示（仅 Android）
-  /// [autoPlayOnWifi] 是否仅在 WiFi 网络下自动播放
-  /// [autoPlayMuted] 自动播放是否静音
-  /// [detailPageMuted] 详情页是否静音
+  /// [width] 请求模板广告素材的尺寸宽度
+  /// [height] 请求模板广告素材的尺寸高度
   static Future<bool> showInterstitialAd(
     String posId, {
     int expressViewWidth = 300,
@@ -87,13 +85,7 @@ class FlutterPangleAds {
     );
     return result;
   }
-
-  static Future<String> get platformVersion async {
-    final String version =
-        await _methodChannel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-
+  
   ///事件回调
   ///@params onData 事件回调
   static Future<void> onEventListener(
