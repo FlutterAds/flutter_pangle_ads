@@ -52,7 +52,7 @@ flutter_pangle_ads:
 ### 初始化广告
 
 ``` Dart
-/// [appId] 广告配置 appId
+/// [appId] 应用ID
 FlutterPangleAds.initAd(appId);
 ```
 ### 设置广告事件监听
@@ -161,5 +161,5 @@ bool result = await FlutterPangleAds.requestPermissionIfNecessary;
 
 ## 支持开源
 
-支持开源项目最好的方式就是用 1 秒点个免费的 [Star](https://github.com/FlutterAds/flutter_qq_ads)
+支持开源项目最好的方式就是用 1 秒点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads)
 

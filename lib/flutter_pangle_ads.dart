@@ -21,17 +21,19 @@ class FlutterPangleAds {
     }
     return true;
   }
+
   /// 动态请求相关权限（仅 Android）
   static Future<bool> get requestPermissionIfNecessary async {
     if (Platform.isAndroid) {
-      final bool result = await _methodChannel.invokeMethod('requestPermissionIfNecessary');
+      final bool result =
+          await _methodChannel.invokeMethod('requestPermissionIfNecessary');
       return result;
     }
     return true;
   }
 
   /// 初始化广告
-  /// [appId] 广告配置 appId
+  /// [appId] 应用ID
   static Future<bool> initAd(String appId) async {
     final bool result = await _methodChannel.invokeMethod(
       'initAd',
@@ -93,7 +95,7 @@ class FlutterPangleAds {
     );
     return result;
   }
-  
+
   ///事件回调
   ///@params onData 事件回调
   static Future<void> onEventListener(
