@@ -18,17 +18,9 @@ import io.flutter.plugin.common.MethodCall;
  */
 public class FullScreenVideoPage extends BaseAdPage implements TTAdNative.FullScreenVideoAdListener, TTFullScreenVideoAd.FullScreenVideoAdInteractionListener {
     private static final String TAG = FullScreenVideoPage.class.getSimpleName();
-    // 显示广告对象
-    private TTFullScreenVideoAd fsad;
-    // 设置激励视频服务端验证的自定义信息
-    private String customData;
-    // 设置服务端验证的用户信息
-    private String userId;
 
     @Override
-    public void loadAd( @NonNull MethodCall call) {
-        customData = call.argument("customData");
-        userId = call.argument("userId");
+    public void loadAd(@NonNull MethodCall call) {
         // 配置广告
         adSlot = new AdSlot.Builder()
                 .setCodeId(posId)
@@ -43,60 +35,62 @@ public class FullScreenVideoPage extends BaseAdPage implements TTAdNative.FullSc
     public void onError(int i, String s) {
         Log.e(TAG, "onError code:" + i + " msg:" + s);
         // 添加广告错误事件
-        sendErrorEvent(i,s);
+        sendErrorEvent(i, s);
     }
 
     @Override
     public void onFullScreenVideoAdLoad(TTFullScreenVideoAd ttFullScreenVideoAd) {
-        Log.i(TAG,"onFullScreenVideoAdLoad");
+        Log.i(TAG, "onFullScreenVideoAdLoad");
         ttFullScreenVideoAd.setFullScreenVideoAdInteractionListener(this);
+        // 添加广告事件
+        sendEvent(AdEventAction.onAdLoaded);
     }
 
     @Override
     public void onFullScreenVideoCached() {
-        Log.i(TAG,"onFullScreenVideoCached");
+        Log.i(TAG, "onFullScreenVideoCached");
     }
 
     @Override
     public void onFullScreenVideoCached(TTFullScreenVideoAd ttFullScreenVideoAd) {
-        Log.i(TAG,"onFullScreenVideoCached ttFullScreenVideoAd");
+        Log.i(TAG, "onFullScreenVideoCached ttFullScreenVideoAd");
         ttFullScreenVideoAd.showFullScreenVideoAd(activity);
         // 添加广告事件
-        sendEvent( AdEventAction.onAdPresent);
+        sendEvent(AdEventAction.onAdPresent);
     }
 
     @Override
     public void onAdShow() {
-        Log.i(TAG,"onAdShow");
+        Log.i(TAG, "onAdShow");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdExposure);
+        sendEvent(AdEventAction.onAdExposure);
     }
 
     @Override
     public void onAdVideoBarClick() {
-        Log.i(TAG,"onAdVideoBarClick");
+        Log.i(TAG, "onAdVideoBarClick");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdClicked);
+        sendEvent(AdEventAction.onAdClicked);
     }
 
     @Override
     public void onAdClose() {
-        Log.i(TAG,"onAdClose");
+        Log.i(TAG, "onAdClose");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdClosed);
+        sendEvent(AdEventAction.onAdClosed);
     }
 
     @Override
     public void onVideoComplete() {
-        Log.i(TAG,"onVideoComplete");
+        Log.i(TAG, "onVideoComplete");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdComplete);
+        sendEvent(AdEventAction.onAdComplete);
     }
 
     @Override
     public void onSkippedVideo() {
-        Log.i(TAG,"onSkippedVideo");
+        Log.i(TAG, "onSkippedVideo");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdSkip);
+        sendEvent(AdEventAction.onAdSkip);
     }
 }

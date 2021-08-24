@@ -79,7 +79,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(posId)
                 .setSupportDeepLink(true)
-                .setImageAcceptedSize(1080,1920)
+                .setImageAcceptedSize(1080, 1920)
                 .build();
         // 加载广告
         splashAD.loadSplashAd(adSlot, this);
