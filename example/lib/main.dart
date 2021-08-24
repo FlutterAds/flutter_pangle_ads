@@ -90,9 +90,23 @@ class _MyAppState extends State<MyApp> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                child: Text('展示新插屏视频广告'),
+                onPressed: () {
+                  showFullScreenVideoAd(AdsConfig.newInterstitialId);
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
                 child: Text('展示激励视频广告'),
                 onPressed: () {
                   showRewardVideoAd();
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                child: Text('展示全屏视频广告'),
+                onPressed: () {
+                  showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
                 },
               ),
             ],
@@ -190,6 +204,20 @@ class _MyAppState extends State<MyApp> {
     } on PlatformException catch (e) {
       _result =
           "展示激励视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
+    }
+    setState(() {});
+  }
+
+  /// 展示全屏视频广告
+  Future<void> showFullScreenVideoAd(String posId) async {
+    try {
+      bool result = await FlutterPangleAds.showFullScreenVideoAd(
+        posId,
+      );
+      _result = "展示全屏视频广告${result ? '成功' : '失败'}";
+    } on PlatformException catch (e) {
+      _result =
+          "展示全屏视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
     setState(() {});
   }

@@ -34,4 +34,7 @@ class AdsConfig {
 
   /// 获取激励视频广告位id
   static String get rewardVideoId => '946584890';
+
+  /// 获取全屏视频广告位id
+  static String get fullScreenVideoId => '946593099';
 }

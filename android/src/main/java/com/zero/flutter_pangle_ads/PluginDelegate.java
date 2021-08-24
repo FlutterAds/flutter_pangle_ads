@@ -10,6 +10,7 @@ import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
+import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
 import com.zero.flutter_pangle_ads.page.InterstitialPage;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 
@@ -71,6 +72,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler,EventChan
             showInterstitialAd(call, result);
         }else if ("showRewardVideoAd".equals(method)){
             showRewardVideoAd(call, result);
+        }else if ("showFullScreenVideoAd".equals(method)){
+            showFullScreenVideoAd(call, result);
         }else {
             result.notImplemented();
         }
@@ -206,6 +209,19 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler,EventChan
         String posId = call.argument(KEY_POSID);
         RewardVideoPage iad=new RewardVideoPage();
         iad.showAd(activity,posId,call);
+        result.success(true);
+    }
+
+    /**
+     * 显示全屏视频广告
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void showFullScreenVideoAd(MethodCall call, MethodChannel.Result result) {
+        String posId = call.argument(KEY_POSID);
+        FullScreenVideoPage fsad=new FullScreenVideoPage();
+        fsad.showAd(activity,posId,call);
         result.success(true);
     }
 }

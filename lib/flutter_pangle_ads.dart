@@ -112,6 +112,26 @@ class FlutterPangleAds {
     return result;
   }
 
+  /// 展示全屏视频广告
+  /// [posId] 广告位 id
+  /// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
+  /// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
+  static Future<bool> showFullScreenVideoAd(
+    String posId, {
+    int width = 300,
+    int height = 300,
+  }) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'showFullScreenVideoAd',
+      {
+        'posId': posId,
+        'width': width,
+        'height': height,
+      },
+    );
+    return result;
+  }
+
   ///事件回调
   ///@params onData 事件回调
   static Future<void> onEventListener(
