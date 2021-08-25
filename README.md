@@ -21,11 +21,11 @@
 - ✅ 开屏广告
 - ✅ 插屏广告
   - ✅ 半插屏
-  - 🔲 全屏视频（新插屏）
+  - ✅ 全屏视频（新插屏）
 - ✅ 激励视频
+- ✅ 全屏视频
 - 🔲 Banner
 - 🔲 信息流
-- 🔲 全屏视频
 
 ## 入门使用
 
@@ -100,7 +100,7 @@ FlutterPangleAds.showSplashAd(posId, 'flutterads_logo');
 ``` Dart
 FlutterQqAds.showSplashAd(posId);
 ```
-### 显示插屏广告
+### 插屏广告
 ``` Dart
 /// [posId] 广告位 id
 /// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
@@ -112,7 +112,7 @@ FlutterPangleAds.showInterstitialAd(
 );
 ```
 
-### 显示激励视频
+### 激励视频
 ``` Dart
 /// [posId] 广告位 id
 /// [customData] 设置服务端验证的自定义信息
@@ -122,6 +122,14 @@ FlutterPangleAds.showRewardVideoAd(
     customData: 'customData',
     userId: 'userId',
 );
+```
+
+### 全屏视频
+- 全屏视频
+- 新插屏
+``` Dart
+/// [posId] 广告位 id
+FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
 ```
 
 ## 其他配置

@@ -27,7 +27,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
     private String userId;
 
     @Override
-    public void loadAd( @NonNull MethodCall call) {
+    public void loadAd(@NonNull MethodCall call) {
         customData = call.argument("customData");
         userId = call.argument("userId");
         // 配置广告
@@ -45,78 +45,77 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
     public void onError(int i, String s) {
         Log.e(TAG, "onError code:" + i + " msg:" + s);
         // 添加广告错误事件
-        sendErrorEvent(i,s);
+        sendErrorEvent(i, s);
     }
 
     @Override
     public void onRewardVideoAdLoad(TTRewardVideoAd ttRewardVideoAd) {
-        Log.i(TAG,"onRewardVideoAdLoad");
-        rvad=ttRewardVideoAd;
+        Log.i(TAG, "onRewardVideoAdLoad");
+        rvad = ttRewardVideoAd;
         rvad.setRewardAdInteractionListener(this);
         // 添加广告事件
         sendEvent(AdEventAction.onAdLoaded);
-
     }
 
     @Override
     public void onRewardVideoCached() {
-        Log.i(TAG,"onRewardVideoCached");
+        Log.i(TAG, "onRewardVideoCached");
     }
 
     @Override
     public void onRewardVideoCached(TTRewardVideoAd ttRewardVideoAd) {
-        Log.i(TAG,"onRewardVideoCached ttRewardVideoAd");
+        Log.i(TAG, "onRewardVideoCached ttRewardVideoAd");
         rvad.showRewardVideoAd(activity);
         // 添加广告事件
-        sendEvent( AdEventAction.onAdPresent);
+        sendEvent(AdEventAction.onAdPresent);
     }
 
     @Override
     public void onAdShow() {
-        Log.i(TAG,"onAdShow");
+        Log.i(TAG, "onAdShow");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdExposure);
+        sendEvent(AdEventAction.onAdExposure);
     }
 
     @Override
     public void onAdVideoBarClick() {
-        Log.i(TAG,"onAdVideoBarClick");
+        Log.i(TAG, "onAdVideoBarClick");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdClicked);
+        sendEvent(AdEventAction.onAdClicked);
     }
 
     @Override
     public void onAdClose() {
-        Log.i(TAG,"onAdClose");
+        Log.i(TAG, "onAdClose");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdClosed);
+        sendEvent(AdEventAction.onAdClosed);
     }
 
     @Override
     public void onVideoComplete() {
-        Log.i(TAG,"onVideoComplete");
+        Log.i(TAG, "onVideoComplete");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdComplete);
+        sendEvent(AdEventAction.onAdComplete);
     }
 
     @Override
     public void onVideoError() {
-        Log.i(TAG,"onVideoError");
+        Log.i(TAG, "onVideoError");
     }
 
     // 视频播放完成后，奖励验证回调，rewardVerify：是否有效，rewardAmount：奖励数量，rewardName：奖励名称，code：错误码，msg：错误信息
     @Override
-    public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName,int code,String msg) {
+    public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName, int code, String msg) {
         String logString = "verify:" + rewardVerify + " amount:" + rewardAmount +
                 " name:" + rewardName + " errorCode:" + code + " errorMsg:" + msg;
-        Log.e(TAG, "onRewardVerify " +logString);
-        sendEvent(new AdRewardEvent(posId,rewardVerify,rewardAmount,rewardName,code,msg,customData,userId));
+        Log.e(TAG, "onRewardVerify " + logString);
+        sendEvent(new AdRewardEvent(posId, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
     }
 
     @Override
     public void onSkippedVideo() {
-        Log.i(TAG,"onSkippedVideo");
+        Log.i(TAG, "onSkippedVideo");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdSkip);
+        sendEvent(AdEventAction.onAdSkip);
     }
 }
