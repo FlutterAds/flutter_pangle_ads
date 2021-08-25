@@ -32,6 +32,9 @@ class AdsConfig {
   /// 获取新插屏广告位id
   static String get newInterstitialId => '946584893';
 
+  /// 获取新插屏（半屏）广告位id
+  static String get newInterstitialId2 => '946601932';
+
   /// 获取激励视频广告位id
   static String get rewardVideoId => '946584890';
 

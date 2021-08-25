@@ -98,6 +98,13 @@ class _MyAppState extends State<MyApp> {
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
+                  child: Text('展示新插屏（半屏）广告'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.newInterstitialId2);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
                   child: Text('展示激励视频广告'),
                   onPressed: () {
                     showRewardVideoAd();
