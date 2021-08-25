@@ -3,6 +3,7 @@
 #import "SplashPage.h"
 #import "InterstitialPage.h"
 #import "RewardVideoPage.h"
+#import "FullScreenVideoPage.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
 
@@ -11,6 +12,7 @@
 @property (strong, nonatomic) SplashPage *sad;
 @property (strong, nonatomic) InterstitialPage *iad;
 @property (strong, nonatomic) RewardVideoPage *rvad;
+@property (strong,nonatomic) FullScreenVideoPage *fsad;
 @property (weak,nonatomic) NSString *posId;
 
 @end
@@ -43,6 +45,8 @@ NSString *const kPosId=@"posId";
         [self showInterstitialAd:call result:result];
     }else if ([@"showRewardVideoAd" isEqualToString:methodStr]){
         [self showRewardVideoAd:call result:result];
+    }else if ([@"showFullScreenVideoAd" isEqualToString:methodStr]){
+        [self showFullScreenVideoAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -70,8 +74,6 @@ NSString *const kPosId=@"posId";
         NSLog(@"initAd:%@",success?@"YES":@"NO");
         result(@(success));
     }];
-//    BOOL initSuccess=[GDTSDKConfig registerAppId:appId];
-//    result(@(initSuccess));
 }
 
 // 显示开屏广告
@@ -95,6 +97,14 @@ NSString *const kPosId=@"posId";
     self.posId=call.arguments[kPosId];
     self.rvad=[[RewardVideoPage alloc] init];
     [self.rvad showAd:self.posId methodCall:call eventSink:self.eventSink];
+    result(@(YES));
+}
+
+// 显示全屏视频广告
+- (void) showFullScreenVideoAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    self.posId=call.arguments[kPosId];
+    self.fsad=[[FullScreenVideoPage alloc] init];
+    [self.fsad showAd:self.posId methodCall:call eventSink:self.eventSink];
     result(@(YES));
 }
 
