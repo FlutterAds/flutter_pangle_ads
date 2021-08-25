@@ -27,10 +27,10 @@
 - (void) showAd:(NSString *)posId methodCall:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink) events;
 // 加载广告
 - (void) loadAd:(FlutterMethodCall *) call;
-// 添加广告事件
+// 发送广告事件
 -(void) sendEvent:(AdEvent *) event;
-// 添加广告事件
+// 发送广告事件
 -(void) sendEventAction:(NSString *) action;
-// 添加广告错误事件
+// 发送广告错误事件
 -(void) sendErrorEvent:(NSInteger) errCode withErrMsg:(NSString*) errMsg;
 @end

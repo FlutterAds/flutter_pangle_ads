@@ -39,63 +39,86 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('FlutterAds pangle plugin'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 10),
-              Text('Result: $_result'),
-              SizedBox(height: 10),
-              Text('onAdEvent: $_adEvent'),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('初始化'),
-                onPressed: () {
-                  init();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('请求应用跟踪透明度授权(仅 iOS)'),
-                onPressed: () {
-                  requestIDFA();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('动态请求相关权限（仅 Android）'),
-                onPressed: () {
-                  requestPermissionIfNecessary();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示开屏广告（Logo2）'),
-                onPressed: () {
-                  showSplashAd(AdsConfig.logo2);
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示开屏广告（全屏）'),
-                onPressed: () {
-                  showSplashAd();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示插屏广告'),
-                onPressed: () {
-                  showInterstitialAd();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示激励视频广告'),
-                onPressed: () {
-                  showRewardVideoAd();
-                },
-              ),
-            ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Text('Result: $_result'),
+                SizedBox(height: 10),
+                Text('onAdEvent: $_adEvent'),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('初始化'),
+                  onPressed: () {
+                    init();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('请求应用跟踪透明度授权(仅 iOS)'),
+                  onPressed: () {
+                    requestIDFA();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('动态请求相关权限（仅 Android）'),
+                  onPressed: () {
+                    requestPermissionIfNecessary();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示开屏广告（Logo2）'),
+                  onPressed: () {
+                    showSplashAd(AdsConfig.logo2);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示开屏广告（全屏）'),
+                  onPressed: () {
+                    showSplashAd();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示插屏广告'),
+                  onPressed: () {
+                    showInterstitialAd();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示新插屏视频广告'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.newInterstitialId);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示新插屏（半屏）广告'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.newInterstitialId2);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示激励视频广告'),
+                  onPressed: () {
+                    showRewardVideoAd();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示全屏视频广告'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -190,6 +213,20 @@ class _MyAppState extends State<MyApp> {
     } on PlatformException catch (e) {
       _result =
           "展示激励视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
+    }
+    setState(() {});
+  }
+
+  /// 展示全屏视频广告
+  Future<void> showFullScreenVideoAd(String posId) async {
+    try {
+      bool result = await FlutterPangleAds.showFullScreenVideoAd(
+        posId,
+      );
+      _result = "展示全屏视频广告${result ? '成功' : '失败'}";
+    } on PlatformException catch (e) {
+      _result =
+          "展示全屏视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
     setState(() {});
   }

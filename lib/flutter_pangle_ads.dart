@@ -112,6 +112,18 @@ class FlutterPangleAds {
     return result;
   }
 
+  /// 展示全屏视频、新插屏广告
+  /// [posId] 广告位 id
+  static Future<bool> showFullScreenVideoAd(String posId) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'showFullScreenVideoAd',
+      {
+        'posId': posId,
+      },
+    );
+    return result;
+  }
+
   ///事件回调
   ///@params onData 事件回调
   static Future<void> onEventListener(

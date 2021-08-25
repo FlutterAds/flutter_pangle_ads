@@ -50,7 +50,7 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
         iad.setExpressInteractionListener(this);
         iad.render();
         // 添加广告事件
-        sendEvent( AdEventAction.onAdLoaded);
+        sendEvent(AdEventAction.onAdLoaded);
     }
 
 
@@ -58,14 +58,14 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
     public void onAdClicked(View view, int i) {
         Log.i(TAG, "onAdClicked");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdClicked);
+        sendEvent(AdEventAction.onAdClicked);
     }
 
     @Override
     public void onAdShow(View view, int i) {
         Log.i(TAG, "onAdShow");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdExposure);
+        sendEvent(AdEventAction.onAdExposure);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
         if (iad != null && activity != null) {
             iad.showInteractionExpressAd(activity);
             // 添加广告事件
-            sendEvent( AdEventAction.onAdPresent);
+            sendEvent(AdEventAction.onAdPresent);
         }
     }
 
@@ -89,6 +89,6 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
     public void onAdDismiss() {
         Log.i(TAG, "onAdDismiss");
         // 添加广告事件
-        sendEvent( AdEventAction.onAdClosed);
+        sendEvent(AdEventAction.onAdClosed);
     }
 }

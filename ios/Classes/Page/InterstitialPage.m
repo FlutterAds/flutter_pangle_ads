@@ -15,7 +15,6 @@
 }
 // 加载广告
 - (void)loadAd:(FlutterMethodCall *)call{
-    NSLog(@"加载广告:%@",self.posId);
     int width = [call.arguments[@"width"] intValue];
     int height = [call.arguments[@"height"] intValue];
     
