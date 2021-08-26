@@ -84,16 +84,30 @@ FlutterPangleAds.onEventListener((event) {
   print('onEventListener:$_adEvent');
 });
 ```
+### 事件列表
+|事件|说明|
+|-|-|
+|onAdLoaded|广告加载成功|
+|onAdPresent|广告填充|
+|onAdExposure|广告曝光|
+|onAdClosed|广告关闭（开屏计时结束或者用户点击关闭）|
+|onAdClicked|广告点击|
+|onAdSkip|广告跳过|
+|onAdComplete|广告播放或计时完毕|
+|onAdError|广告错误|
+|onAdReward|获得广告激励|
+
+> 这里做了统一的抽象，iOS 和 Android 原生 SDK 名称不同，如果觉得对应不上，可以提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues)（一定要加上 log 截图）
 ### 开屏广告
 
 - 半屏广告 + Logo
+- [Logo 设置的最佳实践](https://github.com/FlutterAds/flutter_qq_ads/blob/develop/doc/SETTING_LOGO.md)
 
 ``` Dart
 /// [posId] 广告位 id
-/// [logo] 展示如果传递则展示底部logo，不传递不展示，则全屏
+/// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
 FlutterPangleAds.showSplashAd(posId, 'flutterads_logo');
 ```
-- [Logo 设置的最佳实践](https://github.com/FlutterAds/flutter_qq_ads/blob/develop/doc/SETTING_LOGO.md)
 
 - 全屏广告
 
@@ -167,6 +181,34 @@ bool result = await FlutterPangleAds.requestIDFA;
 
 ``` Dart
 bool result = await FlutterPangleAds.requestPermissionIfNecessary;
+```
+
+## 原生 SDK 版本更新方法
+如果是大版本，我会第一时间适配更新，小版本可以自己更新，方法如下：
+- Android
+
+  方法1：可以给我提 Issues 提示我更新，此插件版本号 `x.y.z`，会更新 `z` 版本迭代
+  
+  方法2：可以自己指定版本，方法如下:
+```shell
+// build.gradle(android.app)
+android{
+  configurations.all {
+      resolutionStrategy {
+          force 'com.pangle.cn:ads-sdk:版本号'
+      }
+  }
+}
+```
+- iOS
+
+  自己手动更新，自己的项目根目录下执行即可
+```shell
+// 可在 ios/Podfile.lock 中查看 SDK 当前版本
+cd ios
+rm -rf Podfile.lock
+pod repo update
+pod install
 ```
 
 ## 分支说明
