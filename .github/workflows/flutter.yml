@@ -42,7 +42,7 @@ jobs:
     #####
     # Go example dir
     #####
-    - run: cd example
+    - run: cd example && pwd
     
     # Get flutter dependencies.
     - run: flutter pub get
