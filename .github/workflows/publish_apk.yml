@@ -5,6 +5,7 @@ on:
 #     branches:
 #     - develop
 #     - master
+#     - 2x
   release:
     types: [published]
 
@@ -22,8 +23,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          #channel: 'beta' # 'dev', 'alpha', default to: 'stable'
-          flutter-version: '1.22.x'
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+          #flutter-version: '1.22.x'
       # fix Permission denied
       - name: Setup Permission
         run: sudo chown -R $USER $PWD
