@@ -19,8 +19,7 @@ jobs:
           flutter_package: true
           skip_test: false
           dry_run: false
+      - name: Build apk
+        run: cd example && flutter build apk
       - name: Upload to Pgyer
-      # Build apk.
-      - run: cd example && flutter build apk
-      #  Upload to Pgyer
-      - run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
+        run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
