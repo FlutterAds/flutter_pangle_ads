@@ -11,7 +11,7 @@ on:
 jobs:
   publish:
   
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -24,16 +24,13 @@ jobs:
           skip_test: false
           dry_run: true
           
-      - name: Setup Java ENV
-        uses: actions/setup-java@v1
+      - uses: actions/setup-java@v1
         with:
           java-version: '8.x'
-      - name: Setup Flutter ENV
-        uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1
         with:
           #channel: 'beta' # 'dev', 'alpha', default to: 'stable'
           flutter-version: '1.22.x'
-      - name: Build apk
-        run: cd example && flutter build apk
+      - run: cd example && flutter build apk
       - name: Upload to Pgyer
         run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
