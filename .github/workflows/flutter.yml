@@ -46,28 +46,8 @@ jobs:
     #####
     # Build app
     #####
-    #Build ios
-#     - run: cd example && flutter build ios --release --no-codesign
-    
+    - run: cd example
     # Build apk.
-    - run: cd example && flutter build apk
-    
-    # Upload to pgyer
-#     - name: 'Upload apk to pgyer'
-    - run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
-#       uses: leandro-hermes/action-upload-file@v1.1.0
-#       with:
-#           https: true
-#           host: 'www.pgyer.com'
-#           path: '/apiv2/app/upload'
-#           filePath: example/build/app/outputs/apk/release/app-release.apk
-#           data: ${{ toJson('{"_api_key":"95561930b9c99a0223fd03e62b6827f6"}') }}
-#       uses: wei/curl@v1
-#       with:
-#         args: -X POST 'https://www.pgyer.com/apiv2/app/upload' -F file=@example/build/app/outputs/apk/release/app-release.apk -F _api_key=95561930b9c99a0223fd03e62b6827f6
-#        curl -F 'file=@/tmp/example.ipa' -F '_api_key=95561930b9c99a0223fd03e62b6827f6' https://www.pgyer.com/apiv2/app/upload
-    # Upload generated apk to the artifacts.
-#    - uses: actions/upload-artifact@v1
-#      with:
-#        name: release-apk
-#        path: example/build/app/outputs/apk/release/app-release.apk
+    - run: flutter build apk
+    # Build ios
+    - run: flutter build ios --release --no-codesign
