@@ -26,7 +26,7 @@ jobs:
           channel: 'stable' # 'dev', 'alpha', default to: 'stable'
           #flutter-version: '1.22.x'
       # fix Permission denied
-      - name: SetUp Permission
+      - name: Setup Permission
         run: sudo chown -R $USER $PWD
       - name: Build APK
         run: cd example && flutter build apk --target-platform android-arm
