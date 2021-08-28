@@ -28,6 +28,9 @@
 - 🔲 Banner
 - 🔲 信息流
 
+## 下载体验
+<img src="https://www.pgyer.com/app/qrcode/fads" width='100' height='100'>
+
 ## 入门使用
 
 ### 引入依赖
