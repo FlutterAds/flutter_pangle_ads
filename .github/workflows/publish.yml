@@ -1,10 +1,10 @@
 name: Publish
 
 on:
-  push:
-    branches:
-    - develop
-    - master
+#   push:
+#     branches:
+#     - develop
+#     - master
   release:
     types: [published]
 
@@ -33,6 +33,6 @@ jobs:
           flutter-version: '1.22.x'
       # fix Permission denied
       - run: sudo chown -R $USER $PWD
-      - run: cd example && flutter build apk
+      - run: cd example && flutter build apk --target-platform android-arm
       - name: Upload to Pgyer
         run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
