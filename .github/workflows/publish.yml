@@ -23,6 +23,16 @@ jobs:
           flutter_package: true
           skip_test: false
           dry_run: true
+          
+      - name: Setup Java ENV
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8.x'
+      - name: Setup Flutter ENV
+        uses: subosito/flutter-action@v1
+        with:
+          #channel: 'beta' # 'dev', 'alpha', default to: 'stable'
+          flutter-version: '1.22.x'
       - name: Build apk
         run: cd example && flutter build apk
       - name: Upload to Pgyer
