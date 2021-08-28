@@ -54,7 +54,7 @@ jobs:
     
     # Upload to pgyer
 #     - name: 'Upload apk to pgyer'
-    - run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=95561930b9c99a0223fd03e62b6827f6' https://www.pgyer.com/apiv2/app/upload
+    - run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
 #       uses: leandro-hermes/action-upload-file@v1.1.0
 #       with:
 #           https: true
