@@ -1,8 +1,12 @@
-name: Publish plugin
+name: Publish
 
 on:
   release:
-    types: [published]
+    types:
+      - created
+      - edited
+      - released
+      - published
 
 jobs:
   publish:
