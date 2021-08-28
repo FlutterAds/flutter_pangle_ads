@@ -46,8 +46,7 @@ jobs:
     #####
     # Build app
     #####
-    - run: cd example
     # Build apk.
-    - run: flutter build apk
+    - run: cd example && flutter build apk
     # Build ios
-    - run: flutter build ios --release --no-codesign
+    - run: cd example && flutter build ios --release --no-codesign
