@@ -1,11 +1,11 @@
 name: Publish APK 2x
 
 on:
-  push:
-    branches:
-    - develop
-    - master
-    - 2x
+#   push:
+#     branches:
+#     - develop
+#     - master
+#     - 2x
   release:
     types: [published]
 
