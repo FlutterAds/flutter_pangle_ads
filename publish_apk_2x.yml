@@ -1,0 +1,34 @@
+name: Publish APK 2x
+
+on:
+  push:
+    branches:
+    - develop
+    - master
+    - 2x
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8.x'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' #'beta' 'dev', 'alpha', default to: 'stable'
+          #flutter-version: '1.22.x'
+      # fix Permission denied
+      - name: SetUp Permission
+        run: sudo chown -R $USER $PWD
+      - name: Build APK
+        run: cd example && flutter build apk --target-platform android-arm
+      - name: Upload to Pgyer
+        run: curl -F 'file=@example/build/app/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
