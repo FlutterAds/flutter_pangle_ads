@@ -1,6 +1,10 @@
 name: Publish
 
 on:
+  push:
+    branches:
+    - develop
+    - master
   release:
     types: [published]
 
@@ -18,7 +22,7 @@ jobs:
           credential: ${{ secrets.PUB_OAUTH_ACCESS_TOKEN }}
           flutter_package: true
           skip_test: false
-          dry_run: false
+          dry_run: true
       - name: Build apk
         run: cd example && flutter build apk
       - name: Upload to Pgyer
