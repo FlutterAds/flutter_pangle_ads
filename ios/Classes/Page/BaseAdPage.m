@@ -13,7 +13,7 @@
 -(void)showAd:(NSString *)posId methodCall:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink )events{
     self.posId=posId;
     self.eventSink=events;
-    // 初始化开屏广告
+    // 获取主 window
     self.mainWin=[[UIApplication sharedApplication] keyWindow];
     // 获取宽高
     CGSize size=[[UIScreen mainScreen] bounds].size;
