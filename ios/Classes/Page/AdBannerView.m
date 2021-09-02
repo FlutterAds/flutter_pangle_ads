@@ -34,99 +34,59 @@
     int interval=[self.args[@"interval"] intValue];
     int width = [self.args[@"width"] intValue];
     int height = [self.args[@"height"] intValue];
-    
     self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height) interval:interval];
+    self.bannerView.frame=CGRectMake(0, 0, width, height);
     self.bannerView.delegate=self;
     [self.bannerView loadAdData];
 }
 
-
 #pragma mark BUNativeExpressBannerViewDelegate
 - (void)nativeExpressBannerAdViewDidLoad:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告事件
+    [self sendEventAction:onAdLoaded];
 }
 
 - (void)nativeExpressBannerAdView:(BUNativeExpressBannerView *)bannerAdView didLoadFailWithError:(NSError *)error {
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告错误事件
+    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
+    self.bannerView=nil;
 }
 
 - (void)nativeExpressBannerAdViewRenderSuccess:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告事件
+    [self sendEventAction:onAdExposure];
 }
 
 - (void)nativeExpressBannerAdViewRenderFail:(BUNativeExpressBannerView *)bannerAdView error:(NSError *)error {
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告错误事件
+    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
 }
 
 - (void)nativeExpressBannerAdViewWillBecomVisible:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告事件
+    [self sendEventAction:onAdExposure];
 }
 
 - (void)nativeExpressBannerAdViewDidClick:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
-//    [self.delegate customEventBannerWasClicked:self];
+    // 发送广告事件
+    [self sendEventAction:onAdClicked];
 }
 
 - (void)nativeExpressBannerAdView:(BUNativeExpressBannerView *)bannerAdView dislikeWithReason:(NSArray<BUDislikeWords *> *)filterwords {
     NSLog(@"%s",__FUNCTION__);
-//    [self.delegate customEventBannerDidDismissModal:self];
 }
 
-
-//#pragma mark - BUNativeExpresInterstitialAdDelegate
-//
-//- (void)nativeExpresInterstitialAdDidLoad:(BUNativeExpressInterstitialAd *)interstitialAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送广告事件
-//    [self sendEventAction:onAdLoaded];
-//}
-//
-//- (void)nativeExpresInterstitialAd:(BUNativeExpressInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送广告错误事件
-//    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
-//}
-//
-//- (void)nativeExpresInterstitialAdRenderSuccess:(BUNativeExpressInterstitialAd *)interstitialAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    if(self.iad){
-//        [self.iad showAdFromRootViewController:self.mainWin.rootViewController];
-//    }
-//    // 发送广告事件
-//    [self sendEventAction:onAdPresent];
-//}
-//
-//- (void)nativeExpresInterstitialAdRenderFail:(BUNativeExpressInterstitialAd *)interstitialAd error:(NSError *)error {
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送广告错误事件
-//    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
-//}
-//
-//- (void)nativeExpresInterstitialAdWillVisible:(BUNativeExpressInterstitialAd *)interstitialAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送广告事件
-//    [self sendEventAction:onAdExposure];
-//}
-//
-//- (void)nativeExpresInterstitialAdDidClick:(BUNativeExpressInterstitialAd *)interstitialAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送广告事件
-//    [self sendEventAction:onAdClicked];
-//}
-//
-//- (void)nativeExpresInterstitialAdWillClose:(BUNativeExpressInterstitialAd *)interstitialAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送广告事件
-//    [self sendEventAction:onAdClosed];
-//}
-//
-//- (void)nativeExpresInterstitialAdDidClose:(BUNativeExpressInterstitialAd *)interstitialAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    self.iad = nil;
-//}
-//
-//- (void)nativeExpresInterstitialAdDidCloseOtherController:(BUNativeExpressInterstitialAd *)interstitialAd interactionType:(BUInteractionType)interactionType {
-//    NSLog(@"%s",__FUNCTION__);
-//}
+- (void)nativeExpressBannerAdViewDidRemoved:(BUNativeExpressBannerView *)bannerAdView {
+    NSLog(@"%s",__FUNCTION__);
+    [bannerAdView removeFromSuperview];
+    // 发送广告事件
+    [self sendEventAction:onAdClosed];
+}
 
 @end
