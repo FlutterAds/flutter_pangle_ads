@@ -124,18 +124,17 @@ class _MyAppState extends State<MyApp> {
                   height: 150,
                   child: AdBannerWidget(
                     posId: AdsConfig.bannerId,
-                    interval: 0,
                   ),
                 ),
                 SizedBox(height: 10),
                 Container(
-                  width: double.infinity,
+                  width: 300,
                   height: 80,
                   child: AdBannerWidget(
                     posId: AdsConfig.bannerId01,
                     width: 300,
                     height: 75,
-                    interval: 0,
+                    interval: 30,
                     show: true,
                   ),
                 ),
