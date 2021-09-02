@@ -1,25 +1,13 @@
 #import "FlutterPangleAdsPlugin.h"
-#import <BUAdSDK/BUAdSDK.h>
-#import "SplashPage.h"
-#import "InterstitialPage.h"
-#import "RewardVideoPage.h"
-#import "FullScreenVideoPage.h"
+#import "NativeViewFactory.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
-
-@interface FlutterPangleAdsPlugin()
-@property (strong,nonatomic) FlutterEventSink eventSink;
-@property (strong, nonatomic) SplashPage *sad;
-@property (strong, nonatomic) InterstitialPage *iad;
-@property (strong, nonatomic) RewardVideoPage *rvad;
-@property (strong,nonatomic) FullScreenVideoPage *fsad;
-@property (weak,nonatomic) NSString *posId;
-
-@end
 
 @implementation FlutterPangleAdsPlugin
 // 广告位id
 NSString *const kPosId=@"posId";
+// AdBannerView
+NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* methodChannel = [FlutterMethodChannel
@@ -29,6 +17,10 @@ NSString *const kPosId=@"posId";
     FlutterPangleAdsPlugin* instance = [[FlutterPangleAdsPlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:methodChannel];
     [eventChannel setStreamHandler:instance];
+    // 注册平台View 工厂
+    NativeViewFactory *factory=[[NativeViewFactory alloc] initWithMessenger:registrar.messenger withPlugin:instance];
+    // 注册 Banner View
+    [registrar registerViewFactory:factory withId:kAdBannerViewId];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
