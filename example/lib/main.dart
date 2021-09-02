@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
+import 'package:flutter_pangle_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
 
@@ -117,6 +118,38 @@ class _MyAppState extends State<MyApp> {
                     showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
                   },
                 ),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: 300,
+                  height: 150,
+                  child: AdBannerWidget(
+                    posId: AdsConfig.bannerId,
+                    interval: 0,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  width: double.infinity,
+                  height: 80,
+                  child: AdBannerWidget(
+                    posId: AdsConfig.bannerId01,
+                    width: 300,
+                    height: 75,
+                    interval: 0,
+                    show: true,
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  width: 320,
+                  height: 50,
+                  child: AdBannerWidget(
+                    posId: AdsConfig.bannerId02,
+                    width: 320,
+                    height: 50,
+                  ),
+                ),
+                SizedBox(height: 10),
               ],
             ),
           ),

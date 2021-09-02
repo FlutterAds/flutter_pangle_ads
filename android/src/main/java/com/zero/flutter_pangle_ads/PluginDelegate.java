@@ -12,6 +12,7 @@ import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
 import com.zero.flutter_pangle_ads.page.InterstitialPage;
+import com.zero.flutter_pangle_ads.page.NativeViewFactory;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 
 import io.flutter.BuildConfig;
@@ -37,7 +38,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public static PluginDelegate getInstance() {
         return _instance;
     }
-
+    // Banner View
+    public static final String KEY_BANNER_VIEW = "flutter_pangle_ads_banner";
     // 广告参数
     public static final String KEY_POSID = "posId";
     // logo 参数
@@ -115,6 +117,14 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             Log.d(TAG, "EventChannel addEvent event:" + event.toString());
             eventSink.success(event);
         }
+    }
+
+    /**
+     * 展示 Banner 广告
+     */
+    public void registerBannerView() {
+        bind.getPlatformViewRegistry()
+                .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW,this));
     }
 
     /**
