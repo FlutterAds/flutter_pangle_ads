@@ -12,6 +12,7 @@ import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
 import com.zero.flutter_pangle_ads.page.InterstitialPage;
+import com.zero.flutter_pangle_ads.page.NativeViewFactory;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 
 import io.flutter.BuildConfig;
@@ -37,11 +38,14 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public static PluginDelegate getInstance() {
         return _instance;
     }
-
+    // Banner View
+    public static final String KEY_BANNER_VIEW = "flutter_pangle_ads_banner";
     // 广告参数
     public static final String KEY_POSID = "posId";
     // logo 参数
     public static final String KEY_LOGO = "logo";
+    // timeout 参数
+    public static final String KEY_TIMEOUT = "timeout";
 
     /**
      * 插件代理构造函数构造函数
@@ -118,6 +122,14 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     }
 
     /**
+     * 展示 Banner 广告
+     */
+    public void registerBannerView() {
+        bind.getPlatformViewRegistry()
+                .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW,this));
+    }
+
+    /**
      * 请求权限
      *
      * @param call   MethodCall
@@ -185,9 +197,11 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public void showSplashAd(MethodCall call, MethodChannel.Result result) {
         String posId = call.argument(KEY_POSID);
         String logo = call.argument(KEY_LOGO);
+        double timeout = call.argument(KEY_TIMEOUT);
         Intent intent = new Intent(activity, AdSplashActivity.class);
         intent.putExtra(KEY_POSID, posId);
         intent.putExtra(KEY_LOGO, logo);
+        intent.putExtra(KEY_TIMEOUT, timeout);
         activity.startActivity(intent);
         result.success(true);
     }

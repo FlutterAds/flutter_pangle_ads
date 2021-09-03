@@ -2,8 +2,6 @@ package com.zero.flutter_pangle_ads.page;
 
 import android.app.Activity;
 
-import androidx.annotation.NonNull;
-
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
@@ -34,7 +32,7 @@ public abstract class BaseAdPage {
      * @param posId    广告位 id
      * @param call     方法调用
      */
-    public void showAd(Activity activity, String posId, @NonNull MethodCall call) {
+    public void showAd(Activity activity, String posId, MethodCall call) {
         this.activity = activity;
         this.posId = posId;
         ad = TTAdSdk.getAdManager().createAdNative(activity);
@@ -46,7 +44,7 @@ public abstract class BaseAdPage {
      *
      * @param call 方法调用
      */
-    public abstract void loadAd(@NonNull MethodCall call);
+    public abstract void loadAd(MethodCall call);
 
     /**
      * 发送广告事件

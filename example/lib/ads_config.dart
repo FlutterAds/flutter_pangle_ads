@@ -40,4 +40,13 @@ class AdsConfig {
 
   /// 获取全屏视频广告位id
   static String get fullScreenVideoId => '946593099';
+
+  /// 获取 Banner 广告位id
+  static String get bannerId => '946651948';
+
+  /// 获取 Banner 广告位id 01
+  static String get bannerId01 => '946651966';
+
+  /// 获取 Banner 广告位id 02
+  static String get bannerId02 => '946651971';
 }

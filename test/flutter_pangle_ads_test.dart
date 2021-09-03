@@ -40,11 +40,18 @@ void main() {
       true,
     );
     expect(
-      await FlutterPangleAds.showSplashAd(AdsConfig.splashId, AdsConfig.logo),
+      await FlutterPangleAds.showSplashAd(AdsConfig.splashId,
+          logo: AdsConfig.logo),
       true,
     );
     expect(
-      await FlutterPangleAds.showSplashAd(AdsConfig.splashId, AdsConfig.logo2),
+      await FlutterPangleAds.showSplashAd(AdsConfig.splashId,
+          logo: AdsConfig.logo2),
+      true,
+    );
+    expect(
+      await FlutterPangleAds.showSplashAd(AdsConfig.splashId,
+          logo: AdsConfig.logo2, timeout: 3.5),
       true,
     );
   });

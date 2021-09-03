@@ -25,7 +25,7 @@
   - ✅ 全屏视频（新插屏）
 - ✅ 激励视频
 - ✅ 全屏视频
-- 🔲 Banner
+- ✅ Banner
 - 🔲 信息流
 
 ## 下载体验
@@ -35,73 +35,18 @@
 
 ### 引入依赖
 
-- 版本约定
-  * 1.x.x 是非 Null Safety 版本，对应 master 分支
-  * 2.x.x 是 Null Safety 版本，对应 2x 分支
-
-  > 现在阶段会同时维护这 2 个版本，再往后可能仅维护一个空安全版本
-
-- Pub 引入
-
 ``` Dart
 dependencies:
   flutter_pangle_ads: ^1.1.0 # 非 Null Safety 版本
   flutter_pangle_ads: ^2.1.0 # Null Safety 版本
 ```
-
-- Git 引入
-
-``` Dart
-flutter_pangle_ads:
-  git: 
-    url: git@github.com:FlutterAds/flutter_pangle_ads.git
-    ref: master
-```
-
-- 克隆后本地引入
-
-``` Dart
-flutter_pangle_ads:
-  path: [与主项目的相对路径 | 插件的绝对路径]
-```
-
 ### 初始化广告
 
 ``` Dart
 /// [appId] 应用ID
 FlutterPangleAds.initAd(appId);
 ```
-### 设置广告事件监听
 
-``` Dart
-FlutterPangleAds.onEventListener((event) {
-  // 普通广告事件
-  String _adEvent = 'adId:${event.adId} action:${event.action}';
-  if (event is AdErrorEvent) {
-    // 错误事件
-    _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
-  } else if (event is AdRewardEvent) {
-    // 激励事件
-        _adEvent +=
-            ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
-  }
-  print('onEventListener:$_adEvent');
-});
-```
-### 事件列表
-|事件|说明|
-|-|-|
-|onAdLoaded|广告加载成功|
-|onAdPresent|广告填充|
-|onAdExposure|广告曝光|
-|onAdClosed|广告关闭（开屏计时结束或者用户点击关闭）|
-|onAdClicked|广告点击|
-|onAdSkip|广告跳过|
-|onAdComplete|广告播放或计时完毕|
-|onAdError|广告错误|
-|onAdReward|获得广告激励|
-
-> 这里做了统一的抽象，iOS 和 Android 原生 SDK 名称不同，如果觉得对应不上，可以提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues)（一定要加上 log 截图）
 ### 开屏广告
 
 - 半屏广告 + Logo
@@ -149,6 +94,71 @@ FlutterPangleAds.showRewardVideoAd(
 /// [posId] 广告位 id
 FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
 ```
+
+
+### Banner
+``` Dart
+/// [posId] 广告位 id
+/// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
+/// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
+/// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认 0 不轮播
+/// [show] 是否显示广告
+AdBannerWidget(
+  posId: AdsConfig.bannerId02,
+  interval: 120,
+  show: true,
+)
+```
+
+Banner 广告外部需要嵌套一个带有约束布局的 Widget，如：`AspectRatio、SizedBox、Container` 等，示例如下：
+
+- 嵌套 `SizedBox` (推荐)
+
+``` Dart
+SizedBox(
+  width: 300,
+  height: 150,
+  child: AdBannerWidget(
+    posId: AdsConfig.bannerId,
+    width: 300,
+    height: 150,
+    interval: 30,
+    show: true,
+  ),
+)
+```
+
+### 设置广告事件监听
+
+``` Dart
+FlutterPangleAds.onEventListener((event) {
+  // 普通广告事件
+  String _adEvent = 'adId:${event.adId} action:${event.action}';
+  if (event is AdErrorEvent) {
+    // 错误事件
+    _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
+  } else if (event is AdRewardEvent) {
+    // 激励事件
+        _adEvent +=
+            ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
+  }
+  print('onEventListener:$_adEvent');
+});
+```
+### 事件列表
+|事件|说明|
+|-|-|
+|onAdLoaded|广告加载成功|
+|onAdPresent|广告填充|
+|onAdExposure|广告曝光|
+|onAdClosed|广告关闭（开屏计时结束或者用户点击关闭）|
+|onAdClicked|广告点击|
+|onAdSkip|广告跳过|
+|onAdComplete|广告播放或计时完毕|
+|onAdError|广告错误|
+|onAdReward|获得广告激励|
+
+> 这里做了统一的抽象，iOS 和 Android 原生 SDK 名称不同，如果觉得对应不上，可以提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues)（一定要加上 log 截图）
 
 ## 其他配置
 ### 信任HTTP请求（仅 iOS）
@@ -229,10 +239,11 @@ pod install
 
 支持开源项目最好的方式就是用 1 秒点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads)
 
-## FlutterAds 系列插件
-
-- [flutter_qq_ads 「腾讯广告、广点通、优量汇广告插件」](https://github.com/FlutterAds/flutter_qq_ads)
-- [flutter_pangle_ads 「字节跳动、穿山甲广告插件」](https://github.com/FlutterAds/flutter_pangle_ads)
-- flutter_baidu_ads 「百度、百青藤广告插件（开发中）」
+## FlutterAds 广告插件系列
+|插件|描述|
+|-|-|
+|[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
+|[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
+|flutter_baidu_ads|百度、百青藤 Flutter 广告插件（开发中）|
 
 
