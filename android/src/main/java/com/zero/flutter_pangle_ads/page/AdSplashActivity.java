@@ -56,6 +56,8 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
+        double timeout=getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT,3.5);
+        int absTimeout= (int) (timeout*1000);
         // 判断是否有 Logo
         boolean hasLogo = !TextUtils.isEmpty(logo);
         if (hasLogo) {
@@ -82,7 +84,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
                 .setImageAcceptedSize(1080, 1920)
                 .build();
         // 加载广告
-        splashAD.loadSplashAd(adSlot, this);
+        splashAD.loadSplashAd(adSlot, this,absTimeout);
     }
 
     /**

@@ -211,7 +211,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> showSplashAd([String logo]) async {
     try {
       bool result =
-          await FlutterPangleAds.showSplashAd(AdsConfig.splashId, logo);
+          await FlutterPangleAds.showSplashAd(AdsConfig.splashId, logo: logo);
       _result = "展示开屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
       _result = "展示开屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
