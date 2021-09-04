@@ -4,8 +4,8 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
 
 <p align="center">
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.1.0-success></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.1.0-success></a>
+<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.2.0-success></a>
+<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.2.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -37,8 +37,8 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^1.1.0 # 非 Null Safety 版本
-  flutter_pangle_ads: ^2.1.0 # Null Safety 版本
+  flutter_pangle_ads: ^1.2.0 # 非 Null Safety 版本
+  flutter_pangle_ads: ^2.2.0 # Null Safety 版本
 ```
 ### 初始化广告
 
