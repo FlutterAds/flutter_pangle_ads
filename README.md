@@ -4,8 +4,8 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
 
 <p align="center">
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.1.0-success></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.1.0-success></a>
+<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.2.0-success></a>
+<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.2.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -37,8 +37,8 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^1.1.0 # 非 Null Safety 版本
-  flutter_pangle_ads: ^2.1.0 # Null Safety 版本
+  flutter_pangle_ads: ^1.2.0 # 非 Null Safety 版本
+  flutter_pangle_ads: ^2.2.0 # Null Safety 版本
 ```
 ### 初始化广告
 
@@ -99,13 +99,15 @@ FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
 ### Banner
 ``` Dart
 /// [posId] 广告位 id
-/// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
-/// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
-/// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认 0 不轮播
+/// [width] 创建 Banner 广告位时选择的宽度，默认值是 300
+/// [height] 创建 Banner 广告位时选择的高度，默认值是 150
+/// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认为 0 不轮播
 /// [show] 是否显示广告
 AdBannerWidget(
-  posId: AdsConfig.bannerId02,
-  interval: 120,
+  posId: AdsConfig.bannerId,
+  width: 300,
+  height: 150,
+  interval: 30,
   show: true,
 )
 ```
