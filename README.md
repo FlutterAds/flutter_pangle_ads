@@ -99,13 +99,15 @@ FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
 ### Banner
 ``` Dart
 /// [posId] 广告位 id
-/// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
-/// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
-/// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认 0 不轮播
+/// [width] 创建 Banner 广告位时选择的宽度，默认值是 300
+/// [height] 创建 Banner 广告位时选择的高度，默认值是 150
+/// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认为 0 不轮播
 /// [show] 是否显示广告
 AdBannerWidget(
-  posId: AdsConfig.bannerId02,
-  interval: 120,
+  posId: AdsConfig.bannerId,
+  width: 300,
+  height: 150,
+  interval: 30,
   show: true,
 )
 ```

@@ -16,11 +16,11 @@ class AdBannerWidget extends StatefulWidget {
   }) : super(key: key);
   // 广告 id
   final String posId;
-  // 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
+  // 创建 Banner 广告位时选择的宽度，默认值是 300
   final int width;
-  // 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
+  // 创建 Banner 广告位时选择的高度，默认值是 150
   final int height;
-  // 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认 0 不轮播
+  // 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认为 0 不轮播
   final int interval;
   // 是否显示广告
   final bool show;
