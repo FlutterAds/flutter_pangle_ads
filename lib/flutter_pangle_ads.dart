@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'event/ad_event_handler.dart';
 export 'event/ad_event_handler.dart';
+export 'view/ad_banner_widget.dart';
 
 /// 穿山甲广告插件
 class FlutterPangleAds {

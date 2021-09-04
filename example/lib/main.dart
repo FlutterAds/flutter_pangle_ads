@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
-import 'package:flutter_pangle_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
 

@@ -43,6 +43,8 @@ dependencies:
 ### 初始化广告
 
 ``` Dart
+// 导包
+import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 /// [appId] 应用ID
 FlutterPangleAds.initAd(appId);
 ```
