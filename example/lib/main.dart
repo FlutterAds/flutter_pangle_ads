@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
+import 'package:flutter_pangle_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
 
@@ -117,6 +118,37 @@ class _MyAppState extends State<MyApp> {
                     showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
                   },
                 ),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: 300,
+                  height: 150,
+                  child: AdBannerWidget(
+                    posId: AdsConfig.bannerId,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  width: 300,
+                  height: 80,
+                  child: AdBannerWidget(
+                    posId: AdsConfig.bannerId01,
+                    width: 300,
+                    height: 75,
+                    interval: 30,
+                    show: true,
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  width: 320,
+                  height: 50,
+                  child: AdBannerWidget(
+                    posId: AdsConfig.bannerId02,
+                    width: 320,
+                    height: 50,
+                  ),
+                ),
+                SizedBox(height: 10),
               ],
             ),
           ),
@@ -178,8 +210,11 @@ class _MyAppState extends State<MyApp> {
   /// [logo] 展示如果传递则展示logo，不传递不展示
   Future<void> showSplashAd([String? logo]) async {
     try {
-      bool result =
-          await FlutterPangleAds.showSplashAd(AdsConfig.splashId, logo);
+      bool result = await FlutterPangleAds.showSplashAd(
+        AdsConfig.splashId,
+        logo: logo,
+        timeout: 3.5,
+      );
       _result = "展示开屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
       _result = "展示开屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
