@@ -11,6 +11,7 @@
 // 加载广告
 -(void)loadAd:(FlutterMethodCall *)call{
     NSString* logo=call.arguments[@"logo"];
+    double timeout=[call.arguments[@"timeout"] doubleValue];
     // logo 判断为空，则全屏展示
     self.fullScreenAd=[logo isKindOfClass:[NSNull class]]||[logo length]==0;
     // 计算大小
@@ -30,6 +31,7 @@
     // 广告区域大小
     CGRect frame = CGRectMake(0,0,self.width,adHeight);
     self.splashAd=[[BUSplashAdView alloc] initWithSlotID:self.posId frame:frame];
+    self.splashAd.tolerateTimeout=timeout;
     self.splashAd.delegate=self;
     // 加载全屏广告
     [self.splashAd loadAdData];
