@@ -55,7 +55,12 @@ FlutterPangleAds.initAd(appId);
 ``` Dart
 /// [posId] 广告位 id
 /// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
-FlutterPangleAds.showSplashAd(posId, 'flutterads_logo');
+/// [timeout] 加载超时时间
+FlutterPangleAds.showSplashAd(
+  posId,
+  logo: 'flutterads_logo',
+  timeout: 3.5,
+);
 ```
 
 - 全屏广告
@@ -109,7 +114,7 @@ AdBannerWidget(
   height: 150,
   interval: 30,
   show: true,
-)
+);
 ```
 
 Banner 广告外部需要嵌套一个带有约束布局的 Widget，如：`AspectRatio、SizedBox、Container` 等，示例如下：
