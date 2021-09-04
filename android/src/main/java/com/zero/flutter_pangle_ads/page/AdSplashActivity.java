@@ -20,6 +20,7 @@ import com.zero.flutter_pangle_ads.event.AdErrorEvent;
 import com.zero.flutter_pangle_ads.event.AdEvent;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
 import com.zero.flutter_pangle_ads.event.AdEventHandler;
+import com.zero.flutter_pangle_ads.utils.StatusBarUtils;
 
 /**
  * 开屏广告
@@ -37,6 +38,8 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_splash);
+        StatusBarUtils.setTranslucent(this);
+//        StatusBarUtils.setBarDarkMode(this,true);
         initView();
         initData();
     }
