@@ -39,5 +39,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // 广告 SDK
-    implementation 'com.pangle.cn:ads-sdk:3.9.0.2'
+    implementation 'com.pangle.cn:ads-sdk:3.9.0.5'
 }
