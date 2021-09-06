@@ -249,7 +249,7 @@ pod install
 
 ## 支持开源
 
-支持开源项目最好的方式就是用 1 秒点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads)
+支持开源项目最好的方式就是点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads)
 
 ## FlutterAds 广告插件系列
 |插件|描述|
