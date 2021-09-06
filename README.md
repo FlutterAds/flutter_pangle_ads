@@ -241,6 +241,9 @@ pod install
 |master|稳定分支，非 Null Safety|
 |2x|稳定分支，Null Safety|
 
+## 更新日志
+[查看 Releases 版本日志](https://github.com/FlutterAds/flutter_pangle_ads/releases)
+
 ## 遇到问题
 如果你遇到问题请提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues) 给我（提问前建议先搜索尝试，没有再提问）
 
