@@ -159,7 +159,13 @@ class _MyAppState extends State<MyApp> {
   /// 初始化广告 SDK
   Future<bool> init() async {
     try {
-      bool result = await FlutterPangleAds.initAd(AdsConfig.appId);
+      bool result = await FlutterPangleAds.initAd(
+        AdsConfig.appId,
+        directDownloadNetworkType: [
+          NetworkType.kNetworkStateMobile,
+          NetworkType.kNetworkStateWifi,
+        ],
+      );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";
       setState(() {});
       return result;
