@@ -208,6 +208,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         intent.putExtra(KEY_LOGO, logo);
         intent.putExtra(KEY_TIMEOUT, timeout);
         activity.startActivity(intent);
+        // 设置进入动画
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         result.success(true);
     }
 
