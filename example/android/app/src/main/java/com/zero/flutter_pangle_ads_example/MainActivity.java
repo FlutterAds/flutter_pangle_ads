@@ -13,9 +13,6 @@ public class MainActivity extends FlutterActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 设置状态栏透明
         StatusBarUtils.setTranslucent(this);
     }
-
-
 }

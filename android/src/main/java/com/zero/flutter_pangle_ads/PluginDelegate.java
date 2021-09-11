@@ -14,6 +14,10 @@ import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
 import com.zero.flutter_pangle_ads.page.InterstitialPage;
 import com.zero.flutter_pangle_ads.page.NativeViewFactory;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
+import com.zero.flutter_pangle_ads.utils.DataUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.flutter.BuildConfig;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -151,7 +155,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         boolean useTextureView = call.argument("useTextureView");
         boolean supportMultiProcess = call.argument("supportMultiProcess");
         boolean allowShowNotify = call.argument("allowShowNotify");
-        boolean onlyWifiDirectDownload = call.argument("onlyWifiDirectDownload");
+        ArrayList directDownloadNetworkType = call.argument("directDownloadNetworkType");
+        int[] directDownloadNetworkTypeList= DataUtils.convertIntegers(directDownloadNetworkType);
         // 构建配置
         TTAdConfig config = new TTAdConfig.Builder()
                 .appId(appId)
@@ -159,7 +164,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 .allowShowNotify(allowShowNotify) //是否允许sdk展示通知栏提示
                 .debug(BuildConfig.DEBUG) //测试阶段打开，可以通过日志排查问题，上线时去除该调用
                 .supportMultiProcess(supportMultiProcess)//是否支持多进程
-                .directDownloadNetworkType(onlyWifiDirectDownload ? new int[]{TTAdConstant.NETWORK_STATE_WIFI} : new int[]{TTAdConstant.NETWORK_STATE_WIFI, TTAdConstant.NETWORK_STATE_MOBILE})
+                .directDownloadNetworkType(directDownloadNetworkTypeList)// 直接下载的网络方式
                 .needClearTaskReset()
                 .build();
         // 初始化 SDK
@@ -203,6 +208,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         intent.putExtra(KEY_LOGO, logo);
         intent.putExtra(KEY_TIMEOUT, timeout);
         activity.startActivity(intent);
+        // 设置进入动画
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         result.success(true);
     }
 
