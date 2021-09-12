@@ -50,18 +50,10 @@
     self.splashAd.rootViewController=self;
 }
 
-
-// 销毁广告 View
-- (void) dismissView{
-//    if (self.splashView) {
-//        [self.splashView removeFromSuperview];
-//    }
-}
-
 // 销毁页面
 - (void) dismissPage{
     [self dismissViewControllerAnimated:YES completion:^{
-
+        
     }];
 }
 
@@ -71,43 +63,40 @@
 - (void)splashAdDidLoad:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     // 发送广告事件
-    //    [self sendEventAction:onAdLoaded];
+    [self.sp sendEventAction:onAdLoaded];
     
 }
 
 - (void)splashAdDidClose:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
-//    [self dismissView];
-    //    // 发送广告事件
-    //    [self sendEventAction:onAdClosed];
+    // 发送广告事件
+    [self.sp sendEventAction:onAdClosed];
 }
 
 - (void)splashAdDidClick:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
-    [self dismissView];
     // 发送广告事件
-    //    [self sendEventAction:onAdClicked];
+    [self.sp sendEventAction:onAdClicked];
 }
 
 - (void)splashAdDidClickSkip:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     [self dismissPage];
     // 发送广告事件
-    //    [self sendEventAction:onAdSkip];
+    [self.sp sendEventAction:onAdSkip];
 }
 
 - (void)splashAd:(BUSplashAdView *)splashAd didFailWithError:(NSError *)error {
     NSLog(@"%s",__FUNCTION__);
-    NSLog(@"加载错误%@",error.description);
     [self dismissPage];
     // 发送广告错误事件
-    //    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
+    [self.sp sendErrorEvent:error.code withErrMsg:error.localizedDescription];
 }
 
 - (void)splashAdWillVisible:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     // 发送广告事件
-    //    [self sendEventAction:onAdExposure];
+    [self.sp sendEventAction:onAdExposure];
 }
 
 - (void)splashAdDidCloseOtherController:(BUSplashAdView *)splashAd interactionType:(BUInteractionType)interactionType{
@@ -118,6 +107,8 @@
 - (void)splashAdCountdownToZero:(BUSplashAdView *)splashAd {
     NSLog(@"%s",__FUNCTION__);
     [self dismissPage];
+    // 发送广告事件
+    [self.sp sendEventAction:onAdComplete];
 }
 
 

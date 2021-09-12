@@ -35,9 +35,9 @@
     int height = [call.arguments[@"height"] intValue];
     // 大于 0 说明需要设置刷新间隔
     if(interval>0){
-        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height) interval:interval];
+        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height) interval:interval];
     }else{
-        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height)];
+        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height)];
     }
     self.bannerView.frame=CGRectMake(0, 0, width, height);
     self.bannerView.delegate=self;

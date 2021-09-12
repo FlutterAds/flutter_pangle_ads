@@ -18,10 +18,11 @@
     svc.posId=self.posId;
     svc.logo=logo;
     svc.timeout=timeout;
+    svc.sp=self;
     //设置全屏
     svc.modalPresentationStyle = UIModalPresentationFullScreen;
     // 跳转页面
-    [self.mainWin.rootViewController presentViewController:svc animated:NO completion:^{
+    [self.rootController presentViewController:svc animated:NO completion:^{
         
     }];
     

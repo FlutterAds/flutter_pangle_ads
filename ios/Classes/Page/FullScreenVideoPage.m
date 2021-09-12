@@ -19,7 +19,7 @@
 - (void)nativeExpressFullscreenVideoAdDidLoad:(BUNativeExpressFullscreenVideoAd *)fullscreenVideoAd {
     NSLog(@"%s",__FUNCTION__);
     if(self.fsad){
-        [self.fsad showAdFromRootViewController:self.mainWin.rootViewController];
+        [self.fsad showAdFromRootViewController:self.rootController];
     }
     // 发送广告事件
     [self sendEventAction:onAdLoaded];

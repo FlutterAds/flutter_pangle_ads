@@ -26,7 +26,7 @@
 - (void)nativeExpressRewardedVideoAdDidLoad:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd {
     NSLog(@"%s",__FUNCTION__);
     if(self.rvad){
-        [self.rvad showAdFromRootViewController:self.mainWin.rootViewController];
+        [self.rvad showAdFromRootViewController:self.rootController];
     }
     // 发送广告事件
     [self sendEventAction:onAdLoaded];
