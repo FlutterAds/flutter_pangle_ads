@@ -4,8 +4,6 @@
 #import <AdSupport/AdSupport.h>
 
 @implementation FlutterPangleAdsPlugin
-// 广告位id
-NSString *const kPosId=@"posId";
 // AdBannerView
 NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
 
@@ -70,33 +68,29 @@ NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
 
 // 显示开屏广告
 - (void) showSplashAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    self.posId=call.arguments[kPosId];
     self.sad=[[SplashPage alloc] init];
-    [self.sad showAd:self.posId methodCall:call eventSink:self.eventSink];
+    [self.sad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
 // 显示插屏广告
 - (void) showInterstitialAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    self.posId=call.arguments[kPosId];
     self.iad=[[InterstitialPage alloc] init];
-    [self.iad showAd:self.posId methodCall:call eventSink:self.eventSink];
+    [self.iad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
 // 显示激励视频广告
 - (void) showRewardVideoAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    self.posId=call.arguments[kPosId];
     self.rvad=[[RewardVideoPage alloc] init];
-    [self.rvad showAd:self.posId methodCall:call eventSink:self.eventSink];
+    [self.rvad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
 // 显示全屏视频广告
 - (void) showFullScreenVideoAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    self.posId=call.arguments[kPosId];
     self.fsad=[[FullScreenVideoPage alloc] init];
-    [self.fsad showAd:self.posId methodCall:call eventSink:self.eventSink];
+    [self.fsad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 

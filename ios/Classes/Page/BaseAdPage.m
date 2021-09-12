@@ -8,13 +8,16 @@
 #import "BaseAdPage.h"
 
 @implementation BaseAdPage
-
+// 广告位id
+NSString *const kPosId=@"posId";
 // 显示广告
--(void)showAd:(NSString *)posId methodCall:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink )events{
-    self.posId=posId;
+-(void)showAd:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink )events{
+    
+    self.posId=call.arguments[kPosId];
     self.eventSink=events;
     // 获取主 window
     self.mainWin=[[UIApplication sharedApplication] keyWindow];
+    self.rootController=self.mainWin.rootViewController;
     // 获取宽高
     CGSize size=[[UIScreen mainScreen] bounds].size;
     self.width=size.width;
