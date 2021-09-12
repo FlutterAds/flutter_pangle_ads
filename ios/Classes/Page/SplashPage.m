@@ -16,8 +16,8 @@
     self.fullScreenAd=[logo isKindOfClass:[NSNull class]]||[logo length]==0;
     // 计算大小
     CGFloat adHeight=self.height;// 广告区域的高度
-    self.bottomView=[[UIView alloc]initWithFrame:CGRectMake(0, 0,self.width, self.height)];
-    self.bottomView.backgroundColor=[UIColor whiteColor];
+    self.splashView=[[UIView alloc]initWithFrame:CGRectMake(0, 0,self.width, self.height)];
+    self.splashView.backgroundColor=[UIColor whiteColor];
     // 非全屏设置 Logo
     if(!self.fullScreenAd){
         CGFloat logoHeight=112.5;// 这里按照 15% 进行logo 的展示，防止尺寸不够的问题，750*15%=112.5
@@ -26,7 +26,9 @@
         UIImageView *logoView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:logo]];
         logoView.frame=CGRectMake(0, adHeight, self.width, logoHeight);
         logoView.contentMode=UIViewContentModeCenter;
-        [self.bottomView addSubview:logoView];
+        // 防止点击 Logo 区域触发 Flutter 层的事件
+        logoView.userInteractionEnabled=false;
+        [self.splashView addSubview:logoView];
     }
     // 广告区域大小
     CGRect frame = CGRectMake(0,0,self.width,adHeight);
@@ -36,9 +38,8 @@
     // 加载全屏广告
     [self.splashAd loadAdData];
     // 设置广告 View
-    [self.bottomView addSubview:self.splashAd];
-//    [self.mainWin.rootViewController.view addSubview:self.splashAd];
-    [self.mainWin.rootViewController.view addSubview:self.bottomView];
+    [self.splashView addSubview:self.splashAd];
+    [self.mainWin.rootViewController.view addSubview:self.splashView];
     self.splashAd.rootViewController=self.mainWin.rootViewController;
 }
 
@@ -46,9 +47,12 @@
 - (void)removeSplashAdView {
     NSLog(@"%s",__FUNCTION__);
     // 底部 Logo
-    if(self.bottomView){
-        [self.bottomView removeFromSuperview];
-        self.bottomView=nil;
+    if(self.splashView){
+        [self.splashAd removeFromSuperview];
+        self.splashAd=nil;
+        [self.splashView removeFromSuperview];
+        self.splashView=nil;
+        
     }
 }
 

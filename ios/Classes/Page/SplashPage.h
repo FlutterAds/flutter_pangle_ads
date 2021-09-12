@@ -9,6 +9,6 @@
 // 开屏广告
 @interface SplashPage : BaseAdPage <BUSplashAdDelegate>
 @property (strong, nonatomic) BUSplashAdView *splashAd;
-@property (strong, nonatomic) UIView *bottomView;
+@property (strong, nonatomic) UIView *splashView;
 @property (nonatomic, assign) BOOL fullScreenAd;
 @end
