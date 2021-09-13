@@ -145,6 +145,7 @@ class _MyAppState extends State<MyApp> {
                     posId: AdsConfig.bannerId02,
                     width: 320,
                     height: 50,
+                    autoClose: false,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -191,6 +192,11 @@ class _MyAppState extends State<MyApp> {
         // 激励事件
         _adEvent +=
             ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
+      }
+      // 测试关闭 Banner（会员场景）
+      if (event.action == AdEventAction.onAdClosed &&
+          event.adId == AdsConfig.bannerId02) {
+        _adEvent += '仅会员可以关闭广告';
       }
       print('onEventListener:$_adEvent');
       setState(() {});

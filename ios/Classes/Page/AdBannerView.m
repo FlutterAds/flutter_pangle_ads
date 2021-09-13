@@ -9,6 +9,7 @@
 // Banner 广告 View
 @interface AdBannerView()<FlutterPlatformView,BUNativeExpressBannerViewDelegate>
 @property (strong,nonatomic) BUNativeExpressBannerView *bannerView;
+@property bool autoClose;
 @end
 // Banner 广告 View
 @implementation AdBannerView
@@ -33,6 +34,7 @@
     int interval=[call.arguments[@"interval"] intValue];
     int width = [call.arguments[@"width"] intValue];
     int height = [call.arguments[@"height"] intValue];
+    self.autoClose = [call.arguments[@"autoClose"] boolValue];
     // 大于 0 说明需要设置刷新间隔
     if(interval>0){
         self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height) interval:interval];
@@ -88,7 +90,9 @@
 
 - (void)nativeExpressBannerAdViewDidRemoved:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
-    [bannerAdView removeFromSuperview];
+    if(self.autoClose){
+        [bannerAdView removeFromSuperview];
+    }
     // 发送广告事件
     [self sendEventAction:onAdClosed];
 }

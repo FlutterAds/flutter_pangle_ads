@@ -220,9 +220,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void showInterstitialAd(MethodCall call, MethodChannel.Result result) {
-        String posId = call.argument(KEY_POSID);
         InterstitialPage adPage = new InterstitialPage();
-        adPage.showAd(activity, posId, call);
+        adPage.showAd(activity, call);
         result.success(true);
     }
 
@@ -233,9 +232,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void showRewardVideoAd(MethodCall call, MethodChannel.Result result) {
-        String posId = call.argument(KEY_POSID);
         RewardVideoPage adPage = new RewardVideoPage();
-        adPage.showAd(activity, posId, call);
+        adPage.showAd(activity, call);
         result.success(true);
     }
 
@@ -246,9 +244,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void showFullScreenVideoAd(MethodCall call, MethodChannel.Result result) {
-        String posId = call.argument(KEY_POSID);
         FullScreenVideoPage adPage = new FullScreenVideoPage();
-        adPage.showAd(activity, posId, call);
+        adPage.showAd(activity, call);
         result.success(true);
     }
 }
