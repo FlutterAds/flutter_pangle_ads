@@ -4,8 +4,8 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
 
 <p align="center">
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.2.0-success></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.2.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.3.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.3.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -15,7 +15,7 @@
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
 - 📡 事件统一返回（将原生端各种重要回调事件统一返回，方便业务处理和埋点统计等需求）
-- 🎁 注重优化体验（无闪烁 Logo 开屏、权限申请、隐私跟踪申请等）
+- 🎁 注重优化体验（无闪烁 Logo 开屏、iOS 开屏防止事件穿透、权限申请、隐私跟踪申请等）
 - 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展新广告形式、方便开发个性化需求）
 
 ## 支持功能
@@ -37,8 +37,8 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^1.2.0 # 非 Null Safety 版本
-  flutter_pangle_ads: ^2.2.0 # Null Safety 版本
+  flutter_pangle_ads: ^1.3.0 # 非 Null Safety 版本
+  flutter_pangle_ads: ^2.3.0 # Null Safety 版本
 ```
 ### 初始化广告
 
@@ -99,7 +99,7 @@ FlutterPangleAds.showRewardVideoAd(
 - 新插屏
 ``` Dart
 /// [posId] 广告位 id
-FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
+FlutterPangleAds.showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
 ```
 
 
@@ -225,7 +225,7 @@ bool result = await FlutterPangleAds.requestPermissionIfNecessary;
 android{
   configurations.all {
       resolutionStrategy {
-          force 'com.pangle.cn:ads-sdk:版本号'
+          force 'com.pangle.cn:ads-sdk-pro:版本号'
       }
   }
 }
