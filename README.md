@@ -99,7 +99,7 @@ FlutterPangleAds.showRewardVideoAd(
 - 新插屏
 ``` Dart
 /// [posId] 广告位 id
-FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
+FlutterPangleAds.showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
 ```
 
 
