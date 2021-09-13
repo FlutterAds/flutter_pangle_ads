@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
-import 'package:flutter_pangle_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
 
@@ -146,6 +145,7 @@ class _MyAppState extends State<MyApp> {
                     posId: AdsConfig.bannerId02,
                     width: 320,
                     height: 50,
+                    autoClose: false,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -160,7 +160,13 @@ class _MyAppState extends State<MyApp> {
   /// 初始化广告 SDK
   Future<bool> init() async {
     try {
-      bool result = await FlutterPangleAds.initAd(AdsConfig.appId);
+      bool result = await FlutterPangleAds.initAd(
+        AdsConfig.appId,
+        directDownloadNetworkType: [
+          NetworkType.kNetworkStateMobile,
+          NetworkType.kNetworkStateWifi,
+        ],
+      );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";
       setState(() {});
       return result;
@@ -187,6 +193,11 @@ class _MyAppState extends State<MyApp> {
         _adEvent +=
             ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
       }
+      // 测试关闭 Banner（会员场景）
+      if (event.action == AdEventAction.onAdClosed &&
+          event.adId == AdsConfig.bannerId02) {
+        _adEvent += '仅会员可以关闭广告';
+      }
       print('onEventListener:$_adEvent');
       setState(() {});
     });
@@ -210,8 +221,11 @@ class _MyAppState extends State<MyApp> {
   /// [logo] 展示如果传递则展示logo，不传递不展示
   Future<void> showSplashAd([String logo]) async {
     try {
-      bool result =
-          await FlutterPangleAds.showSplashAd(AdsConfig.splashId, logo: logo);
+      bool result = await FlutterPangleAds.showSplashAd(
+        AdsConfig.splashId,
+        logo: logo,
+        timeout: 3.5,
+      );
       _result = "展示开屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
       _result = "展示开屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";

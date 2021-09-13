@@ -4,8 +4,8 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
 
 <p align="center">
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.2.0-success></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.2.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.3.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.3.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -15,7 +15,7 @@
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
 - 📡 事件统一返回（将原生端各种重要回调事件统一返回，方便业务处理和埋点统计等需求）
-- 🎁 注重优化体验（无闪烁 Logo 开屏、权限申请、隐私跟踪申请等）
+- 🎁 注重优化体验（无闪烁 Logo 开屏、iOS 开屏防止事件穿透、权限申请、隐私跟踪申请等）
 - 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展新广告形式、方便开发个性化需求）
 
 ## 支持功能
@@ -29,7 +29,7 @@
 - 🔲 信息流
 
 ## 下载体验
-<img src="https://www.pgyer.com/app/qrcode/fads" width='100' height='100'>
+<a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://www.pgyer.com/app/qrcode/fads" width='100' height='100'></a>
 
 ## 入门使用
 
@@ -37,12 +37,14 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^1.2.0 # 非 Null Safety 版本
-  flutter_pangle_ads: ^2.2.0 # Null Safety 版本
+  flutter_pangle_ads: ^1.3.0 # 非 Null Safety 版本
+  flutter_pangle_ads: ^2.3.0 # Null Safety 版本
 ```
 ### 初始化广告
 
 ``` Dart
+// 导包
+import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 /// [appId] 应用ID
 FlutterPangleAds.initAd(appId);
 ```
@@ -55,7 +57,12 @@ FlutterPangleAds.initAd(appId);
 ``` Dart
 /// [posId] 广告位 id
 /// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
-FlutterPangleAds.showSplashAd(posId, 'flutterads_logo');
+/// [timeout] 加载超时时间
+FlutterPangleAds.showSplashAd(
+  posId,
+  logo: 'flutterads_logo',
+  timeout: 3.5,
+);
 ```
 
 - 全屏广告
@@ -92,7 +99,7 @@ FlutterPangleAds.showRewardVideoAd(
 - 新插屏
 ``` Dart
 /// [posId] 广告位 id
-FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
+FlutterPangleAds.showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
 ```
 
 
@@ -103,13 +110,15 @@ FlutterPangleAds.showRewardVideoAd(AdsConfig.fullScreenVideoId);
 /// [height] 创建 Banner 广告位时选择的高度，默认值是 150
 /// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认为 0 不轮播
 /// [show] 是否显示广告
+/// [autoClose] 是否自动关闭，一般是在用户点击不感兴趣之后的操作
 AdBannerWidget(
   posId: AdsConfig.bannerId,
   width: 300,
   height: 150,
   interval: 30,
   show: true,
-)
+  autoClose: true,
+);
 ```
 
 Banner 广告外部需要嵌套一个带有约束布局的 Widget，如：`AspectRatio、SizedBox、Container` 等，示例如下：
@@ -143,6 +152,11 @@ FlutterPangleAds.onEventListener((event) {
     // 激励事件
         _adEvent +=
             ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
+  }
+  // 测试关闭 Banner（会员场景）
+  if (event.action == AdEventAction.onAdClosed &&
+      event.adId == AdsConfig.bannerId02) {
+    _adEvent += '仅会员可以关闭广告';
   }
   print('onEventListener:$_adEvent');
 });
@@ -211,7 +225,7 @@ bool result = await FlutterPangleAds.requestPermissionIfNecessary;
 android{
   configurations.all {
       resolutionStrategy {
-          force 'com.pangle.cn:ads-sdk:版本号'
+          force 'com.pangle.cn:ads-sdk-pro:版本号'
       }
   }
 }
@@ -234,12 +248,15 @@ pod install
 |master|稳定分支，非 Null Safety|
 |2x|稳定分支，Null Safety|
 
+## 更新日志
+[查看 Releases 版本日志](https://github.com/FlutterAds/flutter_pangle_ads/releases)
+
 ## 遇到问题
 如果你遇到问题请提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues) 给我（提问前建议先搜索尝试，没有再提问）
 
 ## 支持开源
 
-支持开源项目最好的方式就是用 1 秒点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads)
+支持开源项目最好的方式就是点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads) ⭐️
 
 ## FlutterAds 广告插件系列
 |插件|描述|

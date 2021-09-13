@@ -40,7 +40,7 @@
 - (void)nativeExpresInterstitialAdRenderSuccess:(BUNativeExpressInterstitialAd *)interstitialAd {
     NSLog(@"%s",__FUNCTION__);
     if(self.iad){
-        [self.iad showAdFromRootViewController:self.mainWin.rootViewController];
+        [self.iad showAdFromRootViewController:self.rootController];
     }
     // 发送广告事件
     [self sendEventAction:onAdPresent];

@@ -9,7 +9,6 @@
 #import "FlutterPangleAdsPlugin.h"
 @interface AdBannerView : BaseAdPage<FlutterPlatformView>
 @property (strong,nonatomic) FlutterPangleAdsPlugin *plugin;
-@property id args;
 - (instancetype)initWithFrame:(CGRect)frame
                viewIdentifier:(int64_t)viewId
                     arguments:(id _Nullable)args

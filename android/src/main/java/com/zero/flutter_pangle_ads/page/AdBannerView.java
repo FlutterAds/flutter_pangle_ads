@@ -9,12 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
-import com.bytedance.sdk.openadsdk.DislikeInfo;
-import com.bytedance.sdk.openadsdk.FilterWord;
-import com.bytedance.sdk.openadsdk.PersonalizationPrompt;
 import com.bytedance.sdk.openadsdk.TTAdDislike;
 import com.bytedance.sdk.openadsdk.TTAdNative;
-import com.bytedance.sdk.openadsdk.TTNativeAd;
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.zero.flutter_pangle_ads.PluginDelegate;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
@@ -35,17 +31,16 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
     private final PluginDelegate pluginDelegate;
     private int id;
     private TTNativeExpressAd bad;
-    private Map<String, Object> params;
     private int interval;
+    private boolean autoClose;
 
 
     AdBannerView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, PluginDelegate pluginDelegate) {
         this.id = id;
         this.pluginDelegate = pluginDelegate;
-        this.params = creationParams;
         frameLayout = new FrameLayout(context);
-        String posId = (String) params.get(PluginDelegate.KEY_POSID);
-        showAd(this.pluginDelegate.activity, posId, null);
+        MethodCall call = new MethodCall("AdBannerView", creationParams);
+        showAd(this.pluginDelegate.activity, call);
     }
 
     @NonNull
@@ -62,10 +57,12 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
     @Override
     public void loadAd(@NonNull MethodCall call) {
         // 获取轮播时间间隔参数
-        interval = (int) this.params.get("interval");
+        interval = call.argument("interval");
         // 获取请求模板广告素材的尺寸
-        int expressViewWidth = (int) this.params.get("width");
-        int expressViewHeight = (int) this.params.get("height");
+        int expressViewWidth = call.argument("width");
+        int expressViewHeight = call.argument("height");
+        // 是否自动关闭
+        autoClose = call.argument("autoClose");
         adSlot = new AdSlot.Builder()
                 .setCodeId(posId)
                 .setAdCount(1)
@@ -117,7 +114,10 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
         Log.i(TAG, "onAdDismiss");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        disposeAd();
+        // 点击如不感兴趣后，自动关闭
+        if (autoClose) {
+            disposeAd();
+        }
     }
 
     @Override
@@ -169,7 +169,7 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
 
                 @Override
                 public void onSelected(int position, String value, boolean enforce) {
-                    onAdDismiss();
+                        onAdDismiss();
                 }
 
                 @Override
