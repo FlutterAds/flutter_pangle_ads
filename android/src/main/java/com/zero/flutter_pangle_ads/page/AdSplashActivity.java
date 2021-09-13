@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,8 @@ import com.zero.flutter_pangle_ads.event.AdErrorEvent;
 import com.zero.flutter_pangle_ads.event.AdEvent;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
 import com.zero.flutter_pangle_ads.event.AdEventHandler;
+import com.zero.flutter_pangle_ads.utils.StatusBarUtils;
+import com.zero.flutter_pangle_ads.utils.UIUtils;
 
 /**
  * 开屏广告
@@ -36,6 +40,8 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UIUtils.hideBottomUIMenu(this);
+        StatusBarUtils.setTranslucent(this);
         setContentView(R.layout.activity_ad_splash);
         initView();
         initData();
@@ -71,17 +77,21 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
                 Log.e(TAG, "Logo 名称不匹配或不在 mipmap 文件夹下，展示全屏");
             }
         }
+        int width= (int) UIUtils.getScreenWidthInPx(this);
+        int height=(int) UIUtils.getScreenHeightInPx(this);
         // 判断最终的 Logo 是否显示
         if (!hasLogo) {
             ad_logo.setVisibility(View.GONE);
+        }else{
+            // 显示 Logo 高度去掉 Logo 的高度
+            height=height-ad_logo.getLayoutParams().height;
         }
-
         // 创建开屏广告
         TTAdNative splashAD = TTAdSdk.getAdManager().createAdNative(this);
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(posId)
                 .setSupportDeepLink(true)
-                .setImageAcceptedSize(1080, 1920)
+                .setImageAcceptedSize(width, height)
                 .build();
         // 加载广告
         splashAD.loadSplashAd(adSlot, this,absTimeout);
@@ -93,7 +103,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
     private void finishPage() {
         finish();
         // 设置退出动画
-        overridePendingTransition(0, android.R.anim.fade_out);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     /**

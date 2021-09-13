@@ -9,6 +9,7 @@
 // Banner 广告 View
 @interface AdBannerView()<FlutterPlatformView,BUNativeExpressBannerViewDelegate>
 @property (strong,nonatomic) BUNativeExpressBannerView *bannerView;
+@property bool autoClose;
 @end
 // Banner 广告 View
 @implementation AdBannerView
@@ -18,9 +19,8 @@
               binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger
                        plugin:(FlutterPangleAdsPlugin*) plugin{
     if (self = [super init]) {
-        self.args=args;
-        NSString* posId = args[kPosId];
-        [self showAd:posId methodCall:nil eventSink:plugin.eventSink];
+        FlutterMethodCall *call=[FlutterMethodCall methodCallWithMethodName:@"AdBannerView" arguments:args];
+        [self showAd:call eventSink:plugin.eventSink];
     }
     return self;
 }
@@ -31,14 +31,15 @@
 // 加载广告
 - (void)loadAd:(FlutterMethodCall *)call{
     // 刷新间隔
-    int interval=[self.args[@"interval"] intValue];
-    int width = [self.args[@"width"] intValue];
-    int height = [self.args[@"height"] intValue];
+    int interval=[call.arguments[@"interval"] intValue];
+    int width = [call.arguments[@"width"] intValue];
+    int height = [call.arguments[@"height"] intValue];
+    self.autoClose = [call.arguments[@"autoClose"] boolValue];
     // 大于 0 说明需要设置刷新间隔
     if(interval>0){
-        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height) interval:interval];
+        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height) interval:interval];
     }else{
-        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height)];
+        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height)];
     }
     self.bannerView.frame=CGRectMake(0, 0, width, height);
     self.bannerView.delegate=self;
@@ -89,7 +90,9 @@
 
 - (void)nativeExpressBannerAdViewDidRemoved:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
-    [bannerAdView removeFromSuperview];
+    if(self.autoClose){
+        [bannerAdView removeFromSuperview];
+    }
     // 发送广告事件
     [self sendEventAction:onAdClosed];
 }

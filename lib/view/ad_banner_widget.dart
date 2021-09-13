@@ -13,6 +13,7 @@ class AdBannerWidget extends StatefulWidget {
     this.height = 150,
     this.interval = 0,
     this.show = true,
+    this.autoClose = true,
   }) : super(key: key);
   // 广告 id
   final String posId;
@@ -24,6 +25,8 @@ class AdBannerWidget extends StatefulWidget {
   final int interval;
   // 是否显示广告
   final bool show;
+  // 是否自动关闭，一般是在用户点击不感兴趣之后的操作，可以在事件回调[AdEventAction.onAdClosed]中判断
+  final bool autoClose;
 
   @override
   _AdBannerWidgetState createState() => _AdBannerWidgetState();
@@ -41,7 +44,8 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
       "posId": widget.posId,
       "width": widget.width,
       "height": widget.height,
-      "interval": widget.interval
+      "interval": widget.interval,
+      "autoClose": widget.autoClose
     };
     super.initState();
   }
