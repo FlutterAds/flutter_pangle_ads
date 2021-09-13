@@ -18,9 +18,8 @@
               binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger
                        plugin:(FlutterPangleAdsPlugin*) plugin{
     if (self = [super init]) {
-        self.args=args;
-        NSString* posId = args[kPosId];
-        [self showAd:posId methodCall:nil eventSink:plugin.eventSink];
+        FlutterMethodCall *call=[FlutterMethodCall methodCallWithMethodName:@"AdBannerView" arguments:args];
+        [self showAd:call eventSink:plugin.eventSink];
     }
     return self;
 }
@@ -31,14 +30,14 @@
 // 加载广告
 - (void)loadAd:(FlutterMethodCall *)call{
     // 刷新间隔
-    int interval=[self.args[@"interval"] intValue];
-    int width = [self.args[@"width"] intValue];
-    int height = [self.args[@"height"] intValue];
+    int interval=[call.arguments[@"interval"] intValue];
+    int width = [call.arguments[@"width"] intValue];
+    int height = [call.arguments[@"height"] intValue];
     // 大于 0 说明需要设置刷新间隔
     if(interval>0){
-        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height) interval:interval];
+        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height) interval:interval];
     }else{
-        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.mainWin.rootViewController adSize:CGSizeMake(width, height)];
+        self.bannerView=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height)];
     }
     self.bannerView.frame=CGRectMake(0, 0, width, height);
     self.bannerView.delegate=self;

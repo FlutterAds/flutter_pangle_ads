@@ -13,18 +13,22 @@
 #import <BUAdSDK/BUAdSDK.h>
 // 基础广告页面
 @interface BaseAdPage : NSObject
+// 广告位 id key
+extern NSString *const kPosId;
 // 广告位id
 @property (weak,nonatomic) NSString *posId;
 // 事件消息
 @property (strong,nonatomic) FlutterEventSink eventSink;
 // Window
 @property (strong,nonatomic) UIWindow *mainWin;
+// 根控制器
+@property (strong,nonatomic) UIViewController *rootController;
 // 屏幕宽度
 @property CGFloat width;
 // 屏幕高度
 @property CGFloat height;
 // 显示广告
-- (void) showAd:(NSString *)posId methodCall:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink) events;
+- (void) showAd:(FlutterMethodCall *)call eventSink:(nonnull FlutterEventSink) events;
 // 加载广告
 - (void) loadAd:(FlutterMethodCall *) call;
 // 发送广告事件

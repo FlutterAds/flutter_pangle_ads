@@ -7,8 +7,5 @@
 
 #import "BaseAdPage.h"
 // 开屏广告
-@interface SplashPage : BaseAdPage <BUSplashAdDelegate>
-@property (strong, nonatomic) BUSplashAdView *splashAd;
-@property (strong, nonatomic) UIView *splashView;
-@property (nonatomic, assign) BOOL fullScreenAd;
+@interface SplashPage : BaseAdPage
 @end
