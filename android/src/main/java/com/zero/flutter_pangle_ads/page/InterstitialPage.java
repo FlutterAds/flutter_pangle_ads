@@ -90,5 +90,6 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
         Log.i(TAG, "onAdDismiss");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
+        iad=null;
     }
 }

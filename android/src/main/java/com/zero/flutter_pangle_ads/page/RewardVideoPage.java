@@ -65,7 +65,9 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
     @Override
     public void onRewardVideoCached(TTRewardVideoAd ttRewardVideoAd) {
         Log.i(TAG, "onRewardVideoCached ttRewardVideoAd");
-        rvad.showRewardVideoAd(activity);
+        if (rvad != null) {
+            rvad.showRewardVideoAd(activity);
+        }
         // 添加广告事件
         sendEvent(AdEventAction.onAdPresent);
     }
@@ -89,6 +91,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
         Log.i(TAG, "onAdClose");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
+        rvad=null;
     }
 
     @Override
