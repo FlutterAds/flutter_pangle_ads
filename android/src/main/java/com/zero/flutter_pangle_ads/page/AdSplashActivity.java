@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
+import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTSplashAd;
@@ -62,6 +63,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
+        int buttonType = getIntent().getIntExtra(PluginDelegate.KEY_SPLASH_BUTTON_TYPE,TTAdConstant.SPLASH_BUTTON_TYPE_FULL_SCREEN);
         double timeout=getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT,3.5);
         int absTimeout= (int) (timeout*1000);
         // 判断是否有 Logo
@@ -92,6 +94,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
                 .setCodeId(posId)
                 .setSupportDeepLink(true)
                 .setImageAcceptedSize(width, height)
+                .setSplashButtonType(buttonType)
                 .build();
         // 加载广告
         splashAD.loadSplashAd(adSlot, this,absTimeout);
