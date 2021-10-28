@@ -50,6 +50,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public static final String KEY_LOGO = "logo";
     // timeout 参数
     public static final String KEY_TIMEOUT = "timeout";
+    // splashButtonType 参数
+    public static final String KEY_SPLASH_BUTTON_TYPE = "buttonType";
 
     /**
      * 插件代理构造函数构造函数
@@ -203,10 +205,12 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         String posId = call.argument(KEY_POSID);
         String logo = call.argument(KEY_LOGO);
         double timeout = call.argument(KEY_TIMEOUT);
+        int buttonType = call.argument(KEY_SPLASH_BUTTON_TYPE);
         Intent intent = new Intent(activity, AdSplashActivity.class);
         intent.putExtra(KEY_POSID, posId);
         intent.putExtra(KEY_LOGO, logo);
         intent.putExtra(KEY_TIMEOUT, timeout);
+        intent.putExtra(KEY_SPLASH_BUTTON_TYPE, buttonType);
         activity.startActivity(intent);
         // 设置进入动画
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
