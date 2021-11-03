@@ -49,4 +49,7 @@ class AdsConfig {
 
   /// 获取 Banner 广告位id 02
   static String get bannerId02 => '946651971';
+
+  /// 获取 Feed 信息流广告位id
+  static String get feedId => '946997696';
 }

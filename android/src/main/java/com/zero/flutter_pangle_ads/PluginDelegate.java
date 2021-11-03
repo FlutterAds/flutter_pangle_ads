@@ -44,6 +44,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     }
     // Banner View
     public static final String KEY_BANNER_VIEW = "flutter_pangle_ads_banner";
+    // Feed View
+    public static final String KEY_FEED_VIEW = "flutter_pangle_ads_feed";
     // 广告参数
     public static final String KEY_POSID = "posId";
     // logo 参数
@@ -133,6 +135,14 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public void registerBannerView() {
         bind.getPlatformViewRegistry()
                 .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW,this));
+    }
+
+    /**
+     * 展示 Feed 信息流广告
+     */
+    public void registerFeedView() {
+        bind.getPlatformViewRegistry()
+                .registerViewFactory(KEY_FEED_VIEW, new NativeViewFactory(KEY_FEED_VIEW,this));
     }
 
     /**
