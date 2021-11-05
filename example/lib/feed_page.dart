@@ -22,17 +22,16 @@ class _FeedPageState extends State<FeedPage> {
         title: Text('信息流'),
       ),
       body: ListView.builder(
-        cacheExtent: size.height * 5,
+        cacheExtent: size.height * 3,
         itemBuilder: (context, index) {
           if (index % 8 == 7) {
             double height = 150 + 2 * index.toDouble();
             height = height.clamp(150, 600);
-            return Container(
-              height: 300,
+            return SizedBox(
+              height: height,
               child: AdFeedWidget(
                 posId: AdsConfig.feedId,
                 width: size.width.toInt(),
-                height: 300,
               ),
             );
           } else {
