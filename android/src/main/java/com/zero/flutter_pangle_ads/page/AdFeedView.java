@@ -2,6 +2,7 @@ package com.zero.flutter_pangle_ads.page;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -27,20 +28,21 @@ import io.flutter.plugin.platform.PlatformView;
 /**
  * Feed 信息流广告 View
  */
-class AdFeedView extends BaseAdPage implements PlatformView, TTAdNative.NativeExpressAdListener, TTNativeExpressAd.AdInteractionListener {
+class AdFeedView extends BaseAdPage implements PlatformView,TTNativeExpressAd.AdInteractionListener {
     private final String TAG = AdFeedView.class.getSimpleName();
     @NonNull
     private final FrameLayout frameLayout;
     private final PluginDelegate pluginDelegate;
     private int id;
     private TTNativeExpressAd fad;
-    private boolean autoClose;
 
 
     AdFeedView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, PluginDelegate pluginDelegate) {
         this.id = id;
         this.pluginDelegate = pluginDelegate;
         frameLayout = new FrameLayout(context);
+        FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        frameLayout.setLayoutParams(params);
         MethodCall call = new MethodCall("AdFeedView", creationParams);
         showAd(this.pluginDelegate.activity, call);
     }
@@ -53,24 +55,11 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTAdNative.NativeEx
 
     @Override
     public void dispose() {
-        disposeAd();
+        removeAd();
     }
 
     @Override
     public void loadAd(@NonNull MethodCall call) {
-        // 获取请求模板广告素材的尺寸
-//        int expressViewWidth = call.argument("width");
-//        int expressViewHeight = call.argument("height");
-        // 是否自动关闭
-//        autoClose = call.argument("autoClose");
-//        adSlot = new AdSlot.Builder()
-//                .setCodeId(posId)
-//                .setAdCount(1)
-//                .setSupportDeepLink(true)
-//                .setExpressViewAcceptedSize(expressViewWidth, expressViewHeight)
-//                .build();
-//        ad.loadNativeExpressAd(adSlot,this);
-
         fad=FeedAdManager.getInstance().getAd(Integer.parseInt(this.posId));
         if(fad!=null){
             View adView= fad.getExpressAdView();
@@ -78,7 +67,8 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTAdNative.NativeEx
                 ((ViewGroup)adView.getParent()).removeAllViews();
             }
             frameLayout.removeAllViews();
-            frameLayout.addView(adView);
+            FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            frameLayout.addView(adView,params);
             fad.setExpressInteractionListener(this);
             bindDislikeAction(fad);
             fad.render();
@@ -86,38 +76,21 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTAdNative.NativeEx
     }
 
     /**
+     * 移除广告
+     */
+    private void removeAd() {
+        frameLayout.removeAllViews();
+    }
+
+    /**
      * 销毁广告
      */
     private void disposeAd() {
-        frameLayout.removeAllViews();
-        if (fad != null) {
-//            fad.destroy();
+        removeAd();
+        FeedAdManager.getInstance().removeAd(Integer.parseInt(this.posId));
+        if(fad!=null){
+            fad.destroy();
         }
-    }
-
-
-    @Override
-    public void onError(int i, String s) {
-        Log.e(TAG, "onError code:" + i + " msg:" + s);
-        sendErrorEvent(i, s);
-        disposeAd();
-    }
-
-    @Override
-    public void onNativeExpressAdLoad(List<TTNativeExpressAd> list) {
-        Log.i(TAG, "onNativeExpressAdLoad");
-        if (list == null || list.size() == 0) {
-            return;
-        }
-        fad = list.get(0);
-//        int height=fad.getExpressAdView().getLayoutParams().height;
-//        int width=fad.getExpressAdView().getLayoutParams().width;
-//        Log.i(TAG, "onNativeExpressAdLoad height:"+height+" width:"+width);
-        fad.setExpressInteractionListener(this);
-        bindDislikeAction(fad);
-        fad.render();
-        // 添加广告事件
-        sendEvent(AdEventAction.onAdLoaded);
     }
 
     @Override
@@ -125,10 +98,7 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTAdNative.NativeEx
         Log.i(TAG, "onAdDismiss");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        // 点击如不感兴趣后，自动关闭
-        if (autoClose) {
-            disposeAd();
-        }
+        disposeAd();
     }
 
     @Override
@@ -154,9 +124,8 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTAdNative.NativeEx
 
     @Override
     public void onRenderSuccess(View view, float v, float v1) {
-        Log.i(TAG, "onRenderSuccess");
-        if (fad != null && activity != null) {
-//            frameLayout.addView(view);
+        Log.i(TAG, "onRenderSuccess v:"+v +" v1:"+v1);
+        if (fad != null) {
             // 添加广告事件
             sendEvent(AdEventAction.onAdPresent);
         }

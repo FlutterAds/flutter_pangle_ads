@@ -24,6 +24,12 @@ class _FeedPageState extends State<FeedPage> {
   }
 
   @override
+  void dispose() {
+    clearFeedAd();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQueryData.fromWindow(window).size;
     return Scaffold(
@@ -31,23 +37,27 @@ class _FeedPageState extends State<FeedPage> {
         title: Text('信息流'),
       ),
       body: ListView.builder(
-        // cacheExtent: size.height * 2,
         itemBuilder: (context, index) {
-          if (index % 10 == 9) {
+          if (index % 30 == 15) {
             if (feedList.isEmpty) {
               return Container(
                 height: 60,
                 width: double.maxFinite,
+                color: Colors.teal,
                 alignment: Alignment.centerLeft,
-                child: Text('信息流 Item:$index'),
+                child: Text('暂无广告 $index'),
               );
             }
-            int adId = feedList[index ~/ 9 % feedList.length];
-            return SizedBox(
-              height: 284,
+            int adId = feedList[index ~/ 15 % feedList.length];
+            // return AspectRatio(
+            //   aspectRatio: 2.4,
+            //   child: AdFeedWidget(
+            //     posId: '$adId',
+            //   ),
+            // );
+            return ConstrainedBox(
+              constraints: BoxConstraints.loose(Size(375, 123)),
               child: AdFeedWidget(
-                width: 375,
-                height: 284,
                 posId: '$adId',
               ),
             );
@@ -55,6 +65,7 @@ class _FeedPageState extends State<FeedPage> {
           return Container(
             height: 60,
             width: double.maxFinite,
+            color: Colors.teal,
             alignment: Alignment.centerLeft,
             child: Text('信息流 Item:$index'),
           );
@@ -64,14 +75,21 @@ class _FeedPageState extends State<FeedPage> {
     );
   }
 
+  // 加载信息流广告
   Future<void> getFeedAdList() async {
     try {
       List<int> adResultList =
-          await FlutterPangleAds.loadFeedAd(AdsConfig.feedId);
+          await FlutterPangleAds.loadFeedAd(AdsConfig.feedId01);
       feedList.addAll(adResultList);
     } catch (e) {
       print(e.toString());
     }
     setState(() {});
+  }
+
+  // 清除信息流广告
+  Future<void> clearFeedAd() async {
+    bool result = await FlutterPangleAds.clearFeedAd(feedList);
+    print('clearFeedAd:$result');
   }
 }

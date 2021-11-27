@@ -125,35 +125,23 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               SizedBox(height: 20),
-              SizedBox(
-                width: 300,
-                height: 150,
-                child: AdBannerWidget(
-                  posId: AdsConfig.bannerId,
-                ),
+              AdBannerWidget(
+                posId: AdsConfig.bannerId,
               ),
               SizedBox(height: 10),
-              Container(
+              AdBannerWidget(
+                posId: AdsConfig.bannerId01,
                 width: 300,
-                height: 80,
-                child: AdBannerWidget(
-                  posId: AdsConfig.bannerId01,
-                  width: 300,
-                  height: 75,
-                  interval: 30,
-                  show: true,
-                ),
+                height: 75,
+                interval: 30,
+                show: true,
               ),
               SizedBox(height: 10),
-              SizedBox(
+              AdBannerWidget(
+                posId: AdsConfig.bannerId02,
                 width: 320,
                 height: 50,
-                child: AdBannerWidget(
-                  posId: AdsConfig.bannerId02,
-                  width: 320,
-                  height: 50,
-                  autoClose: false,
-                ),
+                autoClose: false,
               ),
               SizedBox(height: 20),
             ],

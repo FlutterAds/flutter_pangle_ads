@@ -137,7 +137,7 @@ class FlutterPangleAds {
   /// [width] 宽度
   /// [height] 高度
   static Future<List<int>> loadFeedAd(String posId,
-      {int width = 375, int height = 284}) async {
+      {int width = 375, int height = 0}) async {
     final List<dynamic> result = await _methodChannel.invokeMethod(
       'loadFeedAd',
       {
@@ -147,6 +147,18 @@ class FlutterPangleAds {
       },
     );
     return List<int>.from(result);
+  }
+
+  /// 清除信息流广告列表
+  /// [list] 信息流广告 id 列表
+  static Future<bool> clearFeedAd(List<int> list) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'clearFeedAd',
+      {
+        'list': list,
+      },
+    );
+    return result;
   }
 
   ///事件回调

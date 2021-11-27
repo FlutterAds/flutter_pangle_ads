@@ -10,27 +10,19 @@ class AdFeedWidget extends StatefulWidget {
   AdFeedWidget({
     Key key,
     @required this.posId,
-    this.width = 300,
-    this.height = 0,
     this.show = true,
-    this.autoClose = true,
   }) : super(key: key);
-  // 广告 id
+  // 返回的广告 id，这里不是广告位id
   final String posId;
-  // 广告位的宽度，默认值是 300
-  final int width;
-  // 广告位的高度，默认值是 0，自适应
-  final int height;
   // 是否显示广告
   final bool show;
-  // 是否自动关闭，一般是在用户点击不感兴趣之后的操作，可以在事件回调[AdEventAction.onAdClosed]中判断
-  final bool autoClose;
 
   @override
   _AdFeedWidgetState createState() => _AdFeedWidgetState();
 }
 
-class _AdFeedWidgetState extends State<AdFeedWidget> {
+class _AdFeedWidgetState extends State<AdFeedWidget>
+    with AutomaticKeepAliveClientMixin {
   // View 类型
   final String viewType = 'flutter_pangle_ads_feed';
   // 创建参数
@@ -40,9 +32,6 @@ class _AdFeedWidgetState extends State<AdFeedWidget> {
   void initState() {
     creationParams = <String, dynamic>{
       "posId": widget.posId,
-      "width": widget.width,
-      "height": widget.height,
-      "autoClose": widget.autoClose
     };
     super.initState();
   }
@@ -66,4 +55,7 @@ class _AdFeedWidgetState extends State<AdFeedWidget> {
       );
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

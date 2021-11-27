@@ -96,6 +96,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             showFullScreenVideoAd(call, result);
         } else if ("loadFeedAd".equals(method)) {
             loadFeedAd(call, result);
+        } else if ("clearFeedAd".equals(method)) {
+            clearFeedAd(call, result);
         } else {
             result.notImplemented();
         }
@@ -278,5 +280,22 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      */
     public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
         FeedAdManager.getInstance().loadFeedAdList(activity, call, result);
+    }
+
+    /**
+     * 删除信息流广告列表
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void clearFeedAd(MethodCall call, MethodChannel.Result result) {
+        List<Integer> adList = call.argument("list");
+        if (adList != null) {
+            for (int ad : adList) {
+                FeedAdManager.getInstance().removeAd(ad);
+            }
+        }
+        result.success(true);
+
     }
 }

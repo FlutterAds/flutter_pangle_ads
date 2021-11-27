@@ -52,10 +52,19 @@ public class FeedAdManager extends BaseAdPage implements TTAdNative.NativeExpres
     /**
      * 获取广告渲染对象
      * @param key 广告缓存id
-     * @return
+     * @return 广告渲染对象
      */
     public TTNativeExpressAd getAd(int key){
         return feedAdList.get(key);
+    }
+
+    /**
+     * 删除广告渲染对象
+     * @param key 广告缓存id
+     * @return 广告渲染对象
+     */
+    public TTNativeExpressAd removeAd(int key){
+        return feedAdList.remove(key);
     }
 
     @Override
