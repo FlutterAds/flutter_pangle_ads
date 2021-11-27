@@ -132,6 +132,23 @@ class FlutterPangleAds {
     return result;
   }
 
+  /// 加载信息流广告列表
+  /// [posId] 广告位 id
+  /// [width] 宽度
+  /// [height] 高度
+  static Future<List<int>> loadFeedAd(String posId,
+      {int width = 375, int height = 284}) async {
+    final List<dynamic> result = await _methodChannel.invokeMethod(
+      'loadFeedAd',
+      {
+        'posId': posId,
+        'width': width,
+        'height': height,
+      },
+    );
+    return List<int>.from(result);
+  }
+
   ///事件回调
   ///@params onData 事件回调
   static Future<void> onEventListener(
