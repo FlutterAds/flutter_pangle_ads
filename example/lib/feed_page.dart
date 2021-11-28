@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
@@ -35,7 +33,6 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQueryData.fromWindow(window).size;
     return Scaffold(
       appBar: AppBar(
         title: Text('信息流（FlutterAds）'),

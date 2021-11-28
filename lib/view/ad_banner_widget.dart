@@ -53,6 +53,7 @@ class _AdBannerWidgetState extends State<AdBannerWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (!widget.show) {
       return SizedBox.shrink();
     }

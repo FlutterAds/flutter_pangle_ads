@@ -95,6 +95,8 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTNativeExpressAd.A
         if (fad != null) {
             fad.destroy();
         }
+        // 更新宽高
+        setFlutterViewSize(0f, 0f);
     }
 
     @Override
@@ -125,10 +127,7 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTNativeExpressAd.A
         // 添加广告错误事件
         sendErrorEvent(i, s);
         // 更新宽高
-        Map<String,Double> sizeMap=new HashMap<>();
-        sizeMap.put("width", 0.0);
-        sizeMap.put("height", 0.0);
-        methodChannel.invokeMethod("setSize",sizeMap);
+        setFlutterViewSize(0f, 0f);
     }
 
     @Override
@@ -136,11 +135,23 @@ class AdFeedView extends BaseAdPage implements PlatformView, TTNativeExpressAd.A
         Log.i(TAG, "onRenderSuccess v:" + width + " v1:" + height);
         // 添加广告事件
         sendEvent(AdEventAction.onAdPresent);
+        setFlutterViewSize(width, height);
+    }
+
+    /**
+     * 设置 FlutterAds 视图宽高
+     *
+     * @param width  宽度
+     * @param height 高度
+     */
+    private void setFlutterViewSize(float width, float height) {
         // 更新宽高
-        Map<String,Double> sizeMap=new HashMap<>();
+        Map<String, Double> sizeMap = new HashMap<>();
         sizeMap.put("width", (double) width);
         sizeMap.put("height", (double) height);
-        methodChannel.invokeMethod("setSize",sizeMap);
+        if (methodChannel != null) {
+            methodChannel.invokeMethod("setSize", sizeMap);
+        }
     }
 
     /**

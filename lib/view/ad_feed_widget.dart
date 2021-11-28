@@ -34,7 +34,7 @@ class _AdFeedWidgetState extends State<AdFeedWidget>
   // 通道
   MethodChannel _channel;
   // 宽高
-  double width = 0, height = 0;
+  double width = 375, height = 128;
 
   @override
   void initState() {
@@ -49,7 +49,7 @@ class _AdFeedWidgetState extends State<AdFeedWidget>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    if (!widget.show) {
+    if (!widget.show || width <= 0 || height <= 0) {
       return SizedBox.shrink();
     }
     Widget view;
@@ -71,14 +71,10 @@ class _AdFeedWidgetState extends State<AdFeedWidget>
       );
     }
     // 有宽高信息了（渲染成功了）设置对应宽高
-    if (width != 0 && height != 0) {
-      return SizedBox.fromSize(
-        size: Size(width, height),
-        child: view,
-      );
-    } else {
-      return view;
-    }
+    return SizedBox.fromSize(
+      size: Size(width, height),
+      child: view,
+    );
   }
 
   @override
