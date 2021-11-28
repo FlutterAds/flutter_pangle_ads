@@ -10,6 +10,7 @@ import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
+import com.zero.flutter_pangle_ads.load.AdFeedLoad;
 import com.zero.flutter_pangle_ads.load.FeedAdManager;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
@@ -279,7 +280,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
-        FeedAdManager.getInstance().loadFeedAdList(activity, call, result);
+        AdFeedLoad feedAd=new AdFeedLoad();
+        feedAd.loadFeedAdList(activity,call,result);
     }
 
     /**

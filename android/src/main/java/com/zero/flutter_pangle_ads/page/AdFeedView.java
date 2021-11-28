@@ -19,29 +19,33 @@ import com.zero.flutter_pangle_ads.PluginDelegate;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
 import com.zero.flutter_pangle_ads.load.FeedAdManager;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.platform.PlatformView;
 
 /**
  * Feed 信息流广告 View
  */
-class AdFeedView extends BaseAdPage implements PlatformView,TTNativeExpressAd.AdInteractionListener {
+class AdFeedView extends BaseAdPage implements PlatformView, TTNativeExpressAd.AdInteractionListener {
     private final String TAG = AdFeedView.class.getSimpleName();
     @NonNull
     private final FrameLayout frameLayout;
     private final PluginDelegate pluginDelegate;
     private int id;
     private TTNativeExpressAd fad;
+    private MethodChannel methodChannel;
 
 
     AdFeedView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, PluginDelegate pluginDelegate) {
         this.id = id;
         this.pluginDelegate = pluginDelegate;
+        methodChannel = new MethodChannel(this.pluginDelegate.bind.getBinaryMessenger(), PluginDelegate.KEY_FEED_VIEW + "/" + id);
         frameLayout = new FrameLayout(context);
-        FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         frameLayout.setLayoutParams(params);
         MethodCall call = new MethodCall("AdFeedView", creationParams);
         showAd(this.pluginDelegate.activity, call);
@@ -60,15 +64,15 @@ class AdFeedView extends BaseAdPage implements PlatformView,TTNativeExpressAd.Ad
 
     @Override
     public void loadAd(@NonNull MethodCall call) {
-        fad=FeedAdManager.getInstance().getAd(Integer.parseInt(this.posId));
-        if(fad!=null){
-            View adView= fad.getExpressAdView();
-            if (adView.getParent()!=null){
-                ((ViewGroup)adView.getParent()).removeAllViews();
+        fad = FeedAdManager.getInstance().getAd(Integer.parseInt(this.posId));
+        if (fad != null) {
+            View adView = fad.getExpressAdView();
+            if (adView.getParent() != null) {
+                ((ViewGroup) adView.getParent()).removeAllViews();
             }
             frameLayout.removeAllViews();
-            FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            frameLayout.addView(adView,params);
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            frameLayout.addView(adView, params);
             fad.setExpressInteractionListener(this);
             bindDislikeAction(fad);
             fad.render();
@@ -88,7 +92,7 @@ class AdFeedView extends BaseAdPage implements PlatformView,TTNativeExpressAd.Ad
     private void disposeAd() {
         removeAd();
         FeedAdManager.getInstance().removeAd(Integer.parseInt(this.posId));
-        if(fad!=null){
+        if (fad != null) {
             fad.destroy();
         }
     }
@@ -120,15 +124,23 @@ class AdFeedView extends BaseAdPage implements PlatformView,TTNativeExpressAd.Ad
         Log.e(TAG, "onRenderFail code:" + i + " msg:" + s);
         // 添加广告错误事件
         sendErrorEvent(i, s);
+        // 更新宽高
+        Map<String,Double> sizeMap=new HashMap<>();
+        sizeMap.put("width", 0.0);
+        sizeMap.put("height", 0.0);
+        methodChannel.invokeMethod("setSize",sizeMap);
     }
 
     @Override
-    public void onRenderSuccess(View view, float v, float v1) {
-        Log.i(TAG, "onRenderSuccess v:"+v +" v1:"+v1);
-        if (fad != null) {
-            // 添加广告事件
-            sendEvent(AdEventAction.onAdPresent);
-        }
+    public void onRenderSuccess(View view, float width, float height) {
+        Log.i(TAG, "onRenderSuccess v:" + width + " v1:" + height);
+        // 添加广告事件
+        sendEvent(AdEventAction.onAdPresent);
+        // 更新宽高
+        Map<String,Double> sizeMap=new HashMap<>();
+        sizeMap.put("width", (double) width);
+        sizeMap.put("height", (double) height);
+        methodChannel.invokeMethod("setSize",sizeMap);
     }
 
     /**
@@ -149,7 +161,7 @@ class AdFeedView extends BaseAdPage implements PlatformView,TTNativeExpressAd.Ad
 
                 @Override
                 public void onSelected(int position, String value, boolean enforce) {
-                        onAdDismiss();
+                    onAdDismiss();
                 }
 
                 @Override

@@ -137,13 +137,14 @@ class FlutterPangleAds {
   /// [width] 宽度
   /// [height] 高度
   static Future<List<int>> loadFeedAd(String posId,
-      {int width = 375, int height = 0}) async {
+      {int width = 375, int height = 0, int count = 1}) async {
     final List<dynamic> result = await _methodChannel.invokeMethod(
       'loadFeedAd',
       {
         'posId': posId,
         'width': width,
         'height': height,
+        'count': count,
       },
     );
     return List<int>.from(result);

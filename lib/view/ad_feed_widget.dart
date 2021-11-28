@@ -11,11 +11,15 @@ class AdFeedWidget extends StatefulWidget {
     Key key,
     @required this.posId,
     this.show = true,
+    this.width = 375,
+    this.height = 128,
   }) : super(key: key);
   // 返回的广告 id，这里不是广告位id
   final String posId;
   // 是否显示广告
   final bool show;
+  // 宽高
+  final double width, height;
 
   @override
   _AdFeedWidgetState createState() => _AdFeedWidgetState();
@@ -27,9 +31,15 @@ class _AdFeedWidgetState extends State<AdFeedWidget>
   final String viewType = 'flutter_pangle_ads_feed';
   // 创建参数
   Map<String, dynamic> creationParams;
+  // 通道
+  MethodChannel _channel;
+  // 宽高
+  double width = 0, height = 0;
 
   @override
   void initState() {
+    this.width = widget.width;
+    this.height = widget.height;
     creationParams = <String, dynamic>{
       "posId": widget.posId,
     };
@@ -38,24 +48,49 @@ class _AdFeedWidgetState extends State<AdFeedWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (!widget.show) {
       return SizedBox.shrink();
     }
+    Widget view;
     if (Platform.isIOS) {
-      return UiKitView(
+      view = UiKitView(
         viewType: viewType,
         creationParams: creationParams,
         creationParamsCodec: const StandardMessageCodec(),
       );
     } else {
-      return AndroidView(
+      view = AndroidView(
         viewType: viewType,
         creationParams: creationParams,
         creationParamsCodec: const StandardMessageCodec(),
+        onPlatformViewCreated: (id) {
+          _channel = MethodChannel('$viewType/$id');
+          _channel.setMethodCallHandler(onMethodCallHandler);
+        },
       );
+    }
+    // 有宽高信息了（渲染成功了）设置对应宽高
+    if (width != 0 && height != 0) {
+      return SizedBox.fromSize(
+        size: Size(width, height),
+        child: view,
+      );
+    } else {
+      return view;
     }
   }
 
   @override
   bool get wantKeepAlive => true;
+
+  Future<void> onMethodCallHandler(MethodCall call) async {
+    String method = call.method;
+    // 设置大小
+    if (method == 'setSize') {
+      width = call.arguments['width'] ?? 0;
+      height = call.arguments['height'] ?? 0;
+      setState(() {});
+    }
+  }
 }
