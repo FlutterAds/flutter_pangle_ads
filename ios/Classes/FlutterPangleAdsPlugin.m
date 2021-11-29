@@ -42,6 +42,8 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
         [self showRewardVideoAd:call result:result];
     }else if ([@"showFullScreenVideoAd" isEqualToString:methodStr]){
         [self showFullScreenVideoAd:call result:result];
+    }else if ([@"loadFeedAd" isEqualToString:methodStr]){
+        [self loadFeedAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -97,6 +99,11 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
     self.fsad=[[FullScreenVideoPage alloc] init];
     [self.fsad showAd:call eventSink:self.eventSink];
     result(@(YES));
+}
+// 加载信息流广告
+- (void) loadFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    self.fad=[[FeedAdLoad alloc] init];
+    [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
 }
 
 

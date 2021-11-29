@@ -6,6 +6,7 @@
 //
 
 #import "AdFeedView.h"
+#import "FeedAdManager.h"
 
 @interface AdFeedView()<FlutterPlatformView,BUNativeExpressAdViewDelegate>
 @property (strong,nonatomic) BUNativeExpressAdManager *adManager;
@@ -29,50 +30,13 @@
 }
 
 - (void)loadAd:(FlutterMethodCall *)call{
-//    int width = [call.arguments[@"width"] intValue];
-//    int height = [call.arguments[@"height"] intValue];
-//    int count = [call.arguments[@"count"] intValue];
-    
-    int width =375;
-    int height = 128;
-    int count = 3;
-    
-    BUAdSlot *slot= [[BUAdSlot alloc]init];
-    slot.ID=self.posId;
-    slot.AdType=BUAdSlotAdTypeFeed;
-    BUSize *size=[BUSize sizeBy:BUProposalSize_Feed228_150];
-    slot.imgSize=size;
-    slot.position=BUAdSlotPositionFeed;
-    if(!self.adManager){
-        self.adManager= [[BUNativeExpressAdManager alloc] initWithSlot:slot adSize:CGSizeMake(width, height)];
-    }
-    self.adManager.adSize=CGSizeMake(width, height);
-    self.adManager.delegate=self;
-    // 加载广告
-    [self.adManager loadAdDataWithCount:count];
+    BUNativeExpressAdView *adView=[FeedAdManager.share getAd:[NSNumber numberWithInteger:[self.posId integerValue]]];
+    adView.rootViewController=self.rootController;
+    [self.feedView addSubview:adView];
+    [adView render];
 }
 
 #pragma mark BUNativeExpressAdViewDelegate
-
-- (void)nativeExpressAdFailToLoad:(BUNativeExpressAdManager *)nativeExpressAdManager error:(NSError *)error{
-    NSLog(@"%s",__FUNCTION__);
-    // 发送广告错误事件
-    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
-}
-
-- (void)nativeExpressAdSuccessToLoad:(BUNativeExpressAdManager *)nativeExpressAdManager views:(NSArray<__kindof BUNativeExpressAdView *> *)views{
-    NSLog(@"%s",__FUNCTION__);
-    if (views.count) {
-//        [views enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//        }];
-        BUNativeExpressAdView *adView=views.firstObject;
-        adView.rootViewController=self.rootController;
-//        [self.feedView removeFromSuperview];
-        [self.feedView addSubview:adView];
-        [adView render];
-    }
-}
 
 - (void)nativeExpressAdViewRenderFail:(BUNativeExpressAdView *)nativeExpressAdView error:(NSError *)error{
     NSLog(@"%s",__FUNCTION__);
