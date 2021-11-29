@@ -7,6 +7,7 @@
 
 #import "FeedAdLoad.h"
 #import "FeedAdManager.h"
+#import "FlutterPangleAdsPlugin.h"
 
 @implementation FeedAdLoad
 
@@ -64,6 +65,13 @@
 
 - (void)nativeExpressAdViewRenderSuccess:(BUNativeExpressAdView *)nativeExpressAdView{
     NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)nativeExpressAdViewDidClick:(BUNativeExpressAdView *)nativeExpressAdView{
+    NSLog(@"%s",__FUNCTION__);
+    NSNumber *key=[NSNumber numberWithInteger:[nativeExpressAdView hash]];
+    NSString *name=[NSString stringWithFormat:@"%@/%@", kAdFeedViewId, key.stringValue];
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nativeExpressAdView];
 }
 
 @end

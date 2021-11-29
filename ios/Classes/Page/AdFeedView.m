@@ -22,6 +22,7 @@
         FlutterMethodCall *call= [FlutterMethodCall methodCallWithMethodName:@"AdFeedView" arguments:args];
         [self showAd:call eventSink:plugin.eventSink];
     }
+    NSLog(@"%s %lli",__FUNCTION__,viewId);
     return self;
 }
 
@@ -29,8 +30,21 @@
     return self.feedView;
 }
 
+- (void)dealloc{
+    NSLog(@"%s",__FUNCTION__);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// 处理消息
+- (void) postMsghandler:(NSNotification*) notification{
+    NSLog(@"%s postMsghandler name:%@ obj:%@",__FUNCTION__,notification.name,notification.object);
+}
+
 - (void)loadAd:(FlutterMethodCall *)call{
-    BUNativeExpressAdView *adView=[FeedAdManager.share getAd:[NSNumber numberWithInteger:[self.posId integerValue]]];
+    NSNumber *key=[NSNumber numberWithInteger:[self.posId integerValue]];
+    NSString *name=[NSString stringWithFormat:@"%@/%@", kAdFeedViewId, key.stringValue];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postMsghandler:) name:name object:nil];
+    BUNativeExpressAdView *adView=[FeedAdManager.share getAd:key];
     adView.rootViewController=self.rootController;
     [self.feedView addSubview:adView];
     [adView render];
