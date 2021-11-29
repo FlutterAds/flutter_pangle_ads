@@ -13,4 +13,5 @@
 @property (strong,nonatomic) FullScreenVideoPage *fsad;
 
 extern NSString *const kAdBannerViewId;
+extern NSString *const kAdFeedViewId;
 @end

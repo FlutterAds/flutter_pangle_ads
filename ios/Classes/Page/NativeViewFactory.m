@@ -9,11 +9,12 @@
 // 原生平台 View 工厂
 @implementation NativeViewFactory
 
-- (instancetype)initWithMessenger:(NSObject<FlutterBinaryMessenger>*)messenger withPlugin:(FlutterPangleAdsPlugin *)plugin{
+- (instancetype)initWithViewName:(NSString *)viewName withMessenger:(NSObject<FlutterBinaryMessenger> *)messenger withPlugin:(FlutterPangleAdsPlugin *)plugin{
     self = [super init];
     if (self) {
+        self.viewName = viewName;
         self.messenger = messenger;
-        self.plugin=plugin;
+        self.plugin = plugin;
     }
     return self;
 }
@@ -25,10 +26,19 @@
 - (NSObject<FlutterPlatformView>*)createWithFrame:(CGRect)frame
                                    viewIdentifier:(int64_t)viewId
                                         arguments:(id _Nullable)args {
-    return [[AdBannerView alloc] initWithFrame:frame
-                                viewIdentifier:viewId
-                                     arguments:args
-                               binaryMessenger:self.messenger
-                                        plugin:self.plugin];
+    if (self.viewName==kAdBannerViewId) {
+        return [[AdBannerView alloc] initWithFrame:frame
+                                    viewIdentifier:viewId
+                                         arguments:args
+                                   binaryMessenger:self.messenger
+                                            plugin:self.plugin];
+    }else{
+        return [[AdFeedView alloc] initWithFrame:frame
+                                    viewIdentifier:viewId
+                                         arguments:args
+                                   binaryMessenger:self.messenger
+                                            plugin:self.plugin];
+    }
+    
 }
 @end

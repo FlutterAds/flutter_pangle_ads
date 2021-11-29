@@ -144,6 +144,12 @@ class _HomePageState extends State<HomePage> {
                 autoClose: false,
               ),
               SizedBox(height: 20),
+              AdFeedWidget(
+                posId: AdsConfig.feedId01,
+                width: 375,
+                height: 128,
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),
