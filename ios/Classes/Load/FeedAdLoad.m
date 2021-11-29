@@ -57,21 +57,57 @@
         }];
         self.result(adList);
     }
+    // 发送广告事件
+    [self sendEventAction:onAdLoaded];
 }
 
 - (void)nativeExpressAdViewRenderFail:(BUNativeExpressAdView *)nativeExpressAdView error:(NSError *)error{
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告错误事件
+    [self sendErrorEvent:error.code withErrMsg:error.localizedDescription];
+    [self postNotificationMsg:nativeExpressAdView userInfo:[NSDictionary dictionaryWithObject:onAdError forKey:@"event"]];
 }
 
 - (void)nativeExpressAdViewRenderSuccess:(BUNativeExpressAdView *)nativeExpressAdView{
     NSLog(@"%s",__FUNCTION__);
+    // 发送广告事件
+    [self sendEventAction:onAdExposure];
+    [self postNotificationMsg:nativeExpressAdView userInfo:[NSDictionary dictionaryWithObject:onAdExposure forKey:@"event"]];
 }
 
 - (void)nativeExpressAdViewDidClick:(BUNativeExpressAdView *)nativeExpressAdView{
     NSLog(@"%s",__FUNCTION__);
-    NSNumber *key=[NSNumber numberWithInteger:[nativeExpressAdView hash]];
+    // 发送广告事件
+    [self sendEventAction:onAdClicked];
+    [self postNotificationMsg:nativeExpressAdView userInfo:[NSDictionary dictionaryWithObject:onAdClicked forKey:@"event"]];
+}
+
+- (void)nativeExpressAdViewWillShow:(BUNativeExpressAdView *)nativeExpressAdView{
+    NSLog(@"%s",__FUNCTION__);
+    // 发送广告事件
+    [self sendEventAction:onAdExposure];
+    [self postNotificationMsg:nativeExpressAdView userInfo:[NSDictionary dictionaryWithObject:onAdExposure forKey:@"event"]];
+}
+
+- (void)nativeExpressAdView:(BUNativeExpressAdView *)nativeExpressAdView dislikeWithReason:(NSArray<BUDislikeWords *> *)filterWords{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)nativeExpressAdViewDidRemoved:(BUNativeExpressAdView *)nativeExpressAdView{
+    NSLog(@"%s",__FUNCTION__);
+    if(nativeExpressAdView){
+        [nativeExpressAdView removeFromSuperview];
+    }
+    // 发送广告事件
+    [self sendEventAction:onAdClosed];
+    [self postNotificationMsg:nativeExpressAdView userInfo:[NSDictionary dictionaryWithObject:onAdClosed forKey:@"event"]];
+}
+
+// 发送消息
+- (void) postNotificationMsg:(BUNativeExpressAdView *) adView userInfo:(NSDictionary *) userInfo{
+    NSNumber *key=[NSNumber numberWithInteger:[adView hash]];
     NSString *name=[NSString stringWithFormat:@"%@/%@", kAdFeedViewId, key.stringValue];
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:nativeExpressAdView];
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:adView userInfo:userInfo];
 }
 
 @end

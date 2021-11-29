@@ -58,6 +58,10 @@ class _AdFeedWidgetState extends State<AdFeedWidget>
         viewType: viewType,
         creationParams: creationParams,
         creationParamsCodec: const StandardMessageCodec(),
+        onPlatformViewCreated: (id) {
+          _channel = MethodChannel('$viewType/$id');
+          _channel.setMethodCallHandler(onMethodCallHandler);
+        },
       );
     } else {
       view = AndroidView(

@@ -10,6 +10,7 @@
 
 @interface AdFeedView : BaseAdPage<FlutterPlatformView>
 @property (strong,nonatomic) FlutterPangleAdsPlugin *plugin;
+@property int64_t viewId;
 - (instancetype) initWithFrame:(CGRect)frame
                 viewIdentifier:(int64_t)viewId
                      arguments:(id _Nullable)args
