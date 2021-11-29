@@ -11,6 +11,7 @@
 @interface AdFeedView()<FlutterPlatformView,BUNativeExpressAdViewDelegate>
 @property (strong,nonatomic) BUNativeExpressAdManager *adManager;
 @property (strong,nonatomic) UIView *feedView;
+@property (strong,nonatomic) BUNativeExpressAdView *adView;
 @property (strong,nonatomic) FlutterMethodChannel *methodChannel;
 
 @end
@@ -42,26 +43,34 @@
 - (void) postMsghandler:(NSNotification*) notification{
     NSLog(@"%s postMsghandler name:%@ obj:%@",__FUNCTION__,notification.name,notification.object);
     NSString *name=notification.name;
-    BUNativeExpressAdView *adView=notification.object;
+    BUNativeExpressAdView *loadAdView=notification.object;
     NSDictionary *userInfo=notification.userInfo;
     NSString *event=[userInfo objectForKey:@"event"];
     if([event isEqualToString:onAdExposure]){
-        CGSize size= adView.frame.size;
-        NSNumber *width=[NSNumber numberWithFloat:size.width];
-        NSNumber *height=[NSNumber numberWithFloat:size.height];
-        NSDictionary *dicSize=[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:width,height, nil] forKeys:[NSArray arrayWithObjects:@"width",@"height", nil]];
-        [self.methodChannel invokeMethod:@"setSize" arguments:dicSize];
+        // 渲染成功，设置高度
+        CGSize size= loadAdView.frame.size;
+        [self setFlutterViewSize:size];
+    }else if([event isEqualToString:onAdClosed]){
+        [self.adView removeFromSuperview];
+        [self setFlutterViewSize:CGSizeZero];
     }
+}
+// 设置 FlutterAds 视图宽高
+- (void) setFlutterViewSize:(CGSize) size{
+    NSNumber *width=[NSNumber numberWithFloat:size.width];
+    NSNumber *height=[NSNumber numberWithFloat:size.height];
+    NSDictionary *dicSize=[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:width,height, nil] forKeys:[NSArray arrayWithObjects:@"width",@"height", nil]];
+    [self.methodChannel invokeMethod:@"setSize" arguments:dicSize];
 }
 
 - (void)loadAd:(FlutterMethodCall *)call{
     NSNumber *key=[NSNumber numberWithInteger:[self.posId integerValue]];
     NSString *name=[NSString stringWithFormat:@"%@/%@", kAdFeedViewId, key.stringValue];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postMsghandler:) name:name object:nil];
-    BUNativeExpressAdView *adView=[FeedAdManager.share getAd:key];
-    adView.rootViewController=self.rootController;
-    [self.feedView addSubview:adView];
-    [adView render];
+    self.adView=[FeedAdManager.share getAd:key];
+    self.adView.rootViewController=self.rootController;
+    [self.feedView addSubview:self.adView];
+    [self.adView render];
 }
 
 @end

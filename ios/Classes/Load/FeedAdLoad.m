@@ -95,9 +95,9 @@
 
 - (void)nativeExpressAdViewDidRemoved:(BUNativeExpressAdView *)nativeExpressAdView{
     NSLog(@"%s",__FUNCTION__);
-    if(nativeExpressAdView){
-        [nativeExpressAdView removeFromSuperview];
-    }
+    NSNumber *key=[NSNumber numberWithInteger:[nativeExpressAdView hash]];
+    // 删除广告缓存
+    [FeedAdManager.share removeAd:key];
     // 发送广告事件
     [self sendEventAction:onAdClosed];
     [self postNotificationMsg:nativeExpressAdView userInfo:[NSDictionary dictionaryWithObject:onAdClosed forKey:@"event"]];
