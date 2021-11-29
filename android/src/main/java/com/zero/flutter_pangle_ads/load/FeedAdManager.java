@@ -28,7 +28,7 @@ public class FeedAdManager{
      * @param key 广告缓存id
      * @param ad 广告渲染对象
      */
-    public void put(int key,TTNativeExpressAd ad){
+    public void putAd(int key, TTNativeExpressAd ad){
         feedAdList.put(key,ad);
     }
 

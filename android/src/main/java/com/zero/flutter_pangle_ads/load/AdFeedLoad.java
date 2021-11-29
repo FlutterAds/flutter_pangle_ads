@@ -68,7 +68,7 @@ public class AdFeedLoad extends BaseAdPage implements TTAdNative.NativeExpressAd
         for (TTNativeExpressAd adItem : list) {
             int key=adItem.hashCode();
             adResultList.add(key);
-            FeedAdManager.getInstance().put(key,adItem);
+            FeedAdManager.getInstance().putAd(key,adItem);
         }
         // 添加广告事件
         sendEvent(AdEventAction.onAdLoaded);
