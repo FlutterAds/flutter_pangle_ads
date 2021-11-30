@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'event/ad_event_handler.dart';
 export 'event/ad_event_handler.dart';
 export 'view/ad_banner_widget.dart';
+export 'view/ad_feed_widget.dart';
 export 'options/network_type.dart';
 
 /// 穿山甲广告插件
@@ -39,14 +40,12 @@ class FlutterPangleAds {
   /// [useTextureView] (Android) 是否使用TextureView控件播放视频
   /// [supportMultiProcess] (Android) 是否支持多进程
   /// [allowShowNotify] (Android) 是否允许sdk展示通知栏提示
-  /// [onlyWifiDirectDownload] (Android) 是否仅 WiFi 时允许直接下载(废弃了，检查查看 [directDownloadNetworkType])
   /// [directDownloadNetworkType] 允许直接下载的网络类型，默认是空会有下载确认提示，非空不会有提示
   static Future<bool> initAd(
     String appId, {
     bool useTextureView = false,
     bool supportMultiProcess = false,
     bool allowShowNotify = true,
-    @deprecated bool onlyWifiDirectDownload = false,
     List<int> directDownloadNetworkType = const [],
   }) async {
     final bool result = await _methodChannel.invokeMethod(
@@ -56,7 +55,6 @@ class FlutterPangleAds {
         'useTextureView': useTextureView,
         'supportMultiProcess': supportMultiProcess,
         'allowShowNotify': allowShowNotify,
-        'onlyWifiDirectDownload': onlyWifiDirectDownload,
         'directDownloadNetworkType': directDownloadNetworkType,
       },
     );
@@ -129,6 +127,36 @@ class FlutterPangleAds {
       'showFullScreenVideoAd',
       {
         'posId': posId,
+      },
+    );
+    return result;
+  }
+
+  /// 加载信息流广告列表
+  /// [posId] 广告位 id
+  /// [width] 宽度
+  /// [height] 高度
+  static Future<List<int>> loadFeedAd(String posId,
+      {int width = 375, int height = 0, int count = 1}) async {
+    final List<dynamic> result = await _methodChannel.invokeMethod(
+      'loadFeedAd',
+      {
+        'posId': posId,
+        'width': width,
+        'height': height,
+        'count': count,
+      },
+    );
+    return List<int>.from(result);
+  }
+
+  /// 清除信息流广告列表
+  /// [list] 信息流广告 id 列表
+  static Future<bool> clearFeedAd(List<int> list) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'clearFeedAd',
+      {
+        'list': list,
       },
     );
     return result;

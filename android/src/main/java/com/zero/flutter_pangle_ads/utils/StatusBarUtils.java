@@ -12,10 +12,11 @@ import android.view.WindowManager;
  */
 public class StatusBarUtils {
     /**
-     *  设置透明状态栏
-     *  @param activity Activity
+     * 设置透明状态栏
+     *
+     * @param activity Activity
      */
-    public static void setTranslucent(Activity activity){
+    public static void setTranslucent(Activity activity) {
         Window window = activity.getWindow();
         /// 设置透明状态栏
         if (window != null) {

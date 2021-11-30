@@ -49,4 +49,23 @@ class AdsConfig {
 
   /// 获取 Banner 广告位id 02
   static String get bannerId02 => '946651971';
+
+  /// 获取 Feed 信息流列表
+  static List<String> get feedIdList =>
+      [feedId01, feedId02, feedId03, feedId04, feedId05];
+
+  /// 获取 Feed 信息流广告位id(左右图文 2.4)
+  static String get feedId01 => '947186177';
+
+  /// 获取 Feed 信息流广告位id(上下文图0.9)
+  static String get feedId02 => '947186943';
+
+  /// 获取 Feed 信息流广告位id(三图2)
+  static String get feedId03 => '947186944';
+
+  /// 获取 Feed 信息流广告位id(文字悬浮1)
+  static String get feedId04 => '947186945';
+
+  /// 获取 Feed 信息流广告位id(竖版0.5)
+  static String get feedId05 => '947186946';
 }

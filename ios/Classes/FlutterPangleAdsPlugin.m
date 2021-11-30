@@ -6,6 +6,8 @@
 @implementation FlutterPangleAdsPlugin
 // AdBannerView
 NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
+// AdFeedView
+NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* methodChannel = [FlutterMethodChannel
@@ -16,9 +18,12 @@ NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
     [registrar addMethodCallDelegate:instance channel:methodChannel];
     [eventChannel setStreamHandler:instance];
     // 注册平台View 工厂
-    NativeViewFactory *factory=[[NativeViewFactory alloc] initWithMessenger:registrar.messenger withPlugin:instance];
+    NativeViewFactory *bannerFactory=[[NativeViewFactory alloc] initWithViewName:kAdBannerViewId withMessenger:registrar.messenger withPlugin:instance];
+    NativeViewFactory *feedFactory=[[NativeViewFactory alloc] initWithViewName:kAdFeedViewId withMessenger:registrar.messenger withPlugin:instance];
     // 注册 Banner View
-    [registrar registerViewFactory:factory withId:kAdBannerViewId];
+    [registrar registerViewFactory:bannerFactory withId:kAdBannerViewId];
+    // 注册 Feed View
+    [registrar registerViewFactory:feedFactory withId:kAdFeedViewId];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
@@ -37,6 +42,10 @@ NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
         [self showRewardVideoAd:call result:result];
     }else if ([@"showFullScreenVideoAd" isEqualToString:methodStr]){
         [self showFullScreenVideoAd:call result:result];
+    }else if ([@"loadFeedAd" isEqualToString:methodStr]){
+        [self loadFeedAd:call result:result];
+    }else if ([@"clearFeedAd" isEqualToString:methodStr]){
+        [self clearFeedAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -93,7 +102,20 @@ NSString *const kAdBannerViewId=@"flutter_pangle_ads_banner";
     [self.fsad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
+// 加载信息流广告
+- (void) loadFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    self.fad=[[FeedAdLoad alloc] init];
+    [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
+}
 
+// 清除信息流广告
+- (void) clearFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    NSArray *list= call.arguments[@"list"];
+    for (NSNumber *ad in list) {
+        [FeedAdManager.share removeAd:ad];
+    }
+    result(@(YES));
+}
 
 #pragma mark - FlutterStreamHandler
 - (FlutterError * _Nullable)onCancelWithArguments:(id _Nullable)arguments {

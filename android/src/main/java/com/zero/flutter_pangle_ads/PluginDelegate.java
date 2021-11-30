@@ -7,8 +7,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.bytedance.sdk.openadsdk.TTAdConfig;
-import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
+import com.zero.flutter_pangle_ads.load.FeedAdLoad;
+import com.zero.flutter_pangle_ads.load.FeedAdManager;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
 import com.zero.flutter_pangle_ads.page.InterstitialPage;
@@ -42,8 +43,11 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public static PluginDelegate getInstance() {
         return _instance;
     }
+
     // Banner View
     public static final String KEY_BANNER_VIEW = "flutter_pangle_ads_banner";
+    // Feed View
+    public static final String KEY_FEED_VIEW = "flutter_pangle_ads_feed";
     // 广告参数
     public static final String KEY_POSID = "posId";
     // logo 参数
@@ -87,6 +91,10 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             showRewardVideoAd(call, result);
         } else if ("showFullScreenVideoAd".equals(method)) {
             showFullScreenVideoAd(call, result);
+        } else if ("loadFeedAd".equals(method)) {
+            loadFeedAd(call, result);
+        } else if ("clearFeedAd".equals(method)) {
+            clearFeedAd(call, result);
         } else {
             result.notImplemented();
         }
@@ -132,7 +140,15 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      */
     public void registerBannerView() {
         bind.getPlatformViewRegistry()
-                .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW,this));
+                .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW, this));
+    }
+
+    /**
+     * 展示 Feed 信息流广告
+     */
+    public void registerFeedView() {
+        bind.getPlatformViewRegistry()
+                .registerViewFactory(KEY_FEED_VIEW, new NativeViewFactory(KEY_FEED_VIEW, this));
     }
 
     /**
@@ -158,7 +174,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         boolean supportMultiProcess = call.argument("supportMultiProcess");
         boolean allowShowNotify = call.argument("allowShowNotify");
         ArrayList directDownloadNetworkType = call.argument("directDownloadNetworkType");
-        int[] directDownloadNetworkTypeList= DataUtils.convertIntegers(directDownloadNetworkType);
+        int[] directDownloadNetworkTypeList = DataUtils.convertIntegers(directDownloadNetworkType);
         // 构建配置
         TTAdConfig config = new TTAdConfig.Builder()
                 .appId(appId)
@@ -251,5 +267,33 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         FullScreenVideoPage adPage = new FullScreenVideoPage();
         adPage.showAd(activity, call);
         result.success(true);
+    }
+
+    /**
+     * 加载信息流广告列表
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
+        FeedAdLoad feedAd = new FeedAdLoad();
+        feedAd.loadFeedAdList(activity, call, result);
+    }
+
+    /**
+     * 删除信息流广告列表
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void clearFeedAd(MethodCall call, MethodChannel.Result result) {
+        List<Integer> adList = call.argument("list");
+        if (adList != null) {
+            for (int ad : adList) {
+                FeedAdManager.getInstance().removeAd(ad);
+            }
+        }
+        result.success(true);
+
     }
 }

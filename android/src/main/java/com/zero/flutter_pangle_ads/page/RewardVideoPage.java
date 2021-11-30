@@ -1,12 +1,10 @@
 package com.zero.flutter_pangle_ads.page;
 
-import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
-import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
@@ -91,7 +89,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
         Log.i(TAG, "onAdClose");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        rvad=null;
+        rvad = null;
     }
 
     @Override

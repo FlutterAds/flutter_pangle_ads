@@ -5,8 +5,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,9 +61,9 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
-        int buttonType = getIntent().getIntExtra(PluginDelegate.KEY_SPLASH_BUTTON_TYPE,TTAdConstant.SPLASH_BUTTON_TYPE_FULL_SCREEN);
-        double timeout=getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT,3.5);
-        int absTimeout= (int) (timeout*1000);
+        int buttonType = getIntent().getIntExtra(PluginDelegate.KEY_SPLASH_BUTTON_TYPE, TTAdConstant.SPLASH_BUTTON_TYPE_FULL_SCREEN);
+        double timeout = getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT, 3.5);
+        int absTimeout = (int) (timeout * 1000);
         // 判断是否有 Logo
         boolean hasLogo = !TextUtils.isEmpty(logo);
         if (hasLogo) {
@@ -79,14 +77,14 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
                 Log.e(TAG, "Logo 名称不匹配或不在 mipmap 文件夹下，展示全屏");
             }
         }
-        int width= (int) UIUtils.getScreenWidthInPx(this);
-        int height=(int) UIUtils.getScreenHeightInPx(this);
+        int width = (int) UIUtils.getScreenWidthInPx(this);
+        int height = (int) UIUtils.getScreenHeightInPx(this);
         // 判断最终的 Logo 是否显示
         if (!hasLogo) {
             ad_logo.setVisibility(View.GONE);
-        }else{
+        } else {
             // 显示 Logo 高度去掉 Logo 的高度
-            height=height-ad_logo.getLayoutParams().height;
+            height = height - ad_logo.getLayoutParams().height;
         }
         // 创建开屏广告
         TTAdNative splashAD = TTAdSdk.getAdManager().createAdNative(this);
@@ -97,7 +95,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
                 .setSplashButtonType(buttonType)
                 .build();
         // 加载广告
-        splashAD.loadSplashAd(adSlot, this,absTimeout);
+        splashAD.loadSplashAd(adSlot, this, absTimeout);
     }
 
     /**
