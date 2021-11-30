@@ -199,7 +199,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
 
             @Override
             public void fail(int code, String msg) {
-                Log.i(TAG, "fail:  code = " + code + " msg = " + msg);
+                Log.e(TAG, "fail:  code = " + code + " msg = " + msg);
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
