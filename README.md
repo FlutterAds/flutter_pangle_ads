@@ -4,8 +4,8 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.3.1-success></a>
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.3.1-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/version-v1.4.1-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/null_safety-v2.4.1-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -26,7 +26,8 @@
 - ✅ 激励视频
 - ✅ 全屏视频
 - ✅ Banner
-- 🔲 信息流
+- ✅ 信息流
+- 🔲 Draw 贴片
 
 ## 下载体验
 <a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://www.pgyer.com/app/qrcode/fads" width='100' height='100'></a>
@@ -37,8 +38,8 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^1.3.1 # 非 Null Safety 版本
-  flutter_pangle_ads: ^2.3.1 # Null Safety 版本
+  flutter_pangle_ads: ^1.4.1 # 非 Null Safety 版本
+  flutter_pangle_ads: ^2.4.1 # Null Safety 版本
 ```
 ### 初始化广告
 
@@ -140,6 +141,43 @@ SizedBox(
   ),
 )
 ```
+
+### 信息流
+- 获取信息流广告列表
+``` Dart
+/// [posId] 广告位 id
+/// [width] 宽度
+/// [height] 高度
+/// [count] 获取广告数量，建议 1~3 个
+List<int> feedAdList = await FlutterPangleAds.loadFeedAd(
+    AdsConfig.feedId,
+    width: 375,
+    height: 128,
+    count: 3,
+  );
+```
+- 清除信息流广告列表
+
+> 当你的广告不再需要时，请一定执行清除操作
+``` Dart
+/// [list] 信息流广告 id 列表
+bool result = await FlutterPangleAds.clearFeedAd(feedAdList);
+```
+- 页面中展示信息流广告
+``` Dart
+/// Feed 信息流广告组件
+/// [posId]返回的广告 id，这里不是广告位id
+/// [width]组件的宽度
+/// [height]组件的高度
+/// [show]是否显示
+AdFeedWidget(
+    posId: '${feedAdList[0]}',
+    width: 375,
+    height: 128,
+    show: true,
+  )
+```
+> `width` 和 `height` 需要根据你新建广告位的模板来设置
 
 ### 设置广告事件监听
 
