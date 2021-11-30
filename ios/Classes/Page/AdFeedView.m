@@ -21,7 +21,7 @@
 - (instancetype)initWithFrame:(CGRect)frame viewIdentifier:(int64_t)viewId arguments:(id)args binaryMessenger:(NSObject<FlutterBinaryMessenger> *)messenger plugin:(FlutterPangleAdsPlugin *)plugin{
     if(self==[super init]){
         self.viewId=viewId;
-        self.feedView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 375, 128)];
+        self.feedView =[[UIView alloc] init];
         self.methodChannel = [FlutterMethodChannel methodChannelWithName:[NSString stringWithFormat:@"%@/%lli",kAdFeedViewId,viewId] binaryMessenger:messenger];
         FlutterMethodCall *call= [FlutterMethodCall methodCallWithMethodName:@"AdFeedView" arguments:args];
         [self showAd:call eventSink:plugin.eventSink];
@@ -61,6 +61,7 @@
     NSNumber *width=[NSNumber numberWithFloat:size.width];
     NSNumber *height=[NSNumber numberWithFloat:size.height];
     NSDictionary *dicSize=[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:width,height, nil] forKeys:[NSArray arrayWithObjects:@"width",@"height", nil]];
+    self.adView.center=self.feedView.center;
     [self.methodChannel invokeMethod:@"setSize" arguments:dicSize];
 }
 
