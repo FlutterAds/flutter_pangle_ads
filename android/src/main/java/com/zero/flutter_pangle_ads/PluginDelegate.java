@@ -276,8 +276,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
-        FeedAdLoad feedAd=new FeedAdLoad();
-        feedAd.loadFeedAdList(activity,call,result);
+        FeedAdLoad feedAd = new FeedAdLoad();
+        feedAd.loadFeedAdList(activity, call, result);
     }
 
     /**
