@@ -65,13 +65,7 @@ class _FeedPageState extends State<FeedPage> {
                       posId: '$adId',
                     );
                   }
-                  return Container(
-                    height: 80,
-                    width: double.maxFinite,
-                    color: Colors.teal,
-                    alignment: Alignment.centerLeft,
-                    child: Text('信息流 Item:$index'),
-                  );
+                  return LoadingItemWidget();
                 },
                 childCount: feedList.length,
               ),
@@ -116,5 +110,60 @@ class _FeedPageState extends State<FeedPage> {
   Future<void> clearFeedAd() async {
     bool result = await FlutterPangleAds.clearFeedAd(feedAdList);
     print('clearFeedAd:$result');
+  }
+}
+
+/// 加载项组件
+class LoadingItemWidget extends StatelessWidget {
+  const LoadingItemWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 80,
+      width: double.maxFinite,
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Color(0xFFEBEBF4),
+            ),
+          ),
+          SizedBox(width: 20),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.maxFinite,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEBEBF4),
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    width: 200,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE4E4F4),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
