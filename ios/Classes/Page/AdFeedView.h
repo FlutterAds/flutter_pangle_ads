@@ -6,14 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLutterPangleAdsPlugin.h"
+#import <Flutter/Flutter.h>
+#import "FlutterPangleAdsPlugin.h"
 
 @interface AdFeedView : BaseAdPage<FlutterPlatformView>
-@property (strong,nonatomic) FlutterPangleAdsPlugin *plugin;
+@property (strong,nonatomic,nullable) FlutterPangleAdsPlugin *plugin;
 @property int64_t viewId;
-- (instancetype) initWithFrame:(CGRect)frame
+- (nonnull instancetype) initWithFrame:(CGRect)frame
                 viewIdentifier:(int64_t)viewId
                      arguments:(id _Nullable)args
                binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
-- (UIView*) view;
+- (nonnull UIView*) view;
 @end

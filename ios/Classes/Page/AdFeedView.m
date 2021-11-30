@@ -42,7 +42,7 @@
 // 处理消息
 - (void) postMsghandler:(NSNotification*) notification{
     NSLog(@"%s postMsghandler name:%@ obj:%@",__FUNCTION__,notification.name,notification.object);
-    NSString *name=notification.name;
+//    NSString *name=notification.name;
     BUNativeExpressAdView *loadAdView=notification.object;
     NSDictionary *userInfo=notification.userInfo;
     NSString *event=[userInfo objectForKey:@"event"];
@@ -51,6 +51,7 @@
         CGSize size= loadAdView.frame.size;
         [self setFlutterViewSize:size];
     }else if([event isEqualToString:onAdClosed]){
+        // 广告关闭移除广告，并且设置大小为 0，隐藏广告
         [self.adView removeFromSuperview];
         [self setFlutterViewSize:CGSizeZero];
     }
