@@ -27,7 +27,7 @@
 - ✅ 全屏视频
 - ✅ Banner
 - ✅ 信息流
-- 🔲 Draw 贴片
+- 🔲 Draw 贴片视频
 
 ## 下载体验
 <a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://www.pgyer.com/app/qrcode/fads" width='100' height='100'></a>
