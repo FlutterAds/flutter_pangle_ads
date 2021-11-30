@@ -34,10 +34,10 @@
                                             plugin:self.plugin];
     }else{
         return [[AdFeedView alloc] initWithFrame:frame
-                                    viewIdentifier:viewId
-                                         arguments:args
-                                   binaryMessenger:self.messenger
-                                            plugin:self.plugin];
+                                  viewIdentifier:viewId
+                                       arguments:args
+                                 binaryMessenger:self.messenger
+                                          plugin:self.plugin];
     }
     
 }

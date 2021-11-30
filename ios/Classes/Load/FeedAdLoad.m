@@ -19,21 +19,21 @@
 
 // 加载广告
 - (void)loadAd:(FlutterMethodCall *)call{
-        int width = [call.arguments[@"width"] intValue];
-        int height = [call.arguments[@"height"] intValue];
-        int count = [call.arguments[@"count"] intValue];
-        // 配置广告加载信息
-        BUAdSlot *slot= [[BUAdSlot alloc]init];
-        slot.ID=self.posId;
-        slot.AdType=BUAdSlotAdTypeFeed;
-        slot.position=BUAdSlotPositionFeed;
-        if(!self.adManager){
-            self.adManager= [[BUNativeExpressAdManager alloc] initWithSlot:slot adSize:CGSizeMake(width, height)];
-        }
-        self.adManager.adSize=CGSizeMake(width, height);
-        self.adManager.delegate=self;
-        // 加载广告
-        [self.adManager loadAdDataWithCount:count];
+    int width = [call.arguments[@"width"] intValue];
+    int height = [call.arguments[@"height"] intValue];
+    int count = [call.arguments[@"count"] intValue];
+    // 配置广告加载信息
+    BUAdSlot *slot= [[BUAdSlot alloc]init];
+    slot.ID=self.posId;
+    slot.AdType=BUAdSlotAdTypeFeed;
+    slot.position=BUAdSlotPositionFeed;
+    if(!self.adManager){
+        self.adManager= [[BUNativeExpressAdManager alloc] initWithSlot:slot adSize:CGSizeMake(width, height)];
+    }
+    self.adManager.adSize=CGSizeMake(width, height);
+    self.adManager.delegate=self;
+    // 加载广告
+    [self.adManager loadAdDataWithCount:count];
 }
 
 #pragma mark BUNativeExpressAdViewDelegate

@@ -10,9 +10,9 @@
 @interface AdBannerView : BaseAdPage<FlutterPlatformView>
 @property (strong,nonatomic,nullable) FlutterPangleAdsPlugin *plugin;
 - (nonnull instancetype)initWithFrame:(CGRect)frame
-               viewIdentifier:(int64_t)viewId
-                    arguments:(id _Nullable)args
-              binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
+                       viewIdentifier:(int64_t)viewId
+                            arguments:(id _Nullable)args
+                      binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
 
 - (nonnull UIView*)view;
 @end

@@ -13,8 +13,8 @@
 @property (strong,nonatomic,nullable) FlutterPangleAdsPlugin *plugin;
 @property int64_t viewId;
 - (nonnull instancetype) initWithFrame:(CGRect)frame
-                viewIdentifier:(int64_t)viewId
-                     arguments:(id _Nullable)args
-               binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
+                        viewIdentifier:(int64_t)viewId
+                             arguments:(id _Nullable)args
+                       binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
 - (nonnull UIView*) view;
 @end

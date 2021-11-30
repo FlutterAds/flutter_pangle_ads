@@ -42,7 +42,7 @@
 // 处理消息
 - (void) postMsghandler:(NSNotification*) notification{
     NSLog(@"%s postMsghandler name:%@ obj:%@",__FUNCTION__,notification.name,notification.object);
-//    NSString *name=notification.name;
+    //    NSString *name=notification.name;
     BUNativeExpressAdView *loadAdView=notification.object;
     NSDictionary *userInfo=notification.userInfo;
     NSString *event=[userInfo objectForKey:@"event"];
