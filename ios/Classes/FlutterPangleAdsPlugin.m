@@ -44,6 +44,8 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
         [self showFullScreenVideoAd:call result:result];
     }else if ([@"loadFeedAd" isEqualToString:methodStr]){
         [self loadFeedAd:call result:result];
+    }else if ([@"clearFeedAd" isEqualToString:methodStr]){
+        [self clearFeedAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -106,6 +108,14 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
     [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
 }
 
+// 清除信息流广告
+- (void) clearFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    NSArray *list= call.arguments[@"list"];
+    for (NSNumber *ad in list) {
+        [FeedAdManager.share removeAd:ad];
+    }
+    result(@(YES));
+}
 
 #pragma mark - FlutterStreamHandler
 - (FlutterError * _Nullable)onCancelWithArguments:(id _Nullable)arguments {

@@ -20,7 +20,7 @@ import io.flutter.plugin.common.MethodChannel;
 /**
  * 信息流加载对象
  */
-public class AdFeedLoad extends BaseAdPage implements TTAdNative.NativeExpressAdListener {
+public class FeedAdLoad extends BaseAdPage implements TTAdNative.NativeExpressAdListener {
     private final String TAG = FeedAdManager.class.getSimpleName();
     private MethodChannel.Result result;
 

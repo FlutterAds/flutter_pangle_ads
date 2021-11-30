@@ -7,10 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.bytedance.sdk.openadsdk.TTAdConfig;
-import com.bytedance.sdk.openadsdk.TTAdConstant;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
-import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
-import com.zero.flutter_pangle_ads.load.AdFeedLoad;
+import com.zero.flutter_pangle_ads.load.FeedAdLoad;
 import com.zero.flutter_pangle_ads.load.FeedAdManager;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
@@ -20,9 +18,7 @@ import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 import com.zero.flutter_pangle_ads.utils.DataUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.flutter.BuildConfig;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -280,7 +276,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
-        AdFeedLoad feedAd=new AdFeedLoad();
+        FeedAdLoad feedAd=new FeedAdLoad();
         feedAd.loadFeedAdList(activity,call,result);
     }
 

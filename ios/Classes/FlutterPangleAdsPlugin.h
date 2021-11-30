@@ -5,6 +5,7 @@
 #import "RewardVideoPage.h"
 #import "FullScreenVideoPage.h"
 #import "FeedAdLoad.h"
+#import "FeedAdManager.h"
 
 @interface FlutterPangleAdsPlugin : NSObject<FlutterPlugin,FlutterStreamHandler>
 @property (strong,nonatomic) FlutterEventSink eventSink;

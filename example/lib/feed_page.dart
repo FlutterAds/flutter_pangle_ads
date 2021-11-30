@@ -126,6 +126,8 @@ class LoadingItemWidget extends StatelessWidget {
       width: double.maxFinite,
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      color: Colors.white,
       child: Row(
         children: [
           Container(
