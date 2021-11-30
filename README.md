@@ -303,6 +303,6 @@ pod install
 |-|-|
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
-|flutter_baidu_ads|百度、百青藤 Flutter 广告插件（开发中）|
+|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、Gromore 聚合 Flutter 广告插件（开发中）|
 
 
