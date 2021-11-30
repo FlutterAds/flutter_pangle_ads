@@ -32,7 +32,8 @@ class AdBannerWidget extends StatefulWidget {
   _AdBannerWidgetState createState() => _AdBannerWidgetState();
 }
 
-class _AdBannerWidgetState extends State<AdBannerWidget> {
+class _AdBannerWidgetState extends State<AdBannerWidget>
+    with AutomaticKeepAliveClientMixin {
   // View 类型
   final String viewType = 'flutter_pangle_ads_banner';
   // 创建参数
@@ -52,21 +53,31 @@ class _AdBannerWidgetState extends State<AdBannerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (!widget.show) {
       return SizedBox.shrink();
     }
     if (Platform.isIOS) {
-      return UiKitView(
-        viewType: viewType,
-        creationParams: creationParams,
-        creationParamsCodec: const StandardMessageCodec(),
+      return SizedBox.fromSize(
+        size: Size(widget.width.toDouble(), widget.height.toDouble()),
+        child: UiKitView(
+          viewType: viewType,
+          creationParams: creationParams,
+          creationParamsCodec: const StandardMessageCodec(),
+        ),
       );
     } else {
-      return AndroidView(
-        viewType: viewType,
-        creationParams: creationParams,
-        creationParamsCodec: const StandardMessageCodec(),
+      return SizedBox.fromSize(
+        size: Size(widget.width.toDouble(), widget.height.toDouble()),
+        child: AndroidView(
+          viewType: viewType,
+          creationParams: creationParams,
+          creationParamsCodec: const StandardMessageCodec(),
+        ),
       );
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -1,6 +1,5 @@
 package com.zero.flutter_pangle_ads.page;
 
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 
@@ -90,6 +89,6 @@ public class InterstitialPage extends BaseAdPage implements TTAdNative.NativeExp
         Log.i(TAG, "onAdDismiss");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        iad=null;
+        iad = null;
     }
 }

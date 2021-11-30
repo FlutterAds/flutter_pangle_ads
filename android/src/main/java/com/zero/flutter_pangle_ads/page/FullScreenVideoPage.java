@@ -7,9 +7,7 @@ import androidx.annotation.NonNull;
 import com.bytedance.sdk.openadsdk.AdSlot;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
-import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
-import com.zero.flutter_pangle_ads.event.AdRewardEvent;
 
 import io.flutter.plugin.common.MethodCall;
 

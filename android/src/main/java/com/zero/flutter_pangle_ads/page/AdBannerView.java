@@ -169,7 +169,7 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
 
                 @Override
                 public void onSelected(int position, String value, boolean enforce) {
-                        onAdDismiss();
+                    onAdDismiss();
                 }
 
                 @Override
