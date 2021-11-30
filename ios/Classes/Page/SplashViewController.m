@@ -43,7 +43,7 @@
     BUAdSlot *slot=[[BUAdSlot alloc]init];
     slot.ID=self.posId;
     slot.splashButtonType=self.buttonType;
-//    self.splashAd=[[BUSplashAdView alloc] initWithSlotID:self.posId frame:frame];
+    //    self.splashAd=[[BUSplashAdView alloc] initWithSlotID:self.posId frame:frame];
     self.splashAd=[[BUSplashAdView alloc]initWithSlot:slot frame:frame];
     self.splashAd.tolerateTimeout=self.timeout;
     self.splashAd.delegate=self;

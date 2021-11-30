@@ -8,11 +8,11 @@
 #import "BaseAdPage.h"
 #import "FlutterPangleAdsPlugin.h"
 @interface AdBannerView : BaseAdPage<FlutterPlatformView>
-@property (strong,nonatomic) FlutterPangleAdsPlugin *plugin;
-- (instancetype)initWithFrame:(CGRect)frame
-               viewIdentifier:(int64_t)viewId
-                    arguments:(id _Nullable)args
-              binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
+@property (strong,nonatomic,nullable) FlutterPangleAdsPlugin *plugin;
+- (nonnull instancetype)initWithFrame:(CGRect)frame
+                       viewIdentifier:(int64_t)viewId
+                            arguments:(id _Nullable)args
+                      binaryMessenger:(NSObject<FlutterBinaryMessenger>* _Nullable)messenger plugin:(FlutterPangleAdsPlugin* _Nullable) plugin;
 
-- (UIView*)view;
+- (nonnull UIView*)view;
 @end

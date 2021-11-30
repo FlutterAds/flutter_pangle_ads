@@ -4,7 +4,7 @@ description: FlutterAds 穿山甲广告 SDK 插件示例
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 2.3.1+10
+version: 2.4.0+12
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -23,7 +23,8 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.3
+  cupertino_icons: ^1.0.4
+  loadany: ^1.0.0
 
 dev_dependencies:
   flutter_test:

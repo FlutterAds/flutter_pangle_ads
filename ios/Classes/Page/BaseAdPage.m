@@ -25,6 +25,11 @@ NSString *const kPosId=@"posId";
     [self loadAd:call];
 }
 
+- (void)loadAd:(nonnull FlutterMethodCall *)call {
+    NSLog(@"%s",__FUNCTION__);
+}
+
+
 // 发送广告事件
 - (void)sendEvent:(AdEvent *)event{
     if(self.eventSink!=nil){

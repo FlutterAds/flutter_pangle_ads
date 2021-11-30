@@ -116,7 +116,7 @@
 
 - (void)nativeExpressRewardedVideoAdServerRewardDidFail:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd error:(NSError * _Nullable)error {
     NSLog(@"%s",__FUNCTION__);
-
+    
     NSLog(@"%@",[NSString stringWithFormat:@"rewardName:%@ rewardMount:%ld error:%@",rewardedVideoAd.rewardedVideoModel.rewardName,(long)rewardedVideoAd.rewardedVideoModel.rewardAmount,error]);
     // 发送激励事件
     BURewardedVideoModel *model=rewardedVideoAd.rewardedVideoModel;
