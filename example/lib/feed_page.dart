@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
-import 'package:flutter_pangle_ads/view/ad_feed_widget.dart';
 import 'package:flutter_pangle_ads_example/ads_config.dart';
 import 'package:loadany/loadany.dart';
 
