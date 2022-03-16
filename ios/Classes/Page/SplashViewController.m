@@ -40,11 +40,7 @@
     // 广告区域大小
     CGRect frame = CGRectMake(0,0,width,adHeight);
     // 广告数据构建
-    BUAdSlot *slot=[[BUAdSlot alloc]init];
-    slot.ID=self.posId;
-    slot.splashButtonType=self.buttonType;
-    //    self.splashAd=[[BUSplashAdView alloc] initWithSlotID:self.posId frame:frame];
-    self.splashAd=[[BUSplashAdView alloc]initWithSlot:slot frame:frame];
+    self.splashAd=[[BUSplashAdView alloc] initWithSlotID:self.posId frame:frame];
     self.splashAd.tolerateTimeout=self.timeout;
     self.splashAd.delegate=self;
     // 加载全屏广告
