@@ -15,7 +15,7 @@
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
 - 📡 事件统一返回（将原生端各种重要回调事件统一返回，方便业务处理和埋点统计等需求）
-- 🎁 注重优化体验（无闪烁 Logo 开屏、iOS 开屏防止事件穿透、权限申请、隐私跟踪申请等）
+- 🎁 注重优化体验（无闪烁 Logo 开屏、iOS 开屏防止事件穿透、权限申请、隐私跟踪申请、信息流自动适配宽高等）
 - 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展新广告形式、方便开发个性化需求）
 
 ## 支持功能
@@ -30,7 +30,8 @@
 - 🔲 Draw 贴片视频
 
 ## 下载体验
-<a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://www.pgyer.com/app/qrcode/fads" width='100' height='100'></a>
+<a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
+> 回复 `穿山甲体验` 
 
 ## 入门使用
 
@@ -296,13 +297,18 @@ pod install
 
 ## 支持开源
 
-支持开源项目最好的方式就是点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads) ⭐️
+- 开源不易，需要花费大量休息时间加班熬夜来维护，你可以通过下方二维码赞赏支持我。
+
+<a href="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
+    <img width="300" alt="coffee" src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
+</a>
+
+- 用爱发电，给本项目点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads) ⭐️ 也是非常好的支持。
 
 ## FlutterAds 广告插件系列
 |插件|描述|
 |-|-|
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
-|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、Gromore 聚合 Flutter 广告插件（开发中）|
-
+|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、Gromore 聚合 Flutter 广告插件|
 
