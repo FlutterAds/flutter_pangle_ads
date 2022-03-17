@@ -30,6 +30,7 @@
             android:name=".page.AdSplashActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait"
+            android:exported="false"
             android:theme="@style/SplashTheme" />
         <!-- 文件兼容 -->
         <provider
