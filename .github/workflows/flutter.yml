@@ -7,11 +7,9 @@ on:
     branches:
     - develop
     - master
-    - 2x
   pull_request:
     branches:
       - develop
-      - 2x
     
 # on: push    # Default will running for every branch.
     
