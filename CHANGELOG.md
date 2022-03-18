@@ -1,3 +1,8 @@
+## 2.5.0 [2022-03-18]
+* [修复] `splashButtonType` 新版 SKD 不存在的问题 [#20](https://github.com/FlutterAds/flutter_pangle_ads/issues/20)
+* 升级 iOS SDK 到 `v4.3.0.4`
+* 升级 Android SDK 到 Pro 版 `v4.3.0.8`
+
 ## 2.4.0 [2021-11-30]
 * [新增] 信息流广告类型
 * 升级 Android SDK 到 Pro 版 `v4.0.2.2`

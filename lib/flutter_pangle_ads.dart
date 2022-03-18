@@ -68,16 +68,14 @@ class FlutterPangleAds {
   /// [posId] 广告位 id
   /// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
   /// [timeout] 加载超时时间
-  /// [buttonType] 开屏广告的点击区域，1：全都可以点击 2：仅有下载 Bar 区域可以点击。具体参考：https://www.csjplatform.com/support/doc/611f0f0c1b039f004611e4da
   static Future<bool> showSplashAd(String posId,
-      {String? logo, double timeout = 3.5, int buttonType = 1}) async {
+      {String? logo, double timeout = 3.5}) async {
     final bool result = await _methodChannel.invokeMethod(
       'showSplashAd',
       {
         'posId': posId,
         'logo': logo,
         'timeout': timeout,
-        'buttonType': buttonType,
       },
     );
     return result;

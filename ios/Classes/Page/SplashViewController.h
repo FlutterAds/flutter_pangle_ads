@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *posId;
 @property (nonatomic,copy) NSString *logo;
 @property double timeout;
-@property int buttonType;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,13 +13,11 @@
 -(void)loadAd:(FlutterMethodCall *)call{
     NSString* logo=call.arguments[@"logo"];
     double timeout=[call.arguments[@"timeout"] doubleValue];
-    int buttonType=[call.arguments[@"buttonType"] intValue];
     // 开屏页面
     SplashViewController *svc=[[SplashViewController alloc] init];
     svc.posId=self.posId;
     svc.logo=logo;
     svc.timeout=timeout;
-    svc.buttonType=buttonType;
     svc.sp=self;
     //设置全屏
     svc.modalPresentationStyle = UIModalPresentationFullScreen;
