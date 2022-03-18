@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.4.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.5.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg?branch=2x"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -38,7 +38,7 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^2.4.0
+  flutter_pangle_ads: ^2.5.0
 ```
 ### 初始化广告
 
@@ -58,12 +58,10 @@ FlutterPangleAds.initAd(appId);
 /// [posId] 广告位 id
 /// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
 /// [timeout] 加载超时时间
-/// [buttonType] 开屏广告的点击区域，1：全都可以点击 2：仅有下载 Bar 区域可以点击
 FlutterPangleAds.showSplashAd(
   posId,
   logo: 'flutterads_logo',
   timeout: 3.5,
-  buttonType: 2,
 );
 ```
 
