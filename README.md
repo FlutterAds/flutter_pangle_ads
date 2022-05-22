@@ -1,7 +1,7 @@
 <p align="center">
 <a href="https://github.com/FlutterAds"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/logo/flutterads_logo.png" alt="logo" height="180"/></a>
 </p>
-<h3 align="center">一款优质的 Flutter 广告插件（字节跳动、穿山甲）</h3>
+<h3 align="center">一款优质的 Flutter 广告插件（字节跳动、巨量引擎、穿山甲）</h3>
 
 <p align="center">
 <a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.5.0-success></a>
