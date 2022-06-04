@@ -91,6 +91,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
                 .setCodeId(posId)
                 .setSupportDeepLink(true)
                 .setImageAcceptedSize(width, height)
+                .setAdLoadType(LOAD)
                 .build();
         // 加载广告
         splashAD.loadSplashAd(adSlot, this, absTimeout);
