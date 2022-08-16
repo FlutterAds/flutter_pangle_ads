@@ -62,7 +62,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CS
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
-        double timeout = getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT, 5);
+        double timeout = getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT, 3.5);
         int absTimeout = (int) (timeout * 1000);
         // 判断是否有 Logo
         boolean hasLogo = !TextUtils.isEmpty(logo);
@@ -97,7 +97,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CS
                 .setAdLoadType(TTAdLoadType.LOAD)
                 .build();
         // 加载广告
-        splashAD.loadSplashAd(adSlot,this, (int) timeout);
+        splashAD.loadSplashAd(adSlot,this,absTimeout);
     }
 
     /**
@@ -146,14 +146,15 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CS
     @Override
     public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
         Log.d(TAG, "onSplashAdLoad");
-        if (!this.isFinishing()) {
+        if (this.isFinishing()) {
+            AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClosed));
+            finishPage();
+        } else {
             csjSplashAd.showSplashView(ad_container);
             // 设置交互监听
             csjSplashAd.setSplashAdListener(this);
             // 加载事件
             AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdPresent));
-        } else {
-            finishPage();
         }
 
     }
