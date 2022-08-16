@@ -26,7 +26,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion 29
-    ndkVersion "21.4.7075529" // 本地跑时可以去掉，CI 需要指定
+    // ndkVersion "21.4.7075529" // 本地跑时可以去掉，CI 需要指定
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -38,6 +38,7 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -51,4 +52,10 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+    // 广告 SDK
+//    implementation 'com.pangle.cn:ads-sdk-pro:4.7.0.8'
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }

@@ -11,10 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bytedance.sdk.openadsdk.AdSlot;
-import com.bytedance.sdk.openadsdk.TTAdConstant;
+import com.bytedance.sdk.openadsdk.CSJAdError;
+import com.bytedance.sdk.openadsdk.CSJSplashAd;
+import com.bytedance.sdk.openadsdk.TTAdLoadType;
 import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
-import com.bytedance.sdk.openadsdk.TTSplashAd;
 import com.zero.flutter_pangle_ads.PluginDelegate;
 import com.zero.flutter_pangle_ads.R;
 import com.zero.flutter_pangle_ads.event.AdErrorEvent;
@@ -27,7 +28,7 @@ import com.zero.flutter_pangle_ads.utils.UIUtils;
 /**
  * 开屏广告
  */
-public class AdSplashActivity extends AppCompatActivity implements TTAdNative.SplashAdListener, TTSplashAd.AdInteractionListener {
+public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CSJSplashAdListener, CSJSplashAd.SplashAdListener {
     private final String TAG = AdSplashActivity.class.getSimpleName();
     // 广告容器
     private FrameLayout ad_container;
@@ -61,7 +62,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
-        double timeout = getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT, 3.5);
+        double timeout = getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT, 5);
         int absTimeout = (int) (timeout * 1000);
         // 判断是否有 Logo
         boolean hasLogo = !TextUtils.isEmpty(logo);
@@ -77,6 +78,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
             }
         }
         int width = (int) UIUtils.getScreenWidthInPx(this);
+        int widthDp = (int) UIUtils.getScreenWidthDp(this);
         int height = (int) UIUtils.getScreenHeightInPx(this);
         // 判断最终的 Logo 是否显示
         if (!hasLogo) {
@@ -90,10 +92,12 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
         AdSlot adSlot = new AdSlot.Builder()
                 .setCodeId(posId)
                 .setSupportDeepLink(true)
-                .setImageAcceptedSize(width, height)
+                .setImageAcceptedSize(width, height) // 单位是px
+                .setExpressViewAcceptedSize(widthDp, UIUtils.px2dip(this,height)) // 单位是dp
+                .setAdLoadType(TTAdLoadType.LOAD)
                 .build();
         // 加载广告
-        splashAD.loadSplashAd(adSlot, this, absTimeout);
+        splashAD.loadSplashAd(adSlot,this, (int) timeout);
     }
 
     /**
@@ -127,59 +131,56 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.Sp
     }
 
     @Override
-    public void onError(int i, String s) {
-        Log.e(TAG, "onError code:" + i + " msg:" + s);
-        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, i, s));
-        finishPage();
-    }
-
-    @Override
-    public void onTimeout() {
-        Log.d(TAG, "onTimeout");
-        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, -100, "loadSplashAd onTimeout"));
-        finishPage();
-    }
-
-    @Override
-    public void onSplashAdLoad(TTSplashAd ad) {
-        Log.d(TAG, "onSplashAdLoad");
-        //获取SplashView
-        View view = ad.getSplashView();
-        if (!this.isFinishing()) {
-            ad_container.removeAllViews();
-            ad_container.addView(view);
-        } else {
-            finishPage();
-        }
-        // 设置交互监听
-        ad.setSplashInteractionListener(this);
+    public void onSplashLoadSuccess() {
+        Log.d(TAG, "onSplashLoadSuccess");
         // 加载事件
         AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdLoaded));
     }
 
     @Override
-    public void onAdClicked(View view, int i) {
-        Log.d(TAG, "onAdClicked");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClicked));
-    }
-
-    @Override
-    public void onAdShow(View view, int i) {
-        Log.d(TAG, "onAdShow");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdExposure));
-    }
-
-    @Override
-    public void onAdSkip() {
-        Log.d(TAG, "onAdSkip");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdSkip));
+    public void onSplashLoadFail(CSJAdError error) {
+        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, error.getCode(), error.getMsg()));
         finishPage();
     }
 
     @Override
-    public void onAdTimeOver() {
-        Log.d(TAG, "onAdTimeOver");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdComplete));
+    public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
+        Log.d(TAG, "onSplashAdLoad");
+        if (!this.isFinishing()) {
+            csjSplashAd.showSplashView(ad_container);
+            // 设置交互监听
+            csjSplashAd.setSplashAdListener(this);
+            // 加载事件
+            AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdPresent));
+        } else {
+            finishPage();
+        }
+
+    }
+
+    @Override
+    public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError error) {
+        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, error.getCode(), error.getMsg()));
+        finishPage();
+    }
+
+    @Override
+    public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        Log.d(TAG, "onSplashLoadSuccess");
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdExposure));
+    }
+
+    @Override
+    public void onSplashAdClick(CSJSplashAd csjSplashAd) {
+        Log.d(TAG, "onSplashAdClick");
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClicked));
+        finishPage();
+    }
+
+    @Override
+    public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
+        Log.d(TAG, "onSplashAdClose");
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClosed));
         finishPage();
     }
 }

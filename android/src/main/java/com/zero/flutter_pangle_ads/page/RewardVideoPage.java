@@ -1,5 +1,6 @@
 package com.zero.flutter_pangle_ads.page;
 
+import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -111,6 +112,11 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
                 " name:" + rewardName + " errorCode:" + code + " errorMsg:" + msg;
         Log.e(TAG, "onRewardVerify " + logString);
         sendEvent(new AdRewardEvent(posId, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
+    }
+
+    @Override
+    public void onRewardArrived(boolean b, int i, Bundle bundle) {
+
     }
 
     @Override

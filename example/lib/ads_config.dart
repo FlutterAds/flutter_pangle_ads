@@ -21,10 +21,10 @@ class AdsConfig {
   }
 
   /// 获取 App id
-  static String get appId => '5195673';
+  static String get appId => '5324024';
 
   /// 获取开屏广告位id
-  static String get splashId => '887516177';
+  static String get splashId => '887870893';
 
   /// 获取插屏广告位id
   static String get interstitialId => '946584889';
