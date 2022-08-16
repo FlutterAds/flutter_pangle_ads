@@ -10,6 +10,7 @@ import com.bytedance.sdk.openadsdk.TTAdNative;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;
 import com.zero.flutter_pangle_ads.event.AdEventAction;
 import com.zero.flutter_pangle_ads.event.AdRewardEvent;
+import com.zero.flutter_pangle_ads.utils.RewardBundleModel;
 
 import io.flutter.plugin.common.MethodCall;
 
@@ -111,12 +112,16 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
         String logString = "verify:" + rewardVerify + " amount:" + rewardAmount +
                 " name:" + rewardName + " errorCode:" + code + " errorMsg:" + msg;
         Log.e(TAG, "onRewardVerify " + logString);
-        sendEvent(new AdRewardEvent(posId, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
+        sendEvent(new AdRewardEvent(posId,0, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
     }
 
     @Override
-    public void onRewardArrived(boolean b, int i, Bundle bundle) {
-
+    public void onRewardArrived(boolean isRewardValid, int rewardType, Bundle extraInfo) {
+        RewardBundleModel rewardBundleModel = new RewardBundleModel(extraInfo);
+        String logString = "verify:" + isRewardValid + " amount:" + rewardBundleModel.getRewardAmount() +
+                " name:" + rewardBundleModel.getRewardName() + " errorCode:" + rewardBundleModel.getServerErrorCode() + " errorMsg:" + rewardBundleModel.getServerErrorMsg();
+        Log.e(TAG, "onRewardVerify " + logString);
+        sendEvent(new AdRewardEvent(posId,rewardType, isRewardValid, rewardBundleModel.getRewardAmount(), rewardBundleModel.getRewardName(), rewardBundleModel.getServerErrorCode(), rewardBundleModel.getServerErrorMsg(), customData, userId));
     }
 
     @Override
