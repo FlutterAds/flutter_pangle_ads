@@ -77,9 +77,9 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CS
                 Log.e(TAG, "Logo 名称不匹配或不在 mipmap 文件夹下，展示全屏");
             }
         }
-        int width = (int) UIUtils.getScreenWidthInPx(this);
+        int width = UIUtils.getScreenWidthInPx(this);
         int widthDp = (int) UIUtils.getScreenWidthDp(this);
-        int height = (int) UIUtils.getScreenHeightInPx(this);
+        int height = UIUtils.getRealHeight(this);
         // 判断最终的 Logo 是否显示
         if (!hasLogo) {
             ad_logo.setVisibility(View.GONE);
