@@ -38,17 +38,14 @@
         [self.splashView addSubview:logoView];
     }
     // 广告区域大小
-    CGRect frame = CGRectMake(0,0,width,adHeight);
+    CGSize adSize = CGSizeMake(width,adHeight);
     // 广告数据构建
-    self.splashAd=[[BUSplashAdView alloc] initWithSlotID:self.posId frame:frame];
+    
+    self.splashAd=[[BUSplashAd alloc] initWithSlotID:self.posId adSize:adSize];
     self.splashAd.tolerateTimeout=self.timeout;
     self.splashAd.delegate=self;
     // 加载全屏广告
     [self.splashAd loadAdData];
-    //    // 设置广告 View
-    [self.splashView addSubview:self.splashAd];
-    [self.view addSubview:self.splashView];
-    self.splashAd.rootViewController=self;
 }
 
 // 销毁页面
@@ -61,56 +58,72 @@
 
 #pragma mark - BUSplashAdDelegate
 
-- (void)splashAdDidLoad:(BUSplashAdView *)splashAd {
+- (void)splashAdLoadSuccess:(BUSplashAd *)splashAd {
+    [splashAd showSplashViewInRootViewController:self];
     NSLog(@"%s",__FUNCTION__);
     // 发送广告事件
     [self.sp sendEventAction:onAdLoaded];
-    
 }
 
-- (void)splashAdDidClose:(BUSplashAdView *)splashAd {
-    NSLog(@"%s",__FUNCTION__);
-    // 发送广告事件
-    [self.sp sendEventAction:onAdClosed];
-}
-
-- (void)splashAdDidClick:(BUSplashAdView *)splashAd {
-    NSLog(@"%s",__FUNCTION__);
-    // 发送广告事件
-    [self.sp sendEventAction:onAdClicked];
-}
-
-- (void)splashAdDidClickSkip:(BUSplashAdView *)splashAd {
-    NSLog(@"%s",__FUNCTION__);
-    [self dismissPage];
-    // 发送广告事件
-    [self.sp sendEventAction:onAdSkip];
-}
-
-- (void)splashAd:(BUSplashAdView *)splashAd didFailWithError:(NSError *)error {
+/// This method is called when material load failed
+- (void)splashAdLoadFail:(BUSplashAd *)splashAd error:(BUAdError *_Nullable)error{
     NSLog(@"%s",__FUNCTION__);
     [self dismissPage];
     // 发送广告错误事件
     [self.sp sendErrorEvent:error.code withErrMsg:error.localizedDescription];
 }
 
-- (void)splashAdWillVisible:(BUSplashAdView *)splashAd {
+/// This method is called when splash view render successful
+- (void)splashAdRenderSuccess:(BUSplashAd *)splashAd{
     NSLog(@"%s",__FUNCTION__);
     // 发送广告事件
     [self.sp sendEventAction:onAdExposure];
+    //    // 设置广告 View
+    [self.splashView addSubview:splashAd.splashView];
+    [self.view addSubview:self.splashView];
 }
 
-- (void)splashAdDidCloseOtherController:(BUSplashAdView *)splashAd interactionType:(BUInteractionType)interactionType{
+/// This method is called when splash view render failed
+- (void)splashAdRenderFail:(BUSplashAd *)splashAd error:(BUAdError *_Nullable)error{
     NSLog(@"%s",__FUNCTION__);
     [self dismissPage];
+    // 发送广告错误事件
+    [self.sp sendErrorEvent:error.code withErrMsg:error.localizedDescription];
 }
 
-- (void)splashAdCountdownToZero:(BUSplashAdView *)splashAd {
+- (void)splashAdDidClose:(BUSplashAd *)splashAd closeType:(BUSplashAdCloseType)closeType {
     NSLog(@"%s",__FUNCTION__);
-    [self dismissPage];
     // 发送广告事件
-    [self.sp sendEventAction:onAdComplete];
+    [self.sp sendEventAction:onAdClosed];
+    [self dismissPage];
 }
+
+
+- (void)splashAdDidClick:(BUSplashAd *)splashAd {
+    NSLog(@"%s",__FUNCTION__);
+    // 发送广告事件
+    [self.sp sendEventAction:onAdClicked];
+    [self dismissPage];
+}
+
+//- (void)splashAdDidClickSkip:(BUSplashAd *)splashAd {
+//    NSLog(@"%s",__FUNCTION__);
+//    [self dismissPage];
+//    // 发送广告事件
+//    [self.sp sendEventAction:onAdSkip];
+//}
+
+//- (void)splashAdDidCloseOtherController:(BUSplashAd *)splashAd interactionType:(BUInteractionType)interactionType{
+//    NSLog(@"%s",__FUNCTION__);
+//    [self dismissPage];
+//}
+//
+//- (void)splashAdCountdownToZero:(BUSplashAd *)splashAd {
+//    NSLog(@"%s",__FUNCTION__);
+//    [self dismissPage];
+//    // 发送广告事件
+//    [self.sp sendEventAction:onAdComplete];
+//}
 
 
 @end
