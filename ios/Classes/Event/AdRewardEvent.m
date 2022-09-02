@@ -9,7 +9,8 @@
 #import "AdEventAction.h"
 
 @implementation AdRewardEvent
-- (id)initWithAdId:(NSString *)adId rewardVerify:(BOOL) rewardVerify rewardAmount:(NSInteger) rewardAmount rewardName:(NSString *)rewardName customData:(NSString *)customData userId:(NSString *)userId errCode:(NSInteger) errCode errMsg:(NSString*) errMsg{
+- (id)initWithAdId:(NSString *)adId rewardType:(NSInteger) rewardType rewardVerify:(BOOL) rewardVerify rewardAmount:(NSInteger) rewardAmount rewardName:(NSString *)rewardName customData:(NSString *)customData userId:(NSString *)userId errCode:(NSInteger) errCode errMsg:(NSString*) errMsg{
+    self.rewardType=rewardType;
     self.adId=adId;
     self.action=onAdReward;
     self.rewardVerify=rewardVerify;

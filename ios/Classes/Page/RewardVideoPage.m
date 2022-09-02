@@ -18,6 +18,7 @@
     model.userId=self.userId;
     self.rvad=[[BUNativeExpressRewardedVideoAd alloc] initWithSlotID:self.posId rewardedVideoModel:model];
     self.rvad.delegate=self;
+    self.rvad.rewardPlayAgainInteractionDelegate=self;
     [self.rvad loadAdData];
 }
 
@@ -108,7 +109,7 @@
     NSLog(@"%@",[NSString stringWithFormat:@"verify:%@ rewardName:%@ rewardMount:%ld",verify?@"true":@"false",rewardedVideoAd.rewardedVideoModel.rewardName,(long)rewardedVideoAd.rewardedVideoModel.rewardAmount]);
     BURewardedVideoModel *model=rewardedVideoAd.rewardedVideoModel;
     // 发送激励事件
-    AdRewardEvent *rewardEvent=[[AdRewardEvent alloc] initWithAdId:self.posId rewardVerify:verify rewardAmount:model.rewardAmount rewardName:model.rewardName customData:self.customData userId:self.userId errCode:0 errMsg:@""];
+    AdRewardEvent *rewardEvent=[[AdRewardEvent alloc] initWithAdId:self.posId rewardType:model.rewardType rewardVerify:verify rewardAmount:model.rewardAmount rewardName:model.rewardName customData:self.customData userId:self.userId errCode:0 errMsg:@""];
     [self sendEvent:rewardEvent];
     
     
@@ -120,7 +121,7 @@
     NSLog(@"%@",[NSString stringWithFormat:@"rewardName:%@ rewardMount:%ld error:%@",rewardedVideoAd.rewardedVideoModel.rewardName,(long)rewardedVideoAd.rewardedVideoModel.rewardAmount,error]);
     // 发送激励事件
     BURewardedVideoModel *model=rewardedVideoAd.rewardedVideoModel;
-    AdRewardEvent *rewardEvent=[[AdRewardEvent alloc] initWithAdId:self.posId rewardVerify:NO rewardAmount:model.rewardAmount rewardName:model.rewardName customData:self.customData userId:self.userId errCode:error.code  errMsg:error.localizedDescription];
+    AdRewardEvent *rewardEvent=[[AdRewardEvent alloc] initWithAdId:self.posId rewardType:model.rewardType rewardVerify:NO rewardAmount:model.rewardAmount rewardName:model.rewardName customData:self.customData userId:self.userId errCode:error.code  errMsg:error.localizedDescription];
     [self sendEvent:rewardEvent];
 }
 
