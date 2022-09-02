@@ -53,6 +53,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
         Log.i(TAG, "onRewardVideoAdLoad");
         rvad = ttRewardVideoAd;
         rvad.setRewardAdInteractionListener(this);
+        rvad.setRewardPlayAgainInteractionListener(this);
         // 添加广告事件
         sendEvent(AdEventAction.onAdLoaded);
     }
@@ -109,7 +110,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
     // 视频播放完成后，奖励验证回调，rewardVerify：是否有效，rewardAmount：奖励数量，rewardName：奖励名称，code：错误码，msg：错误信息
     @Override
     public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName, int code, String msg) {
-        String logString = "verify:" + rewardVerify + " amount:" + rewardAmount +
+        String logString ="verify:" + rewardVerify + " amount:" + rewardAmount +
                 " name:" + rewardName + " errorCode:" + code + " errorMsg:" + msg;
         Log.e(TAG, "onRewardVerify " + logString);
         sendEvent(new AdRewardEvent(posId,0, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
@@ -118,7 +119,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
     @Override
     public void onRewardArrived(boolean isRewardValid, int rewardType, Bundle extraInfo) {
         RewardBundleModel rewardBundleModel = new RewardBundleModel(extraInfo);
-        String logString = "verify:" + isRewardValid + " amount:" + rewardBundleModel.getRewardAmount() +
+        String logString = "rewardType："+rewardType+" verify:" + isRewardValid + " amount:" + rewardBundleModel.getRewardAmount() +
                 " name:" + rewardBundleModel.getRewardName() + " errorCode:" + rewardBundleModel.getServerErrorCode() + " errorMsg:" + rewardBundleModel.getServerErrorMsg();
         Log.e(TAG, "onRewardVerify " + logString);
         sendEvent(new AdRewardEvent(posId,rewardType, isRewardValid, rewardBundleModel.getRewardAmount(), rewardBundleModel.getRewardName(), rewardBundleModel.getServerErrorCode(), rewardBundleModel.getServerErrorMsg(), customData, userId));

@@ -1,3 +1,9 @@
+## 2.6.0 [2022-09-02]
+* [升级] 适配 4700 SDK 版本[#30](https://github.com/FlutterAds/flutter_pangle_ads/issues/30)
+* [新增] 新增进阶激励视频支持[#31](https://github.com/FlutterAds/flutter_pangle_ads/issues/31)
+* [升级] iOS SDK 到 `v4.7.0.8`
+* [升级] Android SDK 到 Pro 版 `v4.7.1.2`
+
 ## 2.5.0 [2022-03-18]
 * [修复] `splashButtonType` 新版 SKD 不存在的问题 [#20](https://github.com/FlutterAds/flutter_pangle_ads/issues/20)
 * 升级 iOS SDK 到 `v4.3.0.4`

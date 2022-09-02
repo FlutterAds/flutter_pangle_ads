@@ -106,7 +106,7 @@
 
 - (void)nativeExpressRewardedVideoAdServerRewardDidSucceed:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify {
     NSLog(@"%s",__FUNCTION__);
-    NSLog(@"%@",[NSString stringWithFormat:@"verify:%@ rewardName:%@ rewardMount:%ld",verify?@"true":@"false",rewardedVideoAd.rewardedVideoModel.rewardName,(long)rewardedVideoAd.rewardedVideoModel.rewardAmount]);
+    NSLog(@"%@",[NSString stringWithFormat:@"verify:%@ rewardType:%@ rewardName:%ld rewardMount:%ld",verify?@"true":@"false",rewardedVideoAd.rewardedVideoModel.rewardName,(long)rewardedVideoAd.rewardedVideoModel.rewardType,(long)rewardedVideoAd.rewardedVideoModel.rewardAmount]);
     BURewardedVideoModel *model=rewardedVideoAd.rewardedVideoModel;
     // 发送激励事件
     AdRewardEvent *rewardEvent=[[AdRewardEvent alloc] initWithAdId:self.posId rewardType:model.rewardType rewardVerify:verify rewardAmount:model.rewardAmount rewardName:model.rewardName customData:self.customData userId:self.userId errCode:0 errMsg:@""];

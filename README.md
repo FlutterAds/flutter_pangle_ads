@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、巨量引擎、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.5.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.6.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -19,13 +19,15 @@
 
 ## 支持功能
 - ✅ 开屏广告
-- ✅ 插屏广告
-  - ✅ 半插屏
-  - ✅ 全屏视频（新插屏）
+- ✅ 新插屏广告
+  - ✅ 半屏
+  - ✅ 全屏
 - ✅ 激励视频
-- ✅ 全屏视频
+  - ✅ 普通激励
+  - ✅ 进阶激励
 - ✅ Banner
 - ✅ 信息流
+- ✅ 全屏视频（已废弃）
 - 🔲 Draw 贴片视频
 
 ## 下载体验
@@ -38,7 +40,7 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^2.5.0
+  flutter_pangle_ads: ^2.6.0
 ```
 ### 初始化广告
 
@@ -65,12 +67,11 @@ FlutterPangleAds.showSplashAd(
 );
 ```
 
-- 全屏广告
-
+- 全屏开屏广告
 ``` Dart
 FlutterQqAds.showSplashAd(posId);
 ```
-### 插屏广告
+### 新插屏广告
 ``` Dart
 /// [posId] 广告位 id
 /// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
@@ -93,15 +94,6 @@ FlutterPangleAds.showRewardVideoAd(
     userId: 'userId',
 );
 ```
-
-### 全屏视频
-- 全屏视频
-- 新插屏
-``` Dart
-/// [posId] 广告位 id
-FlutterPangleAds.showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
-```
-
 
 ### Banner
 ``` Dart
@@ -176,6 +168,15 @@ AdFeedWidget(
 ```
 > `width` 和 `height` 需要根据你新建广告位的模板来设置
 
+### 全屏视频（已废弃）
+> 建议使用新插屏
+
+``` Dart
+/// [posId] 广告位 id
+FlutterPangleAds.showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
+```
+
+
 ### 设置广告事件监听
 
 ``` Dart
@@ -188,7 +189,7 @@ FlutterPangleAds.onEventListener((event) {
   } else if (event is AdRewardEvent) {
     // 激励事件
         _adEvent +=
-            ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
+            'rewardType:${event.rewardType} rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
   }
   // 测试关闭 Banner（会员场景）
   if (event.action == AdEventAction.onAdClosed &&

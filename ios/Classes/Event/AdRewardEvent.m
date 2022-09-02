@@ -26,6 +26,7 @@
 - (NSDictionary *)toMap{
     NSDictionary *data=[super toMap];
     NSMutableDictionary *errData=[[NSMutableDictionary alloc]initWithDictionary:data];
+    [errData setObject:[NSNumber numberWithInteger:_rewardType] forKey:@"rewardType"];
     [errData setObject:@(_rewardVerify) forKey:@"rewardVerify"];
     [errData setObject:[NSNumber numberWithInteger:_rewardAmount] forKey:@"rewardAmount"];
     [errData setObject:_rewardName forKey:@"rewardName"];
