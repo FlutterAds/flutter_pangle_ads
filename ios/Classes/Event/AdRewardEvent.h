@@ -8,6 +8,8 @@
 #import "BaseAdPage.h"
 // 广告激励事件
 @interface AdRewardEvent : AdEvent
+// 错误码
+@property (nonatomic,assign) NSInteger rewardType;
 // 奖励是否有效
 @property BOOL rewardVerify;
 // 奖励数量
@@ -23,6 +25,6 @@
 // 服务端验证的用户信息
 @property (copy,nonatomic) NSString *userId;
 // 构造广告激励事件
--(id) initWithAdId:(NSString *)adId rewardVerify:(BOOL) rewardVerify rewardAmount:(NSInteger) rewardAmount rewardName:(NSString *)rewardName customData:(NSString *)customData userId:(NSString *)userId errCode:(NSInteger) errCode errMsg:(NSString*) errMsg;
+-(id) initWithAdId:(NSString *)adId rewardType:(NSInteger) rewardType rewardVerify:(BOOL) rewardVerify rewardAmount:(NSInteger) rewardAmount rewardName:(NSString *)rewardName customData:(NSString *)customData userId:(NSString *)userId errCode:(NSInteger) errCode errMsg:(NSString*) errMsg;
 
 @end

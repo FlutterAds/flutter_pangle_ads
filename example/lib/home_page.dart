@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 import 'package:flutter_pangle_ads_example/feed_page.dart';
@@ -35,116 +35,124 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('FlutterAds pangle plugin'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 10),
-              Text('Result: $_result'),
-              SizedBox(height: 10),
-              Text('onAdEvent: $_adEvent'),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('初始化'),
-                onPressed: () {
-                  init();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('请求应用跟踪透明度授权(仅 iOS)'),
-                onPressed: () {
-                  requestIDFA();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('动态请求相关权限（仅 Android）'),
-                onPressed: () {
-                  requestPermissionIfNecessary();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示开屏广告（Logo2）'),
-                onPressed: () {
-                  showSplashAd(AdsConfig.logo2);
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示开屏广告（全屏）'),
-                onPressed: () {
-                  showSplashAd();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示插屏广告'),
-                onPressed: () {
-                  showInterstitialAd();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示新插屏视频广告'),
-                onPressed: () {
-                  showFullScreenVideoAd(AdsConfig.newInterstitialId);
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示新插屏（半屏）广告'),
-                onPressed: () {
-                  showFullScreenVideoAd(AdsConfig.newInterstitialId2);
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示激励视频广告'),
-                onPressed: () {
-                  showRewardVideoAd();
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('展示全屏视频广告'),
-                onPressed: () {
-                  showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
-                },
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('信息流'),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FeedPage(),
-                      ));
-                },
-              ),
-              SizedBox(height: 20),
-              AdBannerWidget(
-                posId: AdsConfig.bannerId,
-              ),
-              SizedBox(height: 10),
-              AdBannerWidget(
-                posId: AdsConfig.bannerId01,
-                width: 300,
-                height: 75,
-                interval: 30,
-                show: true,
-              ),
-              SizedBox(height: 10),
-              AdBannerWidget(
-                posId: AdsConfig.bannerId02,
-                width: 320,
-                height: 50,
-                autoClose: false,
-              ),
-              SizedBox(height: 20),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                Text('Result: $_result'),
+                SizedBox(height: 10),
+                Text('onAdEvent: $_adEvent'),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('初始化'),
+                  onPressed: () {
+                    init();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('请求应用跟踪透明度授权(仅 iOS)'),
+                  onPressed: () {
+                    requestIDFA();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('动态请求相关权限（仅 Android）'),
+                  onPressed: () {
+                    requestPermissionIfNecessary();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('开屏广告（Logo2）'),
+                  onPressed: () {
+                    showSplashAd(AdsConfig.logo2);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('开屏广告（全屏）'),
+                  onPressed: () {
+                    showSplashAd();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('新插屏视频广告'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.newInterstitialId);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('新插屏（半屏）广告'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.newInterstitialId2);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('激励视频广告'),
+                  onPressed: () {
+                    showRewardVideoAd();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('激励视频广告（进阶）'),
+                  onPressed: () {
+                    showRewardVideoAd2();
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('信息流'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FeedPage(),
+                        ));
+                  },
+                ),
+                SizedBox(height: 20),
+                AdBannerWidget(
+                  posId: AdsConfig.bannerId,
+                ),
+                SizedBox(height: 10),
+                AdBannerWidget(
+                  posId: AdsConfig.bannerId01,
+                  width: 300,
+                  height: 75,
+                  interval: 30,
+                  show: true,
+                ),
+                SizedBox(height: 10),
+                AdBannerWidget(
+                  posId: AdsConfig.bannerId02,
+                  width: 320,
+                  height: 50,
+                  autoClose: false,
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示全屏视频广告（已过时）'),
+                  onPressed: () {
+                    showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  child: Text('展示插屏广告（已过时）'),
+                  onPressed: () {
+                    showInterstitialAd();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -185,7 +193,7 @@ class _HomePageState extends State<HomePage> {
       } else if (event is AdRewardEvent) {
         // 激励事件
         _adEvent +=
-            ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
+            ' rewardType:${event.rewardType} rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
       }
       // 测试关闭 Banner（会员场景）
       if (event.action == AdEventAction.onAdClosed &&
@@ -246,6 +254,22 @@ class _HomePageState extends State<HomePage> {
     try {
       bool result = await FlutterPangleAds.showRewardVideoAd(
         AdsConfig.rewardVideoId,
+        customData: 'customData',
+        userId: 'userId',
+      );
+      _result = "展示激励视频广告${result ? '成功' : '失败'}";
+    } on PlatformException catch (e) {
+      _result =
+          "展示激励视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
+    }
+    setState(() {});
+  }
+
+  /// 展示激励视频广告（进阶）
+  Future<void> showRewardVideoAd2() async {
+    try {
+      bool result = await FlutterPangleAds.showRewardVideoAd(
+        AdsConfig.rewardInteractVideoId,
         customData: 'customData',
         userId: 'userId',
       );

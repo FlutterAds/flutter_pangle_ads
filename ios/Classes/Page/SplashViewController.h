@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SplashViewController : UIViewController<BUSplashAdDelegate>
 @property (strong, nonatomic) SplashPage *sp;
-@property (strong, nonatomic) BUSplashAdView *splashAd;
+@property (strong, nonatomic) BUSplashAd *splashAd;
 @property (strong, nonatomic) UIView *splashView;
 @property (nonatomic,copy) NSString *posId;
 @property (nonatomic,copy) NSString *logo;

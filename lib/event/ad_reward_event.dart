@@ -3,7 +3,8 @@ import 'ad_event.dart';
 /// 广告激励事件
 class AdRewardEvent extends AdEvent {
   AdRewardEvent(
-      {required this.rewardVerify,
+      {required this.rewardType,
+      required this.rewardVerify,
       required this.rewardAmount,
       required this.rewardName,
       this.errCode,
@@ -13,6 +14,8 @@ class AdRewardEvent extends AdEvent {
       required String adId,
       required String action})
       : super(adId: adId, action: action);
+  // 奖励类型，0:基础奖励 >0:进阶奖励 。4400版本新增
+  final int rewardType;
   // 奖励是否有效
   final bool rewardVerify;
   // 奖励数量
@@ -32,6 +35,7 @@ class AdRewardEvent extends AdEvent {
     return AdRewardEvent(
       adId: json['adId'],
       action: json['action'],
+      rewardType: json['rewardType'],
       rewardVerify: json['rewardVerify'],
       rewardAmount: json['rewardAmount'],
       rewardName: json['rewardName'],
