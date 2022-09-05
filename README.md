@@ -74,13 +74,7 @@ FlutterQqAds.showSplashAd(posId);
 ### 新插屏广告
 ``` Dart
 /// [posId] 广告位 id
-/// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
-/// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
-FlutterPangleAds.showInterstitialAd(
-    AdsConfig.interstitialId,
-    width: 300,
-    height: 300,
-);
+FlutterPangleAds.showFullScreenVideoAd(AdsConfig.newInterstitialId);
 ```
 
 ### 激励视频
@@ -168,12 +162,18 @@ AdFeedWidget(
 ```
 > `width` 和 `height` 需要根据你新建广告位的模板来设置
 
-### 全屏视频（已废弃）
+### 旧插屏广告（已废弃）
 > 建议使用新插屏
 
 ``` Dart
 /// [posId] 广告位 id
-FlutterPangleAds.showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
+/// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
+/// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
+FlutterPangleAds.showInterstitialAd(
+    AdsConfig.interstitialId,
+    width: 300,
+    height: 300,
+);
 ```
 
 
