@@ -113,7 +113,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
         String logString ="verify:" + rewardVerify + " amount:" + rewardAmount +
                 " name:" + rewardName + " errorCode:" + code + " errorMsg:" + msg;
         Log.e(TAG, "onRewardVerify " + logString);
-        sendEvent(new AdRewardEvent(posId,0, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
+//        sendEvent(new AdRewardEvent(posId,0, rewardVerify, rewardAmount, rewardName, code, msg, customData, userId));
     }
 
     @Override
@@ -121,7 +121,7 @@ public class RewardVideoPage extends BaseAdPage implements TTAdNative.RewardVide
         RewardBundleModel rewardBundleModel = new RewardBundleModel(extraInfo);
         String logString = "rewardType："+rewardType+" verify:" + isRewardValid + " amount:" + rewardBundleModel.getRewardAmount() +
                 " name:" + rewardBundleModel.getRewardName() + " errorCode:" + rewardBundleModel.getServerErrorCode() + " errorMsg:" + rewardBundleModel.getServerErrorMsg();
-        Log.e(TAG, "onRewardVerify " + logString);
+        Log.e(TAG, "onRewardArrived " + logString);
         sendEvent(new AdRewardEvent(posId,rewardType, isRewardValid, rewardBundleModel.getRewardAmount(), rewardBundleModel.getRewardName(), rewardBundleModel.getServerErrorCode(), rewardBundleModel.getServerErrorMsg(), customData, userId));
     }
 
