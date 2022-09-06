@@ -7,10 +7,6 @@
 
 #import "SplashViewController.h"
 
-@interface SplashViewController ()
-
-@end
-
 @implementation SplashViewController
 
 - (void)viewDidLoad {
@@ -103,27 +99,6 @@
     NSLog(@"%s",__FUNCTION__);
     // 发送广告事件
     [self.sp sendEventAction:onAdClicked];
-    [self dismissPage];
 }
-
-//- (void)splashAdDidClickSkip:(BUSplashAd *)splashAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    [self dismissPage];
-//    // 发送广告事件
-//    [self.sp sendEventAction:onAdSkip];
-//}
-
-//- (void)splashAdDidCloseOtherController:(BUSplashAd *)splashAd interactionType:(BUInteractionType)interactionType{
-//    NSLog(@"%s",__FUNCTION__);
-//    [self dismissPage];
-//}
-//
-//- (void)splashAdCountdownToZero:(BUSplashAd *)splashAd {
-//    NSLog(@"%s",__FUNCTION__);
-//    [self dismissPage];
-//    // 发送广告事件
-//    [self.sp sendEventAction:onAdComplete];
-//}
-
 
 @end
