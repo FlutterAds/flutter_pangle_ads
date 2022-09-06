@@ -1,3 +1,7 @@
+## 2.6.1 [2022-09-06]
+* [修复] iOS 开屏广告点击后不跳转的问题
+* [修复] Android 激励视频通知两次激励的问题
+
 ## 2.6.0 [2022-09-02]
 * [升级] 适配 4700 SDK 版本[#30](https://github.com/FlutterAds/flutter_pangle_ads/issues/30)
 * [新增] 新增进阶激励视频支持[#31](https://github.com/FlutterAds/flutter_pangle_ads/issues/31)

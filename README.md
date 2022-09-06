@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、巨量引擎、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.6.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.6.1-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -40,7 +40,7 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^2.6.0
+  flutter_pangle_ads: ^2.6.1
 ```
 ### 初始化广告
 
@@ -52,6 +52,12 @@ FlutterPangleAds.initAd(appId);
 ```
 
 ### 开屏广告
+
+- 全屏
+``` Dart
+/// [posId] 广告位 id
+FlutterPangleAds.showSplashAd(posId);
+```
 
 - 半屏广告 + Logo
 - [Logo 设置的最佳实践](https://github.com/FlutterAds/flutter_qq_ads/blob/develop/doc/SETTING_LOGO.md)
@@ -67,10 +73,6 @@ FlutterPangleAds.showSplashAd(
 );
 ```
 
-- 全屏开屏广告
-``` Dart
-FlutterQqAds.showSplashAd(posId);
-```
 ### 新插屏广告
 ``` Dart
 /// [posId] 广告位 id
