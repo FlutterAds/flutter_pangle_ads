@@ -46,6 +46,8 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
         [self loadFeedAd:call result:result];
     }else if ([@"clearFeedAd" isEqualToString:methodStr]){
         [self clearFeedAd:call result:result];
+    }else if ([@"setUserExtData" isEqualToString:methodStr]){
+        [self setUserExtData:call];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -115,6 +117,17 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
         [FeedAdManager.share removeAd:ad];
     }
     result(@(YES));
+}
+
+// 设置个性化推荐
+// personalAdsType: String
+// 不传或传空或传非01值没任何影响,默认不屏蔽
+// 0，屏蔽个性化推荐广告；
+// 1，不屏蔽个性化推荐广告
+- (void) setUserExtData:(FlutterMethodCall*) call{
+    NSString *personalAdsType = call.arguments[@"personalAdsType"];
+    NSString *data = [NSString stringWithFormat:@"[{\"name\":\"personal_ads_type\",\"value\":\"%@\"}]", personalAdsType];
+    [BUAdSDKManager setUserExtData: data];
 }
 
 #pragma mark - FlutterStreamHandler
