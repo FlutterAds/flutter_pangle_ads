@@ -51,6 +51,13 @@ import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 FlutterPangleAds.initAd(appId);
 ```
 
+### 个性化广告开关
+
+```dart
+/// 不调用默认为开，'1'打开，'0'关闭
+FlutterPangleAds.setUserExtData(personalAdsType: '1');
+```
+
 ### 开屏广告
 
 - 全屏
