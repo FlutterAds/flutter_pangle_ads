@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
         ],
       );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";
-      
+
       // 打开个性化广告推荐
       FlutterPangleAds.setUserExtData(personalAdsType: '1');
 
