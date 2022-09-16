@@ -17,6 +17,9 @@ import com.zero.flutter_pangle_ads.page.NativeViewFactory;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 import com.zero.flutter_pangle_ads.utils.DataUtils;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +96,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             loadFeedAd(call, result);
         } else if ("clearFeedAd".equals(method)) {
             clearFeedAd(call, result);
+        } else if ("setUserExtData".equals(method)) {
+            setUserExtData(call, result);
         } else {
             result.notImplemented();
         }
@@ -291,5 +296,32 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         }
         result.success(true);
 
+    }
+
+    /**
+     * 个性化推荐广告开关
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void setUserExtData(MethodCall call, MethodChannel.Result result) {
+        try {
+            String personalTypeValue = call.argument("personalAdsType");
+
+            JSONArray jsonArray = new JSONArray();
+            JSONObject personalObject = new JSONObject();
+            personalObject.put("name", "personal_ads_type");
+            personalObject.put("value", personalTypeValue);
+            jsonArray.put(personalObject);
+            
+            TTAdConfig ttAdConfig = new TTAdConfig.Builder()
+                .data(jsonArray.toString())
+                .build();
+            TTAdSdk.updateAdConfig(ttAdConfig);
+            result.success(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.success(false);
+        }
     }
 }

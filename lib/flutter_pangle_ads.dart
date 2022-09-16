@@ -172,4 +172,15 @@ class FlutterPangleAds {
       hanleAdEvent(data, onAdEventListener);
     });
   }
+
+  /// 设置个性化推荐
+  /// @params personalAdsType,不传或传空或传非01值没任何影响,默认不屏蔽, 0屏蔽个性化推荐广告, 1不屏蔽个性化推荐广告
+  static setUserExtData({required String personalAdsType}) async {
+    await _methodChannel.invokeMethod(
+      'setUserExtData',
+      {
+        'personalAdsType': personalAdsType,
+      },
+    );
+  }
 }
