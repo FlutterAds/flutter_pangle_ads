@@ -12,10 +12,12 @@ import com.zero.flutter_pangle_ads.load.FeedAdLoad;
 import com.zero.flutter_pangle_ads.load.FeedAdManager;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
-import com.zero.flutter_pangle_ads.page.InterstitialPage;
 import com.zero.flutter_pangle_ads.page.NativeViewFactory;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 import com.zero.flutter_pangle_ads.utils.DataUtils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,8 +85,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             initAd(call, result);
         } else if ("showSplashAd".equals(method)) {
             showSplashAd(call, result);
-        } else if ("showInterstitialAd".equals(method)) {
-            showInterstitialAd(call, result);
         } else if ("showRewardVideoAd".equals(method)) {
             showRewardVideoAd(call, result);
         } else if ("showFullScreenVideoAd".equals(method)) {
@@ -93,6 +93,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             loadFeedAd(call, result);
         } else if ("clearFeedAd".equals(method)) {
             clearFeedAd(call, result);
+        } else if ("setUserExtData".equals(method)) {
+            setUserExtData(call, result);
         } else {
             result.notImplemented();
         }
@@ -230,18 +232,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     }
 
     /**
-     * 显示插屏广告
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void showInterstitialAd(MethodCall call, MethodChannel.Result result) {
-        InterstitialPage adPage = new InterstitialPage();
-        adPage.showAd(activity, call);
-        result.success(true);
-    }
-
-    /**
      * 显示激励视频广告
      *
      * @param call   MethodCall
@@ -291,5 +281,32 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         }
         result.success(true);
 
+    }
+
+    /**
+     * 个性化推荐广告开关
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void setUserExtData(MethodCall call, MethodChannel.Result result) {
+        try {
+            String personalTypeValue = call.argument("personalAdsType");
+
+            JSONArray jsonArray = new JSONArray();
+            JSONObject personalObject = new JSONObject();
+            personalObject.put("name", "personal_ads_type");
+            personalObject.put("value", personalTypeValue);
+            jsonArray.put(personalObject);
+
+            TTAdConfig ttAdConfig = new TTAdConfig.Builder()
+                    .data(jsonArray.toString())
+                    .build();
+            TTAdSdk.updateAdConfig(ttAdConfig);
+            result.success(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.success(false);
+        }
     }
 }

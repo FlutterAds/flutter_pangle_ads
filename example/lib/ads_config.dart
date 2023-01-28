@@ -26,9 +26,6 @@ class AdsConfig {
   /// 获取开屏广告位id
   static String get splashId => '887870893';
 
-  /// 获取插屏广告位id
-  static String get interstitialId => '949641653';
-
   /// 获取新插屏广告位id
   static String get newInterstitialId => '949641653';
 

@@ -81,26 +81,6 @@ class FlutterPangleAds {
     return result;
   }
 
-  /// 展示插屏广告
-  /// [posId] 广告位 id
-  /// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
-  /// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
-  static Future<bool> showInterstitialAd(
-    String posId, {
-    int width = 300,
-    int height = 300,
-  }) async {
-    final bool result = await _methodChannel.invokeMethod(
-      'showInterstitialAd',
-      {
-        'posId': posId,
-        'width': width,
-        'height': height,
-      },
-    );
-    return result;
-  }
-
   /// 展示激励视频广告
   /// [posId] 广告位 id
   /// [customData] 设置服务端验证的自定义信息
@@ -171,5 +151,16 @@ class FlutterPangleAds {
     _eventChannel.receiveBroadcastStream().listen((data) {
       hanleAdEvent(data, onAdEventListener);
     });
+  }
+
+  /// 设置个性化推荐
+  /// @params personalAdsType,不传或传空或传非01值没任何影响,默认不屏蔽, 0屏蔽个性化推荐广告, 1不屏蔽个性化推荐广告
+  static setUserExtData({required String personalAdsType}) async {
+    await _methodChannel.invokeMethod(
+      'setUserExtData',
+      {
+        'personalAdsType': personalAdsType,
+      },
+    );
   }
 }
