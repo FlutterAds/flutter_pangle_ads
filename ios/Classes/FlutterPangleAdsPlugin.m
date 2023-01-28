@@ -36,8 +36,6 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
         [self initAd:call result:result];
     }else if([@"showSplashAd" isEqualToString:methodStr]) {
         [self showSplashAd:call result:result];
-    }else if ([@"showInterstitialAd" isEqualToString:methodStr]){
-        [self showInterstitialAd:call result:result];
     }else if ([@"showRewardVideoAd" isEqualToString:methodStr]){
         [self showRewardVideoAd:call result:result];
     }else if ([@"showFullScreenVideoAd" isEqualToString:methodStr]){
@@ -81,13 +79,6 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
 - (void) showSplashAd:(FlutterMethodCall*) call result:(FlutterResult) result{
     self.sad=[[SplashPage alloc] init];
     [self.sad showAd:call eventSink:self.eventSink];
-    result(@(YES));
-}
-
-// 显示插屏广告
-- (void) showInterstitialAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    self.iad=[[InterstitialPage alloc] init];
-    [self.iad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 

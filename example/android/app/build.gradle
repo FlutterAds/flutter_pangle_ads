@@ -52,6 +52,6 @@ flutter {
 
 dependencies {
     // 广告 SDK
-//    implementation 'com.pangle.cn:ads-sdk-pro:4.7.0.8'
+//    implementation 'com.pangle.cn:ads-sdk-pro:5.1.0.2'
 //    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }

@@ -36,7 +36,6 @@
     // 广告区域大小
     CGSize adSize = CGSizeMake(width,adHeight);
     // 广告数据构建
-    
     self.splashAd=[[BUSplashAd alloc] initWithSlotID:self.posId adSize:adSize];
     self.splashAd.tolerateTimeout=self.timeout;
     self.splashAd.delegate=self;

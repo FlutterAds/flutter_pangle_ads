@@ -16,7 +16,7 @@ FlutterAds 致力于构建优质的 Flutter 广告插件
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Ads-CN', '>=4.7.0.8' #SDK版本 >=3.4.0.0
+  s.dependency 'Ads-CN', '>=5.0.0.5' #SDK版本 >=5.0.0.5
   s.platform = :ios, '9.0'
   s.static_framework = true
 
