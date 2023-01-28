@@ -12,7 +12,6 @@ import com.zero.flutter_pangle_ads.load.FeedAdLoad;
 import com.zero.flutter_pangle_ads.load.FeedAdManager;
 import com.zero.flutter_pangle_ads.page.AdSplashActivity;
 import com.zero.flutter_pangle_ads.page.FullScreenVideoPage;
-import com.zero.flutter_pangle_ads.page.InterstitialPage;
 import com.zero.flutter_pangle_ads.page.NativeViewFactory;
 import com.zero.flutter_pangle_ads.page.RewardVideoPage;
 import com.zero.flutter_pangle_ads.utils.DataUtils;
@@ -86,8 +85,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             initAd(call, result);
         } else if ("showSplashAd".equals(method)) {
             showSplashAd(call, result);
-        } else if ("showInterstitialAd".equals(method)) {
-            showInterstitialAd(call, result);
         } else if ("showRewardVideoAd".equals(method)) {
             showRewardVideoAd(call, result);
         } else if ("showFullScreenVideoAd".equals(method)) {
@@ -235,18 +232,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     }
 
     /**
-     * 显示插屏广告
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void showInterstitialAd(MethodCall call, MethodChannel.Result result) {
-        InterstitialPage adPage = new InterstitialPage();
-        adPage.showAd(activity, call);
-        result.success(true);
-    }
-
-    /**
      * 显示激励视频广告
      *
      * @param call   MethodCall
@@ -313,10 +298,10 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             personalObject.put("name", "personal_ads_type");
             personalObject.put("value", personalTypeValue);
             jsonArray.put(personalObject);
-            
+
             TTAdConfig ttAdConfig = new TTAdConfig.Builder()
-                .data(jsonArray.toString())
-                .build();
+                    .data(jsonArray.toString())
+                    .build();
             TTAdSdk.updateAdConfig(ttAdConfig);
             result.success(true);
         } catch (Exception e) {

@@ -137,20 +137,6 @@ class _HomePageState extends State<HomePage> {
                   height: 50,
                   autoClose: false,
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('展示全屏视频广告（已过时）'),
-                  onPressed: () {
-                    showFullScreenVideoAd(AdsConfig.fullScreenVideoId);
-                  },
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('展示插屏广告（已过时）'),
-                  onPressed: () {
-                    showInterstitialAd();
-                  },
-                ),
               ],
             ),
           ),
@@ -236,21 +222,6 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (e) {
       _result = "展示开屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
-  }
-
-  /// 展示插屏广告
-  Future<void> showInterstitialAd() async {
-    try {
-      bool result = await FlutterPangleAds.showInterstitialAd(
-        AdsConfig.interstitialId,
-        width: 300,
-        height: 300,
-      );
-      _result = "展示插屏广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result = "展示插屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
   }
 
   /// 展示激励视频广告

@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'ads_config.dart';
 
@@ -16,7 +16,7 @@ void main() {
         return true;
       } else if (method == 'showSplashAd') {
         return true;
-      } else if (method == 'showInterstitialAd') {
+      } else if (method == 'showFullScreenVideoAd') {
         return true;
       } else if (method == 'showRewardVideoAd') {
         return true;
@@ -56,16 +56,14 @@ void main() {
     );
   });
 
-  test('showInterstitialAd', () async {
+  test('showFullScreenVideoAd', () async {
     expect(
-      await FlutterPangleAds.showInterstitialAd(AdsConfig.interstitialId),
+      await FlutterPangleAds.showFullScreenVideoAd(AdsConfig.newInterstitialId),
       true,
     );
     expect(
-      await FlutterPangleAds.showInterstitialAd(
-        AdsConfig.interstitialId,
-        width: 600,
-        height: 600,
+      await FlutterPangleAds.showFullScreenVideoAd(
+        AdsConfig.newInterstitialId2,
       ),
       true,
     );
@@ -78,7 +76,7 @@ void main() {
     );
     expect(
       await FlutterPangleAds.showRewardVideoAd(
-        AdsConfig.interstitialId,
+        AdsConfig.rewardVideoId,
         customData: 'FlutterAds',
         userId: '1024',
       ),
