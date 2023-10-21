@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
-import 'package:flutter_pangle_ads_example/feed_page.dart';
+import 'feed_page.dart';
 
-import 'ads_config.dart';
+import '../ads_config.dart';
 
 // 结果信息
 String _result = '';
