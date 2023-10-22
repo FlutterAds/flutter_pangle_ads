@@ -10,6 +10,7 @@ import 'package:flutter_pangle_ads_example/theme/style.dart';
 import 'feed_page.dart';
 
 import '../ads_config.dart';
+import 'fullscreen_video_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -56,15 +57,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 kDivider,
                 ListTile(
-                  title: Text('新插屏视频广告'),
-                  onTap: () =>
-                      showFullScreenVideoAd(AdsConfig.newInterstitialId),
-                ),
-                kDivider,
-                ListTile(
-                  title: Text('新插屏（半屏）广告'),
-                  onTap: () =>
-                      showFullScreenVideoAd(AdsConfig.newInterstitialId2),
+                  title: Text('新插屏广告'),
+                  onTap: () => pushPage(context, FullScreenVideoPage()),
                 ),
                 kDivider,
                 ListTile(
@@ -142,20 +136,6 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (e) {
       _result =
           "展示激励视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-  }
-
-  /// 展示全屏视频广告
-  Future<void> showFullScreenVideoAd(String posId) async {
-    try {
-      bool result = await FlutterPangleAds.showFullScreenVideoAd(
-        posId,
-      );
-      _result = "展示全屏视频广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示全屏视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
     setState(() {});
   }

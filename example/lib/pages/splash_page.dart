@@ -4,6 +4,7 @@ import 'package:flutter_pangle_ads_example/theme/style.dart';
 
 import '../ads_config.dart';
 
+// 开屏
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
