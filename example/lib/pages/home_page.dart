@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
+import 'package:flutter_pangle_ads_example/pages/banner_page.dart';
+import 'package:flutter_pangle_ads_example/router/router.dart';
 import 'package:flutter_pangle_ads_example/theme/style.dart';
 import 'feed_page.dart';
 
@@ -70,6 +72,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 kDivider,
                 ListTile(
+                  title: Text('Banner 广告'),
+                  onTap: () => pushPage(context, BannerPage()),
+                ),
+                kDivider,
+                ListTile(
                   title: Text('激励视频广告'),
                   onTap: () => showRewardVideoAd(),
                 ),
@@ -88,25 +95,6 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => FeedPage(),
                         ));
                   },
-                ),
-                SizedBox(height: 20),
-                AdBannerWidget(
-                  posId: AdsConfig.bannerId,
-                ),
-                SizedBox(height: 10),
-                AdBannerWidget(
-                  posId: AdsConfig.bannerId01,
-                  width: 300,
-                  height: 75,
-                  interval: 30,
-                  show: true,
-                ),
-                SizedBox(height: 10),
-                AdBannerWidget(
-                  posId: AdsConfig.bannerId02,
-                  width: 320,
-                  height: 50,
-                  autoClose: false,
                 ),
               ],
             ),
