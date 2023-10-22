@@ -8,7 +8,7 @@
 #import "BaseAdPage.h"
 // 广告激励事件
 @interface AdRewardEvent : AdEvent
-// 错误码
+// 激励类型
 @property (nonatomic,assign) NSInteger rewardType;
 // 奖励是否有效
 @property BOOL rewardVerify;

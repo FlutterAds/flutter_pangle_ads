@@ -183,7 +183,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 .debug(BuildConfig.DEBUG) //测试阶段打开，可以通过日志排查问题，上线时去除该调用
                 .supportMultiProcess(supportMultiProcess)//是否支持多进程
                 .directDownloadNetworkType(directDownloadNetworkTypeList)// 直接下载的网络方式
-                .needClearTaskReset()
                 .build();
         // 初始化 SDK
         TTAdSdk.init(activity.getApplicationContext(), config, new TTAdSdk.InitCallback() {

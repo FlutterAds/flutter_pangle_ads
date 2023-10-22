@@ -3,6 +3,8 @@ import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 import 'package:flutter_pangle_ads_example/ads_config.dart';
 import 'package:loadany/loadany.dart';
 
+import '../widgets/widgets.dart';
+
 /// 信息流页面
 class FeedPage extends StatefulWidget {
   FeedPage({Key? key}) : super(key: key);
@@ -32,9 +34,7 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('信息流（FlutterAds）'),
-      ),
+      appBar: buildAppBar(context, '信息流广告'),
       body: LoadAny(
         onLoadMore: () async {
           getFeedList();
