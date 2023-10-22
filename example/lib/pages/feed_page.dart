@@ -45,9 +45,8 @@ class _FeedPageState extends State<FeedPage> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  if (index % 10 == 4) {
-                    int adIndex = index ~/ 10;
-                    print('adIndex:$adIndex');
+                  if (index % 5 == 4) {
+                    int adIndex = index ~/ 5;
                     if (adIndex >= feedAdList.length) {
                       return Container(
                         height: 80,
@@ -92,10 +91,8 @@ class _FeedPageState extends State<FeedPage> {
   // 加载信息流广告
   Future<void> getFeedAdList() async {
     try {
-      int feedIdIndex = feedAdList.length ~/ 3 % AdsConfig.feedIdList.length;
-      print('feedIdIndex:$feedIdIndex');
       List<int> adResultList = await FlutterPangleAds.loadFeedAd(
-        AdsConfig.feedIdList[feedIdIndex],
+        AdsConfig.feedId,
         count: 3,
       );
       feedAdList.addAll(adResultList);

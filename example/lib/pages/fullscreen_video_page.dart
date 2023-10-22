@@ -21,13 +21,13 @@ class _FullScreenVideoPageState extends State<FullScreenVideoPage> {
       body: Column(
         children: [
           ListTile(
-            title: Text('新插屏-全屏'),
-            onTap: () => showFullScreenVideoAd(AdsConfig.newInterstitialId),
+            title: Text('新插屏-半屏'),
+            onTap: () => showFullScreenVideoAd(AdsConfig.newInterstitialId2),
           ),
           kDivider,
           ListTile(
-            title: Text('新插屏-半屏'),
-            onTap: () => showFullScreenVideoAd(AdsConfig.newInterstitialId2),
+            title: Text('新插屏-全屏'),
+            onTap: () => showFullScreenVideoAd(AdsConfig.newInterstitialId),
           ),
           kDivider,
         ],
