@@ -31,7 +31,7 @@
 ## 📣 请升级到 GroMore
 
 - 因穿山甲官方已全面推 Gromore 融合 SDK，后续本插件也将只做小更新，推荐使用 [Gromore](https://flutterads.github.io/site/)
-- 为了让您的广告收益更好，推荐使用【[Gromore](https://flutterads.github.io/site/)】
+- 【[Gromore](https://flutterads.github.io/site/)】可进行多家广告瀑布流竞价，让您拥有更高的广告收益
 
 [![](https://raw.githubusercontent.com/FlutterAds/.github/main/gromore_pro_site.png)](https://flutterads.github.io/site/)
 
