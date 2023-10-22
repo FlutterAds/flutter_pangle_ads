@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 import 'package:flutter_pangle_ads_example/pages/banner_page.dart';
+import 'package:flutter_pangle_ads_example/pages/splash_page.dart';
 import 'package:flutter_pangle_ads_example/router/router.dart';
 import 'package:flutter_pangle_ads_example/theme/style.dart';
 import 'feed_page.dart';
@@ -50,13 +51,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 kDivider,
                 ListTile(
-                  title: Text('开屏广告（Logo2）'),
-                  onTap: () => showSplashAd(AdsConfig.logo2),
-                ),
-                kDivider,
-                ListTile(
-                  title: Text('开屏广告（全屏）'),
-                  onTap: () => showSplashAd(),
+                  title: Text('开屏广告'),
+                  onTap: () => pushPage(context, SplashPage()),
                 ),
                 kDivider,
                 ListTile(
@@ -116,21 +112,6 @@ class _HomePageState extends State<HomePage> {
     bool result = await FlutterPangleAds.requestPermissionIfNecessary;
     _adEvent = '请求相关权限:$result';
     setState(() {});
-  }
-
-  /// 展示开屏广告
-  /// [logo] 展示如果传递则展示logo，不传递不展示
-  Future<void> showSplashAd([String? logo]) async {
-    try {
-      bool result = await FlutterPangleAds.showSplashAd(
-        AdsConfig.splashId,
-        logo: logo,
-        timeout: 3.5,
-      );
-      _result = "展示开屏广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result = "展示开屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
   }
 
   /// 展示激励视频广告
