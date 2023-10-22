@@ -8,7 +8,7 @@ AppBar buildAppBar(BuildContext context, String title) {
     actions: [
       // 去 Pro 页面
       IconButton(
-        icon: Icon(Icons.shopping_cart),
+        icon: Image.asset('images/pro.png'),
         onPressed: () => pushProPage(context),
       ),
     ],
