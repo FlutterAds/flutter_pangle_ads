@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 
 import '../ads_config.dart';
+import '../widgets/widgets.dart';
 
 class BannerPage extends StatefulWidget {
   const BannerPage({Key? key}) : super(key: key);
@@ -14,9 +15,7 @@ class _BannerPageState extends State<BannerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Banner广告(FlutterAds)'),
-      ),
+      appBar: buildAppBar(context, 'Banner广告'),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.max,

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 import 'package:flutter_pangle_ads_example/pages/banner_page.dart';
 import 'package:flutter_pangle_ads_example/pages/splash_page.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_pangle_ads_example/router/router.dart';
 import 'package:flutter_pangle_ads_example/theme/style.dart';
 import 'feed_page.dart';
 
-import '../ads_config.dart';
 import 'fullscreen_video_page.dart';
 import 'reward_video_page.dart';
 
@@ -19,9 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _result = '';
-  String _adEvent = '';
-
   @override
   void initState() {
     super.initState();
@@ -38,7 +33,13 @@ class _HomePageState extends State<HomePage> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: 20),
+                InkWell(
+                  child: Image.asset(
+                    'images/gromore_pro.png',
+                    width: double.maxFinite,
+                  ),
+                  onTap: () => pushProPage(context),
+                ),
                 kDivider,
                 ListTile(
                   dense: true,
@@ -88,14 +89,12 @@ class _HomePageState extends State<HomePage> {
   /// 请求应用跟踪透明度授权
   Future<void> requestIDFA() async {
     bool result = await FlutterPangleAds.requestIDFA;
-    _adEvent = '请求广告标识符:$result';
-    setState(() {});
+    print('请求广告标识符:$result');
   }
 
   /// 请求应用跟踪透明度授权
   Future<void> requestPermissionIfNecessary() async {
     bool result = await FlutterPangleAds.requestPermissionIfNecessary;
-    _adEvent = '请求相关权限:$result';
-    setState(() {});
+    print('请求相关权限:$result');
   }
 }

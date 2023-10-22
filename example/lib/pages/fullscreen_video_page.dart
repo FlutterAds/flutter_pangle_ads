@@ -3,6 +3,7 @@ import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 import 'package:flutter_pangle_ads_example/theme/style.dart';
 
 import '../ads_config.dart';
+import '../widgets/widgets.dart';
 
 // 全屏视频
 class FullScreenVideoPage extends StatefulWidget {
@@ -16,9 +17,7 @@ class _FullScreenVideoPageState extends State<FullScreenVideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('插屏广告(FlutterAds)'),
-      ),
+      appBar: buildAppBar(context, '插屏广告'),
       body: Column(
         children: [
           ListTile(

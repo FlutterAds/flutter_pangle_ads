@@ -3,6 +3,7 @@ import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
 
 import '../ads_config.dart';
 import '../theme/style.dart';
+import '../widgets/widgets.dart';
 
 // 激励视频
 class RewardVideoPage extends StatefulWidget {
@@ -16,9 +17,7 @@ class _RewardVideoPageState extends State<RewardVideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('激励视频(FlutterAds)'),
-      ),
+      appBar: buildAppBar(context, '激励视频'),
       body: Column(
         children: [
           ListTile(
