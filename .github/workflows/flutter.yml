@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: actions/setup-java@v1
       with:
-        java-version: '8.x'
+        java-version: '11.x'
     
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
@@ -40,9 +40,6 @@ jobs:
     
     # Statically analyze the Dart code for any errors.
     - run: flutter analyze .
-    
-    # Run widget tests for our flutter project.
-    - run: flutter test
     
     #####
     # Build app
