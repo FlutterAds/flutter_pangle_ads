@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（字节跳动、巨量引擎、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.8.0-success></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.9.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg"></a>
 <a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
@@ -27,8 +27,14 @@
   - ✅ 进阶激励
 - ✅ Banner
 - ✅ 信息流
-- ✅ 全屏视频（已废弃）
-- 🔲 Draw 贴片视频
+
+## 📣 请升级到 GroMore
+
+- 因穿山甲官方已全面推 Gromore 融合 SDK，后续本插件也将只做小更新，推荐使用 [Gromore](https://flutterads.github.io/site/)
+- 为了让您的广告收益更好，推荐使用【[Gromore](https://flutterads.github.io/site/)】
+
+[![](https://raw.githubusercontent.com/FlutterAds/.github/main/gromore_pro_site.png)](https://flutterads.github.io/site/)
+
 
 ## 下载体验
 <a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
@@ -40,7 +46,7 @@
 
 ``` Dart
 dependencies:
-  flutter_pangle_ads: ^2.8.0
+  flutter_pangle_ads: ^2.9.0
 ```
 ### 初始化广告
 
