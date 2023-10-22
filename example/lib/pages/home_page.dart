@@ -11,6 +11,7 @@ import 'feed_page.dart';
 
 import '../ads_config.dart';
 import 'fullscreen_video_page.dart';
+import 'reward_video_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -68,24 +69,14 @@ class _HomePageState extends State<HomePage> {
                 kDivider,
                 ListTile(
                   title: Text('激励视频广告'),
-                  onTap: () => showRewardVideoAd(),
-                ),
-                kDivider,
-                ListTile(
-                  title: Text('激励视频广告（进阶）'),
-                  onTap: () => showRewardVideoAd2(),
+                  onTap: () => pushPage(context, RewardVideoPage()),
                 ),
                 kDivider,
                 ListTile(
                   title: Text('信息流'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FeedPage(),
-                        ));
-                  },
+                  onTap: () => pushPage(context, FeedPage()),
                 ),
+                kDivider,
               ],
             ),
           ),
@@ -105,38 +96,6 @@ class _HomePageState extends State<HomePage> {
   Future<void> requestPermissionIfNecessary() async {
     bool result = await FlutterPangleAds.requestPermissionIfNecessary;
     _adEvent = '请求相关权限:$result';
-    setState(() {});
-  }
-
-  /// 展示激励视频广告
-  Future<void> showRewardVideoAd() async {
-    try {
-      bool result = await FlutterPangleAds.showRewardVideoAd(
-        AdsConfig.rewardVideoId,
-        customData: 'customData',
-        userId: 'userId',
-      );
-      _result = "展示激励视频广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示激励视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-  }
-
-  /// 展示激励视频广告（进阶）
-  Future<void> showRewardVideoAd2() async {
-    try {
-      bool result = await FlutterPangleAds.showRewardVideoAd(
-        AdsConfig.rewardInteractVideoId,
-        customData: 'customData',
-        userId: 'userId',
-      );
-      _result = "展示激励视频广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示激励视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
     setState(() {});
   }
 }
