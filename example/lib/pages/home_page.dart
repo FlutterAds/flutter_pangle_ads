@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
+import 'package:flutter_pangle_ads_example/theme/style.dart';
 import 'feed_page.dart';
 
 import '../ads_config.dart';
-
-// 结果信息
-String _result = '';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,17 +14,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String _result = '';
   String _adEvent = '';
 
   @override
   void initState() {
     super.initState();
-    init().then((value) {
-      if (value) {
-        showSplashAd(AdsConfig.logo);
-      }
-    });
-    setAdEvent();
   }
 
   @override
@@ -40,77 +33,55 @@ class _HomePageState extends State<HomePage> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: 10),
-                Text('Result: $_result'),
-                SizedBox(height: 10),
-                Text('onAdEvent: $_adEvent'),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('初始化'),
-                  onPressed: () {
-                    init();
-                  },
+                kDivider,
+                ListTile(
+                  dense: true,
+                  title: Text('请求应用跟踪透明授权(iOS)'),
+                  onTap: () => requestIDFA(),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('请求应用跟踪透明度授权(仅 iOS)'),
-                  onPressed: () {
-                    requestIDFA();
-                  },
+                kDivider,
+                ListTile(
+                  dense: true,
+                  title: Text('请求相关权限（Android）'),
+                  onTap: () => requestPermissionIfNecessary(),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('动态请求相关权限（仅 Android）'),
-                  onPressed: () {
-                    requestPermissionIfNecessary();
-                  },
+                kDivider,
+                ListTile(
+                  title: Text('开屏广告（Logo2）'),
+                  onTap: () => showSplashAd(AdsConfig.logo2),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('开屏广告（Logo2）'),
-                  onPressed: () {
-                    showSplashAd(AdsConfig.logo2);
-                  },
+                kDivider,
+                ListTile(
+                  title: Text('开屏广告（全屏）'),
+                  onTap: () => showSplashAd(),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('开屏广告（全屏）'),
-                  onPressed: () {
-                    showSplashAd();
-                  },
+                kDivider,
+                ListTile(
+                  title: Text('新插屏视频广告'),
+                  onTap: () =>
+                      showFullScreenVideoAd(AdsConfig.newInterstitialId),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('新插屏视频广告'),
-                  onPressed: () {
-                    showFullScreenVideoAd(AdsConfig.newInterstitialId);
-                  },
+                kDivider,
+                ListTile(
+                  title: Text('新插屏（半屏）广告'),
+                  onTap: () =>
+                      showFullScreenVideoAd(AdsConfig.newInterstitialId2),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('新插屏（半屏）广告'),
-                  onPressed: () {
-                    showFullScreenVideoAd(AdsConfig.newInterstitialId2);
-                  },
+                kDivider,
+                ListTile(
+                  title: Text('激励视频广告'),
+                  onTap: () => showRewardVideoAd(),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('激励视频广告'),
-                  onPressed: () {
-                    showRewardVideoAd();
-                  },
+                kDivider,
+                ListTile(
+                  title: Text('激励视频广告（进阶）'),
+                  onTap: () => showRewardVideoAd2(),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('激励视频广告（进阶）'),
-                  onPressed: () {
-                    showRewardVideoAd2();
-                  },
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  child: Text('信息流'),
-                  onPressed: () {
+                kDivider,
+                ListTile(
+                  title: Text('信息流'),
+                  onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -143,56 +114,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  /// 初始化广告 SDK
-  Future<bool> init() async {
-    try {
-      bool result = await FlutterPangleAds.initAd(
-        AdsConfig.appId,
-        directDownloadNetworkType: [
-          NetworkType.kNetworkStateMobile,
-          NetworkType.kNetworkStateWifi,
-        ],
-      );
-      _result = "广告SDK 初始化${result ? '成功' : '失败'}";
-
-      // 打开个性化广告推荐
-      FlutterPangleAds.setUserExtData(personalAdsType: '1');
-
-      setState(() {});
-      return result;
-    } on PlatformException catch (e) {
-      _result =
-          "广告SDK 初始化失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-    return false;
-  }
-
-  /// 设置广告监听
-  Future<void> setAdEvent() async {
-    setState(() {
-      _adEvent = '设置成功';
-    });
-    FlutterPangleAds.onEventListener((event) {
-      _adEvent = 'adId:${event.adId} action:${event.action}';
-      if (event is AdErrorEvent) {
-        // 错误事件
-        _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
-      } else if (event is AdRewardEvent) {
-        // 激励事件
-        _adEvent +=
-            ' rewardType:${event.rewardType} rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
-      }
-      // 测试关闭 Banner（会员场景）
-      if (event.action == AdEventAction.onAdClosed &&
-          event.adId == AdsConfig.bannerId02) {
-        _adEvent += '仅会员可以关闭广告';
-      }
-      print('onEventListener:$_adEvent');
-      setState(() {});
-    });
   }
 
   /// 请求应用跟踪透明度授权
