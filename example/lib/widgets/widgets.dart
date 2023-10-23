@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pangle_ads_example/router/router.dart';
+
+import '../router/router.dart';
 
 // 构建 AppBar
 AppBar buildAppBar(BuildContext context, String title) {

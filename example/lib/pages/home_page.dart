@@ -43,13 +43,13 @@ class _HomePageState extends State<HomePage> {
                 kDivider,
                 ListTile(
                   dense: true,
-                  title: Text('请求应用跟踪透明授权(iOS)'),
+                  title: Text('📢 请求应用跟踪透明授权(iOS)'),
                   onTap: () => requestIDFA(),
                 ),
                 kDivider,
                 ListTile(
                   dense: true,
-                  title: Text('请求相关权限（Android）'),
+                  title: Text('📱 请求相关权限（Android）'),
                   onTap: () => requestPermissionIfNecessary(),
                 ),
                 kDivider,
@@ -66,6 +66,12 @@ class _HomePageState extends State<HomePage> {
                 ListTile(
                   title: Text('Banner 广告'),
                   onTap: () => pushPage(context, BannerPage()),
+                ),
+                kDivider,
+                ListTile(
+                  dense: true,
+                  title: Text('🚀 GroMore Pro 版'),
+                  onTap: () => pushProPage(context),
                 ),
                 kDivider,
                 ListTile(
