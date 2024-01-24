@@ -295,29 +295,6 @@ pod repo update
 pod install
 ```
 
-## 分支说明
-|分支|说明|
-|-|-|
-|develop|开发分支，接受 PR|
-|master|稳定分支，空安全|
-|1x|已不更新，非空安全|
-
-## 更新日志
-[查看 Releases 版本日志](https://github.com/FlutterAds/flutter_pangle_ads/releases)
-
-## 遇到问题
-如果你遇到问题请提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues) 给我（提问前建议先搜索尝试，没有再提问）
-
-## 支持开源
-
-- 开源不易，需要花费大量休息时间加班熬夜来维护，你可以通过下方二维码赞赏支持我。
-
-<a href="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
-    <img width="300" alt="coffee" src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
-</a>
-
-- 用爱发电，给本项目点个免费的 [Star](https://github.com/FlutterAds/flutter_pangle_ads) ⭐️ 也是非常好的支持。
-
 ## FlutterAds 广告插件系列
 |插件|描述|
 |-|-|
