@@ -320,8 +320,20 @@ pod install
 ## FlutterAds 广告插件系列
 |插件|描述|
 |-|-|
-|[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
-|[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、巨量引擎、穿山甲 Flutter 广告插件|
-|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、巨量引擎、穿山甲、Gromore 聚合 Flutter 广告插件|
 |[flutter_gromore_pro](https://flutterads.github.io/site/)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
+|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告开源版插件|
+|[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
+|[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
+|[flutter_adspark](https://github.com/FlutterAds/flutter_adspark)|巨量广告/穿山甲的广告监测、增长分析、归因上报、事件管理 Flutter 版插件|
 
+## 💬 App 广告变现群
+
+- 插件问题解答
+- 变现玩法交流
+- 收益提升探讨
+- 大盘趋势推送
+- 版本更新推送
+
+> 因微信群入群限制，请添加个人微信备注：`变现群`，我拉你进群。
+
+<img src="https://flutterads.github.io/site/wechat.webp" alt="wechat:toponelan" width="160"/>
