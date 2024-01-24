@@ -38,7 +38,8 @@
 
 ## 下载体验
 <a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
-> 回复 `穿山甲体验` 
+- 回复 `穿山甲体验`
+- 回复 `Pro` 体验 Pro 版 🚀
 
 ## 入门使用
 
