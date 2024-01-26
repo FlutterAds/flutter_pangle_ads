@@ -1,7 +1,8 @@
 name: flutter_pangle_ads
-description: 一款优质的 Flutter 广告插件（字节跳动、穿山甲）
+description: FlutterAds 一款优质的 Flutter 广告插件（字节跳动、穿山甲）
 version: 2.9.0
-homepage: https://github.com/FlutterAds
+homepage: https://flutterads.github.io/site/
+repository: https://github.com/FlutterAds/flutter_pangle_ads
 
 environment:
   sdk: ">=2.12.0 <4.0.0"
