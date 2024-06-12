@@ -131,7 +131,7 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CS
     }
 
     @Override
-    public void onSplashLoadSuccess() {
+    public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
         Log.d(TAG, "onSplashLoadSuccess");
         // 加载事件
         AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdLoaded));
