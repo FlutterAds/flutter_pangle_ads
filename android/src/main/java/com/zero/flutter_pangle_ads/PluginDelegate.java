@@ -185,29 +185,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 .directDownloadNetworkType(directDownloadNetworkTypeList)// 直接下载的网络方式
                 .build();
         // 初始化 SDK
-        TTAdSdk.init(activity.getApplicationContext(), config, new TTAdSdk.InitCallback() {
-            @Override
-            public void success() {
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        result.success(true);
-                    }
-                });
-            }
-
-            @Override
-            public void fail(int code, String msg) {
-                Log.e(TAG, "fail:  code = " + code + " msg = " + msg);
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        result.success(false);
-                    }
-                });
-
-            }
-        });
+        TTAdSdk.init(activity.getApplicationContext(), config);
     }
 
     /**

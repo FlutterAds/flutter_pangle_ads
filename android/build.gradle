@@ -38,6 +38,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // 广告 SDK
-    implementation 'com.pangle.cn:ads-sdk-pro:5.8.1.3'
+    implementation 'com.pangle.cn:ads-sdk-pro:6.1.0.7'
 //    compileOnly fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
