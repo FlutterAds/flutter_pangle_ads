@@ -16,7 +16,7 @@ cat CHANGELOG.md
 echo "=== End of CHANGELOG.md content ==="
 
 # 从 CHANGELOG.md 中提取对应版本的变更日志
-CHANGELOG=$(sed -n "/## $VERSION/,/^## /p" CHANGELOG.md | sed '$d')
+CHANGELOG=$(sed -n "/## $VERSION/,/^## /p" CHANGELOG.md | sed '$d' | tail -n +2)
 
 if [ -z "$CHANGELOG" ]; then
   echo "Version $VERSION not found in CHANGELOG.md"

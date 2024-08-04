@@ -1,13 +1,13 @@
 name: Publish APK
 
 on:
-#   push:
-#     branches:
+  push:
+    branches:
 #     - develop
 #     - master
-#     - 2x
-  release:
-    types: [published]
+      - 2x
+  # release:
+  #   types: [published]
 
 jobs:
   publish:
@@ -15,7 +15,7 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
