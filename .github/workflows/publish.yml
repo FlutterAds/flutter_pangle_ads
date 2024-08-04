@@ -1,10 +1,6 @@
 name: Publish
 
 on:
-#   push:
-#     branches:
-#     - develop
-#     - master
   release:
     types: [published]
 
@@ -19,7 +15,7 @@ jobs:
       - name: Publish
         uses: sakebook/actions-flutter-pub-publisher@v1.4.1
         with:
-          credential: ${{ secrets.PUB_OAUTH_ACCESS_TOKEN }}
+          credential: ${{ secrets.CREDENTIAL_JSON }}
           flutter_package: true
           skip_test: true
           dry_run: false
