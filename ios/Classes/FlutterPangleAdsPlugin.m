@@ -73,6 +73,8 @@ NSString *const kAdFeedViewId=@"flutter_pangle_ads_feed";
         NSLog(@"initAd:%@",success?@"YES":@"NO");
         result(@(success));
     }];
+    // 升级提示
+    NSLog(@"🎉🎉🎉 FlutterAds ==> 初始化完成，推荐使用 GroMore Pro 版本，获得更高的收益：https://flutterads.top/");
 }
 
 // 显示开屏广告

@@ -32,7 +32,7 @@ android {
 
     defaultConfig {
         applicationId "com.zero.flutter_pangle_ads_example"
-        minSdkVersion 19
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

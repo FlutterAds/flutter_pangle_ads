@@ -61,6 +61,8 @@ class FlutterPangleAds {
         'directDownloadNetworkType': directDownloadNetworkType,
       },
     );
+    print(
+        "🎉🎉🎉 FlutterAds ==> 初始化完成，推荐使用 GroMore Pro 版本，获得更高的收益：https://flutterads.top/");
     return result;
   }
 

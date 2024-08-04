@@ -1,318 +1,54 @@
-<p align="center">
-<a href="https://github.com/FlutterAds"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/logo/flutterads_logo.png" alt="logo" height="180"/></a>
-</p>
-<h3 align="center">一款优质的 Flutter 广告插件（字节跳动、巨量引擎、穿山甲）</h3>
+<h1 align="center">📱 Flutter Pangle Ads</h1>
+<h3 align="center">一款优质的穿山甲（字节跳动、巨量引擎）Flutter 广告插件</h3>
+<p align="center">♻️ 持续更新 ♻️</p>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_pangle_ads"><img src=https://img.shields.io/badge/pub-v2.9.0-success></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg"></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen></a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads/blob/develop/LICENSE"><img src=https://img.shields.io/badge/license-MIT-brightgreen></a>
+<a href="https://pub.dev/packages/flutter_pangle_ads">
+<img src="https://img.shields.io/pub/v/flutter_pangle_ads?logo=dart"/>
+<img src="https://img.shields.io/badge/OS-iOS%20%7C%20Android-blue?logo=preact"/>
+</a>
+<a href="https://github.com/FlutterAds/flutter_pangle_ads">
+<img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg">
+<img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen>
+</a>
+<a href="https://flutterads.top/">
+<img src="https://img.shields.io/badge/Pro-v3.5.0-success?logo=flutter&logoColor=FFD700"/>
+<a href="https://flutterads.top/">
+<img src="https://img.shields.io/badge/Site-FlutterAds-success?logo=webtrees&logoColor=FFD700"/>
+</a>
 </p>
 
-## 插件特点
-- 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
-- 📡 事件统一返回（将原生端各种重要回调事件统一返回，方便业务处理和埋点统计等需求）
-- 🎁 注重优化体验（无闪烁 Logo 开屏、iOS 开屏防止事件穿透、权限申请、隐私跟踪申请、信息流自动适配宽高等）
-- 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展新广告形式、方便开发个性化需求）
+## 🚀 核心功能
 
-## 支持功能
 - ✅ 开屏广告
-- ✅ 新插屏广告
-  - ✅ 半屏
-  - ✅ 全屏
+- ✅ 插屏广告
 - ✅ 激励视频
-  - ✅ 普通激励
-  - ✅ 进阶激励
 - ✅ Banner
 - ✅ 信息流
+- 🦥 预缓存（预加载，极速展示） [🎁 Pro 版](https://flutterads.top/)
+- 🏆 实时价格 eCPM（上报归因，买量更有效）[🎁 Pro 版](https://flutterads.top/)
+
+## 📃 接入文档
+
+- [ 🎯 极速接入、快速体验、持续更新](https://github.com/FlutterAds/flutter_pangle_ads/wiki)
+
+- [ 💰 变现套件 = 【GroMore】+【AdSpark】+【AdContent】](https://flutterads.top/)
+
 
 ## 📣 请升级到 GroMore
 
-- 因穿山甲官方已全面推 Gromore 融合 SDK，后续本插件也将只做小更新，推荐使用 [Gromore](https://flutterads.github.io/site/)
-- 【[Gromore](https://flutterads.github.io/site/)】可进行多家广告瀑布流竞价，让您拥有更高的广告收益
+- 因穿山甲官方已全面推 Gromore 融合 SDK，后续本插件也将只做小更新，推荐使用 [Gromore](https://flutterads.top/)
+- 【[Gromore](https://flutterads.top/)】可进行多家广告瀑布流竞价，让您拥有更高的广告收益
 
-[![](https://raw.githubusercontent.com/FlutterAds/.github/main/gromore_pro_site.png)](https://flutterads.github.io/site/)
-
-
-## 下载体验
-<a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
-- 回复 `穿山甲体验`
-- 回复 `Pro` 体验 Pro 版 🚀
-
-## 入门使用
-
-### 引入依赖
-
-``` Dart
-dependencies:
-  flutter_pangle_ads: ^2.9.0
-```
-### 初始化广告
-
-``` Dart
-// 导包
-import 'package:flutter_pangle_ads/flutter_pangle_ads.dart';
-/// [appId] 应用ID
-FlutterPangleAds.initAd(appId);
-```
-
-### 个性化广告开关
-
-```dart
-/// 不调用默认为开，'1'打开，'0'关闭
-FlutterPangleAds.setUserExtData(personalAdsType: '1');
-```
-
-### 开屏广告
-
-- 全屏
-``` Dart
-/// [posId] 广告位 id
-FlutterPangleAds.showSplashAd(posId);
-```
-
-- 半屏广告 + Logo
-- [Logo 设置的最佳实践](https://github.com/FlutterAds/flutter_qq_ads/blob/develop/doc/SETTING_LOGO.md)
-
-``` Dart
-/// [posId] 广告位 id
-/// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
-/// [timeout] 加载超时时间
-FlutterPangleAds.showSplashAd(
-  posId,
-  logo: 'flutterads_logo',
-  timeout: 3.5,
-);
-```
-
-### 新插屏广告
-``` Dart
-/// [posId] 广告位 id
-FlutterPangleAds.showFullScreenVideoAd(AdsConfig.newInterstitialId);
-```
-
-### 激励视频
-``` Dart
-/// [posId] 广告位 id
-/// [customData] 设置服务端验证的自定义信息
-/// [userId] 设置服务端验证的用户信息
-FlutterPangleAds.showRewardVideoAd(
-    AdsConfig.rewardVideoId,
-    customData: 'customData',
-    userId: 'userId',
-);
-```
-
-### Banner
-``` Dart
-/// [posId] 广告位 id
-/// [width] 创建 Banner 广告位时选择的宽度，默认值是 300
-/// [height] 创建 Banner 广告位时选择的高度，默认值是 150
-/// [interval] 广告轮播间隔，0 或[30~120]之间的数字，单位为 s,默认为 0 不轮播
-/// [show] 是否显示广告
-/// [autoClose] 是否自动关闭，一般是在用户点击不感兴趣之后的操作
-AdBannerWidget(
-  posId: AdsConfig.bannerId,
-  width: 300,
-  height: 150,
-  interval: 30,
-  show: true,
-  autoClose: true,
-);
-```
-
-Banner 广告外部需要嵌套一个带有约束布局的 Widget，如：`AspectRatio、SizedBox、Container` 等，示例如下：
-
-- 嵌套 `SizedBox` (推荐)
-
-``` Dart
-SizedBox(
-  width: 300,
-  height: 150,
-  child: AdBannerWidget(
-    posId: AdsConfig.bannerId,
-    width: 300,
-    height: 150,
-    interval: 30,
-    show: true,
-  ),
-)
-```
-
-### 信息流
-- 获取信息流广告列表
-``` Dart
-/// [posId] 广告位 id
-/// [width] 宽度
-/// [height] 高度
-/// [count] 获取广告数量，建议 1~3 个
-List<int> feedAdList = await FlutterPangleAds.loadFeedAd(
-    AdsConfig.feedId,
-    width: 375,
-    height: 128,
-    count: 3,
-  );
-```
-- 清除信息流广告列表
-
-> 当你的广告不再需要时，请一定执行清除操作
-``` Dart
-/// [list] 信息流广告 id 列表
-bool result = await FlutterPangleAds.clearFeedAd(feedAdList);
-```
-- 页面中展示信息流广告
-``` Dart
-/// Feed 信息流广告组件
-/// [posId]返回的广告 id，这里不是广告位id
-/// [width]组件的宽度
-/// [height]组件的高度
-/// [show]是否显示
-AdFeedWidget(
-    posId: '${feedAdList[0]}',
-    width: 375,
-    height: 128,
-    show: true,
-  )
-```
-> `width` 和 `height` 需要根据你新建广告位的模板来设置
-
-### 旧插屏广告（已废弃）
-> 建议使用新插屏
-
-``` Dart
-/// [posId] 广告位 id
-/// [width] 请求模板广告素材的尺寸宽度（对应 expressViewWidth 参数）
-/// [height] 请求模板广告素材的尺寸高度（对应 expressViewWidth 参数）
-FlutterPangleAds.showInterstitialAd(
-    AdsConfig.interstitialId,
-    width: 300,
-    height: 300,
-);
-```
+[![](https://raw.githubusercontent.com/FlutterAds/.github/main/gromore_pro_site.png)](https://flutterads.top/)
 
 
-### 设置广告事件监听
-
-``` Dart
-FlutterPangleAds.onEventListener((event) {
-  // 普通广告事件
-  String _adEvent = 'adId:${event.adId} action:${event.action}';
-  if (event is AdErrorEvent) {
-    // 错误事件
-    _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
-  } else if (event is AdRewardEvent) {
-    // 激励事件
-        _adEvent +=
-            'rewardType:${event.rewardType} rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
-  }
-  // 测试关闭 Banner（会员场景）
-  if (event.action == AdEventAction.onAdClosed &&
-      event.adId == AdsConfig.bannerId02) {
-    _adEvent += '仅会员可以关闭广告';
-  }
-  print('onEventListener:$_adEvent');
-});
-```
-### 事件列表
-|事件|说明|
-|-|-|
-|onAdLoaded|广告加载成功|
-|onAdPresent|广告填充|
-|onAdExposure|广告曝光|
-|onAdClosed|广告关闭（开屏计时结束或者用户点击关闭）|
-|onAdClicked|广告点击|
-|onAdSkip|广告跳过|
-|onAdComplete|广告播放或计时完毕|
-|onAdError|广告错误|
-|onAdReward|获得广告激励|
-
-> 这里做了统一的抽象，iOS 和 Android 原生 SDK 名称不同，如果觉得对应不上，可以提 [Issues](https://github.com/FlutterAds/flutter_pangle_ads/issues)（一定要加上 log 截图）
-
-## 其他配置
-### 信任HTTP请求（仅 iOS）
-苹果公司在iOS9中升级了应用网络通信安全策略，默认推荐开发者使用HTTPS协议来进行网络通信，并限制HTTP协议的请求。为了避免出现无法拉取到广告的情况，我们推荐开发者在info.plist文件中增加如下配置来实现广告的网络访问
-- 修改 `info.plist`
-``` xml
-<key>NSAppTransportSecurity</key>
-<dict>
-  <key>NSAllowsArbitraryLoads</key>
-  <true/>
-</dict>
-```
-![信任HTTP请求](https://raw.githubusercontent.com/FlutterAds/site/master/docs/images/02_AppTransportSecurity.png)
-
-### 请求应用跟踪透明度授权（仅 iOS）
-此步骤必须要做，不然上架审核时候会被拒绝
-``` Dart
-bool result = await FlutterPangleAds.requestIDFA;
-```
-- 修改 `info.plist`
-``` xml
-<key>NSUserTrackingUsageDescription</key>
-<string>为了向您提供更优质、安全的个性化服务及内容，需要您允许使用相关权限</string>
-```
-![请求应用跟踪透明度授权](https://raw.githubusercontent.com/FlutterAds/site/master/docs/images/01_TrackingUsageDescription.png)
-
-- 效果
-
-![预览效果](https://raw.githubusercontent.com/FlutterAds/site/master/docs/images/03_RequestTracking.png)
-
-- [官方参考链接 - 用户隐私和数据使用](https://developer.apple.com/cn/app-store/user-privacy-and-data-use/)
-
-### 动态请求权限（仅 Android）
-
-``` Dart
-bool result = await FlutterPangleAds.requestPermissionIfNecessary;
-```
-
-## 原生 SDK 版本更新方法
-如果是大版本，我会第一时间适配更新，小版本可以自己更新，方法如下：
-- Android
-
-  方法1：可以给我提 Issues 提示我更新，此插件版本号 `x.y.z`，会更新 `z` 版本迭代
-  
-  方法2：可以自己指定版本，方法如下:
-```shell
-// build.gradle(android.app)
-android{
-  configurations.all {
-      resolutionStrategy {
-          force 'com.pangle.cn:ads-sdk-pro:版本号'
-      }
-  }
-}
-```
-- iOS
-
-  自己手动更新，自己的项目根目录下执行即可
-```shell
-// 可在 ios/Podfile.lock 中查看 SDK 当前版本
-cd ios
-rm -rf Podfile.lock
-pod repo update
-pod install
-```
-
-## FlutterAds 广告插件系列
+## 📌 广告系列插件（FlutterAds）
 |插件|描述|
 |-|-|
-|[flutter_gromore_pro](https://flutterads.github.io/site/)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
+|[flutter_gromore_pro](https://flutterads.top/)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
 |[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告开源版插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_adspark](https://github.com/FlutterAds/flutter_adspark)|巨量广告/穿山甲的广告监测、增长分析、归因上报、事件管理 Flutter 版插件|
-|[flutter_adcontent](https://github.com/FlutterAds/flutter_adcontent)|穿山甲内容输出，支持「短剧」和「小视频」的 Flutter 版插件|
-
-## 💬 App 广告变现群
-
-- 插件问题解答
-- 变现玩法交流
-- 收益提升探讨
-- 大盘趋势推送
-- 版本更新推送
-
-> 因微信群入群限制，请添加个人微信备注：`变现群`，我拉你进群。
-
-<img src="https://flutterads.github.io/site/wechat.webp" alt="wechat:toponelan" width="160"/>
+|[flutter_adcontent](https://github.com/FlutterAds/flutter_adcontent)|穿山甲内容输出 Flutter 版插件，支持短剧和小视频|

@@ -4,19 +4,20 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_pangle_ads'
-  s.version          = '2.10.0'
+  s.version          = '3.0.0'
   s.summary          = 'FlutterAds 一款优质的 Flutter 广告插件（字节跳动、穿山甲）'
   s.description      = <<-DESC
 FlutterAds 致力于构建优质的 Flutter 广告插件
                        DESC
-  s.homepage         = 'https://github.com/FlutterAds'
+  s.homepage         = 'https://flutterads.top'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'ZeroFlutter' => '1300326388@qq.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Ads-CN','5.8.1.2'
+  # 依赖穿山甲广告：https://github.com/CocoaPods/Specs/tree/master/Specs/d/9/8/Ads-CN/
+  s.dependency 'Ads-CN','6.2.1.6'
   s.platform = :ios, '11.0'
   s.static_framework = true
 

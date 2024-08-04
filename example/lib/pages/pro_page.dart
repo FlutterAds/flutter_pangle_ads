@@ -39,8 +39,8 @@ class _ProPageState extends State<ProPage> {
 
   /// 复制url
   Future<void> pasteUrl() async {
-    Clipboard.setData(ClipboardData(text: 'https://flutterads.github.io/site/'))
-        .then((value) => ScaffoldMessenger.of(context)
+    Clipboard.setData(ClipboardData(text: 'https://flutterads.top/')).then(
+        (value) => ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('链接复制成功'))));
   }
 }
