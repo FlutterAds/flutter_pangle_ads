@@ -24,7 +24,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdk 29
+    compileSdk 31
     defaultConfig {
         minSdkVersion 19
     }
