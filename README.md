@@ -27,7 +27,7 @@
 - ✅ 信息流
 - 🏆 二次激励（可有效提升收益）[🚀 Pro 版](https://flutterads.top/)
 - 🦥 预缓存（预加载，极速展示） [🎁 Pro 版](https://flutterads.top/)
-- 💰 实时价格 eCPM（上报归因，买量更有效）[🚀 Pro 版](https://flutterads.top/)
+- 💰 实时价格（积分体系，分成体系）[🚀 Pro 版](https://flutterads.top/)
 - 🧪 测试助手（精准测试，稳定上线）[🚀 Pro 版](https://flutterads.top/)
 
 ## 📃 接入文档
