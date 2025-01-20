@@ -1,3 +1,10 @@
+## 3.1.0 
+* 🚀 推荐使用【[Gromore Pro](https://flutterads.top/)】 让您的广告收益翻倍
+* 新增 `directDownloadNetworkType` 字段，允许直接下载的网络类型
+* 升级 Android 和 iOS SDK 到最新版本
+* 修复提示【广告 SDK 未 Ready】 的问题
+* 迁移升级到 `plugin_platform_interface`
+
 ## 3.0.0 
 * 🚀 推荐使用【[Gromore Pro](https://flutterads.top/)】 让您的广告收益翻倍
 * 升级 iOS SDK 到 `v6.2.1.6`

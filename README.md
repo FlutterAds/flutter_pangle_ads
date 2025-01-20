@@ -12,7 +12,7 @@
 <img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen>
 </a>
 <a href="https://flutterads.top/">
-<img src="https://img.shields.io/badge/Pro-v3.5.0-success?logo=flutter&logoColor=FFD700"/>
+<img src="https://img.shields.io/badge/Pro-v3.8.0-success?logo=flutter&logoColor=FFD700"/>
 <a href="https://flutterads.top/">
 <img src="https://img.shields.io/badge/Site-FlutterAds-success?logo=webtrees&logoColor=FFD700"/>
 </a>

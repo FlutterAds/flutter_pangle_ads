@@ -186,6 +186,18 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 .build();
         // 初始化 SDK
         TTAdSdk.init(activity.getApplicationContext(), config);
+        TTAdSdk.start(new TTAdSdk.Callback() {
+            @Override
+            public void success() {
+                result.success(TTAdSdk.isSdkReady());
+            }
+
+            @Override
+            public void fail(int i, String s) {
+                result.success(false);
+                Log.e(TAG, "TTAdSdk init start Error code:"+i+" msg:"+s);
+            }
+        });
         // 升级提示
         Log.w(TAG, "🎉🎉🎉 FlutterAds ==> 初始化完成，推荐使用 GroMore Pro 版本，获得更高的收益：https://flutterads.top/");
     }
