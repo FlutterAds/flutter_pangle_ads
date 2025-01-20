@@ -24,6 +24,9 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    if (project.android.hasProperty("namespace")) {
+        namespace = "com.zero.flutter_pangle_ads"
+    }
     compileSdk 31
     defaultConfig {
         minSdkVersion 19
