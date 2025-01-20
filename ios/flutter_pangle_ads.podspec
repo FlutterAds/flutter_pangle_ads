@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version          = '3.1.0'
   s.summary          = 'FlutterAds 一款优质的 Flutter 广告插件（字节跳动、穿山甲）'
   s.description      = <<-DESC
-FlutterAds 致力于构建优质的 Flutter 广告插件
+FlutterAds 致力于构建优质的 Flutter 广告变现插件
                        DESC
   s.homepage         = 'https://flutterads.top'
   s.license          = { :file => '../LICENSE' }

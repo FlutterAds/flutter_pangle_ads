@@ -1,9 +1,5 @@
 <h1 align="center">📱 Flutter Pangle Ads</h1>
 
-<a href="https://flutterads.top/">
-<p align="center"> 🏆 FlutterAds ~ 致力于构建优质的 Flutter 变现插件</p>
-</a>
-
 <h3 align="center">一款优质的穿山甲（字节跳动、巨量引擎、GroMore）Flutter 广告变现插件</h3>
 
 <p align="center">♻️ 持续更新 ♻️</p>
@@ -25,6 +21,9 @@
 </p>
 
 
+<a href="https://flutterads.top/">
+<p align="center"> 🏆 FlutterAds ~ 致力于构建优质的 Flutter 变现插件</p>
+</a>
 
 ## 🚀 核心功能
 
