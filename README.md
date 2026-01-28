@@ -9,10 +9,6 @@
 <img src="https://img.shields.io/pub/v/flutter_pangle_ads?logo=dart"/>
 <img src="https://img.shields.io/badge/OS-iOS%20%7C%20Android-blue?logo=preact"/>
 </a>
-<a href="https://github.com/FlutterAds/flutter_pangle_ads">
-<img src="https://github.com/FlutterAds/flutter_pangle_ads/actions/workflows/flutter.yml/badge.svg">
-<img src=https://img.shields.io/github/stars/FlutterAds/flutter_pangle_ads?color=brightgreen>
-</a>
 <a href="https://gitcode.com/FlutterAdss/flutter_pangle_ads">
 <img src="https://gitcode.com/FlutterAdss/flutter_pangle_ads/star/badge.svg"/>
 </a>
