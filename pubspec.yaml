@@ -1,6 +1,6 @@
 name: flutter_pangle_ads
 description: 【持续更新】一款优质的穿山甲 Flutter 广告变现插件，支持 Android、iOS 平台，可快速接入进行广告变现。
-version: 3.1.0
+version: 3.1.1
 homepage: https://flutterads.top
 repository: https://github.com/FlutterAds/flutter_pangle_ads
 issue_tracker: https://github.com/FlutterAds/flutter_pangle_ads/issues

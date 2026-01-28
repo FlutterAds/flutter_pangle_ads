@@ -1,3 +1,7 @@
+## v3.1.1
+* 📱 增加初始化传入经纬度参数
+* 📱 增加信息流设置静音参数
+* ⚡️ 优化 Android 类名冲突问题
 ## 3.1.0 
 * 🚀 推荐使用【[Gromore Pro](https://flutterads.top/)】 让您的广告收益翻倍
 * 新增 `directDownloadNetworkType` 字段，允许直接下载的网络类型

@@ -17,7 +17,7 @@
 <img src="https://gitcode.com/FlutterAdss/flutter_pangle_ads/star/badge.svg"/>
 </a>
 <a href="https://flutterads.top/">
-<img src="https://img.shields.io/badge/Pro-v3.8.0-success?logo=flutter&logoColor=FFD700"/>
+<img src="https://.4.2-success?logo=flutter&logoColor=FFD700"/>
 <a href="https://flutterads.top/">
 <img src="https://img.shields.io/badge/Site-FlutterAds-success?logo=webtrees&logoColor=FFD700"/>
 </a>
