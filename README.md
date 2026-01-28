@@ -17,12 +17,11 @@
 <img src="https://gitcode.com/FlutterAdss/flutter_pangle_ads/star/badge.svg"/>
 </a>
 <a href="https://flutterads.top/">
-<img src="https://.4.2-success?logo=flutter&logoColor=FFD700"/>
+<img src="https:// img.shields.io/badge/Pro-v4.4.2-success?logo=flutter&logoColor=FFD700"/>
 <a href="https://flutterads.top/">
 <img src="https://img.shields.io/badge/Site-FlutterAds-success?logo=webtrees&logoColor=FFD700"/>
 </a>
 </p>
-
 
 <a href="https://flutterads.top/">
 <p align="center"> 🏆 FlutterAds ~ 致力于构建优质的 Flutter 变现插件</p>
@@ -42,17 +41,16 @@
 - ♻️ 适配最新（紧跟官方最新 SDK）[🚀 Pro 版](https://flutterads.top/)
 
 ## 📱 下载体验
+
 <a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
 
 > 回复 `Pro` 进行体验
 
-
 ## 📃 接入文档
 
-- [ 🎯 极速接入、快速体验、持续更新](https://flutterads.top/)
+- [🎯 极速接入、快速体验、持续更新](https://flutterads.top/)
 
-- [ 💰 变现套件 = 【GroMore】+【AdSpark】+【AdContent】](https://flutterads.top/)
-
+- [💰 变现套件 = 【GroMore】+【AdSpark】+【AdContent】](https://flutterads.top/)
 
 ## 📌 FlutterAds 广告系列插件 — 打造 Flutter 应用的变现新机会
 
@@ -64,7 +62,7 @@
 |[🌐 flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 广告平台一站式聚合，助力你在 Flutter 中轻松集成多种广告源！|
 |[🌐 flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|专为 Flutter 打造的字节跳动、穿山甲广告插件，让你畅享流量和收益！|
 |[🚢 flutter_pangle_global_ads](https://github.com/FlutterAds/flutter_pangle_global_ads)|面向全球用户的字节跳动、穿山甲国际版广告插件，全面支持海外市场的广告变现！|
-|[🌐 flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|	集成腾讯广告、广点通、优量汇，快速为 Flutter 应用打开更多广告渠道！|
+|[🌐 flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)| 集成腾讯广告、广点通、优量汇，快速为 Flutter 应用打开更多广告渠道！|
 |[Ⓜ flutter_ohos_ads](https://github.com/FlutterAds/flutter_ohos_ads)|专为 HarmonyOS（鸿蒙系统）优化的广告变现插件，提供专属 Flutter 广告支持！|
 |[📡 flutter_adspark](https://github.com/FlutterAds/flutter_adspark)|强大的广告监测、增长分析与事件管理功能，助力你提升广告投放效果，精准归因！|
 |[🎬 flutter_adcontent_pro](https://github.com/FlutterAds/flutter_adcontent)|支持短剧、小视频内容的穿山甲内容输出插件，助力你轻松打造短剧类应用！|
